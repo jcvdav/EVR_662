@@ -1,47 +1,33 @@
+`Handle with care: Course page is still under construction.`
+
 # Instructor information
 
 -   Juan Carlos Villaseñor-Derbez
 -   Office: MSC 326
--   Contact e-mail: [jc_villasenor\@miami.edu](mailto:jc_villasenor@miami.edu){.email}
+-   Contact e-mail: jc_villasenor\@xxx.edu
 -   Office hours: By appointment
 
 # Class schedule
 
--   TBD
+-   TBD, but Spring 2025
 
 # Class description
 
-The course will introduce students to intermediate spatial analysis in R, in the context of
-Environmental Science and Policy. Introductory knowledge of spatial analysis (*e.g.* GIS sing QGIS
-or ESRI products) is required, previous exposure to the use of scripting languages (*e.g.* R or
-Python) will help, but is not required. During the first part of the course (weeks 1-6), students
-will gain a solid foundation on modern tools and standards for spatial analysis in R (*e.g.* simple
-features, spherical geometries). The second part (weeks 7-15) will expose students to intermediate
-techniques (*e.g.* visualization, scripting, and principles of classification for remote sensing).
-Students will learn how to find, retrieve, and work with a suite of spatial data products commonly
-used in Environmental Science and Policy.
+The course will introduce students to intermediate spatial analysis in R, in the context of Environmental Science and Policy. Introductory knowledge of spatial analysis (*e.g.* GIS sing QGIS or ESRI products) is required, previous exposure to the use of scripting languages (*e.g.* R or Python) will help, but is not required. During the first part of the course (weeks 1-6), students will gain a solid foundation on modern tools and standards for spatial analysis in R (*e.g.* simple features, spherical geometries). The second part (weeks 7-15) will expose students to intermediate techniques (*e.g.* visualization, scripting, and principles of classification for remote sensing). Students will learn how to find, retrieve, and work with a suite of spatial data products commonly used in Environmental Science and Policy.
 
-> **Undergraduate students** Some seats are reserved for undergraduate students who have some
-> relevant experience and permission. The expectations for undergraduates are slightly more lenient
-> with regards to the final project. All other expectations remain the same.
+> **Undergraduate students** Some seats are reserved for undergraduate students who have some relevant experience and permission. The expectations for undergraduates are slightly more lenient with regards to the final project. All other expectations remain the same.
 
 # Class objectives
 
-At the end of this course, students will: 1. Have a foundational understanding of the principles of
-spatial analysis in R 2. Be able to identify and access data sources, design and build processing
-pipelines, and create spatial models related to Environmental Science and Policy
+At the end of this course, students will: 1. Have a foundational understanding of the principles of spatial analysis in R 2. Be able to identify and access data sources, design and build processing pipelines, and create spatial models related to Environmental Science and Policy
 
 # Pre-requisites
 
-Required: previous exposure to GIS, such as EVR 660. Introduction to Marine Geographic Information
-Systems. Encouraged: And previous exposure to R / statistics, such as: RSM 612. Statistics for
-Marine Scientists, EVR 622. Principles and Practices of Marine Social Science Research, or EVR 624.
-Statistics and Data Analysis for Environmental Science and Policy
+Required: previous exposure to GIS, such as EVR 660. Introduction to Marine Geographic Information Systems. Encouraged: And previous exposure to R / statistics, such as: RSM 612. Statistics for Marine Scientists, EVR 622. Principles and Practices of Marine Social Science Research, or EVR 624. Statistics and Data Analysis for Environmental Science and Policy
 
 # Class materials
 
--   Will be primarily available on the course website and GitHub repository, but also on UM
-    blackboard.
+-   Will be primarily available on the course website and GitHub repository, but also on UM blackboard.
 
 # Reading resources
 
@@ -57,9 +43,27 @@ Statistics and Data Analysis for Environmental Science and Policy
 -   Individual project: 40%
 
 # Course contents
-Coming soon
 
-# List of exercises
+1.  Intro to spatial analysis in R
+2.  Geographic data models in R
+    -   2.1 Vector data in R
+
+    -   2.2 Raster data in R
+3.  Attribute operations
+4.  Spatial data operations in R
+5.  Geometry operations and Raster-Vector interactions
+6.  Static visualization (maps) Midterm Exam
+7.  Interactive visualization (web maps)
+8.  Scripts, algorithms, and functions
+9.  Principles of spatial statistical learning and remote sensing
+    -   9.1 Spatial cross-validation
+
+    -   9.2 Unsupervised classification
+
+    -   9.3 Supervised classification
+10. Final project presentations
+
+# List of in-class exercises
 
 -   Ex1: Software installation
 -   Ex2: Vessel-tracking data and Marine Protected Areas
@@ -82,30 +86,20 @@ Coming soon
 
 # Individual projects
 
-The individual project is intended to serve two purposes. First, provide the student with an
-opportunity to apply their newly acquired tools and techniques to their own research or application.
-And, secondly, to serve as proof of learning. As such, all individual projects will meet the
-following criteria:
+The individual project is intended to serve two purposes. First, provide the student with an opportunity to apply their newly acquired tools and techniques to their own research or application. And, secondly, to serve as proof of learning. As such, all individual projects will meet the following criteria:
 
-1.  All data and code must be primarily analyzed or processed using R and RStudio (or an equivalent
-    scripting / coding language to be pre-approved by the instructor)
+1.  All data and code must be primarily analyzed or processed using R and RStudio (or an equivalent scripting / coding language to be pre-approved by the instructor)
 
-2.  The student will show they have mastered the course material by correctly and successfully
-    employing two tools and techniques covered in part 1 of the course and two tools and techniques
-    covered in part 2 of the course.
+2.  The student will show they have mastered the course material by correctly and successfully employing two tools and techniques covered in part 1 of the course and two tools and techniques covered in part 2 of the course.
 
-3.  The final product will be a 5-7 page report (and a 5-7 slide presentation), roughly divided as
-    follows:
+3.  The final product will be a 5-7 page report (and a 5-7 slide presentation), roughly divided as follows:
 
 -   \~1 page (slide) explaining the objective of the project
 
 -   \~1 page (slide) describing relevant data sources
 
--   2-3 pages (slides) clearly outlining the tools and techniques used for the project, and a
-    justification for their choice.
+-   2-3 pages (slides) clearly outlining the tools and techniques used for the project, and a justification for their choice.
 
--   \~1 page (slide) describing the main outcome of the project (the outcome may be anything a
-    carefully curated dataset to be used at a later stage in the student’s research, preliminary
-    results, or finalized results)
+-   \~1 page (slide) describing the main outcome of the project (the outcome may be anything a carefully curated dataset to be used at a later stage in the student’s research, preliminary results, or finalized results)
 
 Note that references, appendices, and notes are not included in the page limit.
