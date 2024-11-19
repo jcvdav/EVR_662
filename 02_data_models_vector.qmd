@@ -1,0 +1,12 @@
+---
+title: "Geographic data models"
+subtitle: "Vector data"
+author: "Juan Carlos Villaseñor-Derbez (JC)"
+format:
+  revealjs:
+    incremental: true   
+    logo: https://ucomm.miami.edu/_assets/images/tools-and-resources/signatures/png/um-horizontal-rgb.png
+    footer: "EVR 662"
+---
+
+## Intro slide

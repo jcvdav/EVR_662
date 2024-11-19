@@ -44,7 +44,7 @@ Required: previous exposure to GIS, such as EVR 660. Introduction to Marine Geog
 
 # Course contents
 
-1.  Intro to spatial analysis in R
+1.  [Intro to spatial analysis in R](./01_intro.html)
 2.  Geographic data models in R
     -   2.1 Vector data in R
 

@@ -1,0 +1,74 @@
+---
+title: "EVR662 - Intermediate Spatial Analysis"
+subtitle: "Day 1: The whys and the hows"
+author: "Juan Carlos Villaseñor-Derbez (JC)"
+format:
+  revealjs:
+    incremental: true   
+    logo: https://ucomm.miami.edu/_assets/images/tools-and-resources/signatures/png/um-horizontal-rgb.png
+    footer: "EVR 662"
+---
+
+## Quarto
+
+Quarto enables you to weave together content and executable code into a finished presentation. To learn more about Quarto presentations see <https://quarto.org/docs/presentations/>.
+
+## Bullets
+
+When you click the **Render** button a document will be generated that includes:
+
+-   Content authored with markdown
+-   Output from executable code
+
+## Code
+
+When you click the **Render** button a presentation will be generated that includes both content and the output of embedded code. You can embed code like this:
+
+```{r}
+library(ggplot2)
+
+ggplot(mtcars,aes(x = cyl, y = disp)) +
+  geom_point()
+```
+
+# Section slide
+
+This is a section
+
+## Slide
+
+This should be a slide
+
+## Another slide
+
+This should be another slide
+
+### Header within a slide
+
+## Adding columns
+
+```
+:::: {.columns}
+
+::: {.column width="40%"}
+contents...
+:::
+
+::: {.column width="60%"}
+contents...
+:::
+
+::::
+```
+
+:::: {.columns}
+
+::: {.column width="40%"}
+Should be column 1
+:::
+
+::: {.column width="60%"}
+Should be column 2
+:::
+
+::::
