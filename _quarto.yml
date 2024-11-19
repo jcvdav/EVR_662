@@ -2,6 +2,7 @@ author: "Juan Carlos Villaseñor-Derbez (JC)"
 
 project:
   output-dir: .
+  execute-dir: project
 
 #bibliography: references.bib
 format:

@@ -3,9 +3,36 @@ title: "EVR662 - Intermediate Spatial Analysis"
 subtitle: "Day 1: The whys and the hows"
 ---
 
+```{r}
+source(here::here("_r_opts.R"))
+
+library(ggplot2)
+```
+
+
 ## Introductions and expectations
 
 ## Code of conduct
 
 ## R code
+
+```{r, eval = F}
+my_cars <- readRDS(here::here("data/my_cars.rds"))
+
+ggplot(data = my_cars, aes(x = disp, y = mpg)) +
+  geom_point() +
+  geom_line() +
+  geom_smooth() +
+  labs(x = "Displacement (probably in cc)",
+       y = "Fuel economy (miles per galon: mpg)")
+```
+
+## Test of a map
+
+```{r}
+wrld <- rnaturalearth::ne_countries()
+ggplot(wrld, aes(fill = continent)) +
+  geom_sf()
+```
+
 
