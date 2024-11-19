@@ -1,0 +1,6 @@
+---
+title: "Geographic data models"
+subtitle: "Vector data"
+---
+
+## Intro slide

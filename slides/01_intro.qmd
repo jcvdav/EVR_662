@@ -1,0 +1,11 @@
+---
+title: "EVR662 - Intermediate Spatial Analysis"
+subtitle: "Day 1: The whys and the hows"
+---
+
+## Introductions and expectations
+
+## Code of conduct
+
+## R code
+

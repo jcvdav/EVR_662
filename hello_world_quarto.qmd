@@ -1,14 +1,3 @@
----
-title: "EVR662 - Intermediate Spatial Analysis"
-subtitle: "Day 1: The whys and the hows"
-author: "Juan Carlos Villaseñor-Derbez (JC)"
-format:
-  revealjs:
-    incremental: true   
-    logo: https://ucomm.miami.edu/_assets/images/tools-and-resources/signatures/png/um-horizontal-rgb.png
-    footer: "EVR 662"
----
-
 ## Quarto
 
 Quarto enables you to weave together content and executable code into a finished presentation. To learn more about Quarto presentations see <https://quarto.org/docs/presentations/>.

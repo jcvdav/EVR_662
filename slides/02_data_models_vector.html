@@ -1,22 +1,22 @@
 <!DOCTYPE html>
 <html lang="en"><head>
-<script src="01_intro_files/libs/clipboard/clipboard.min.js"></script>
-<script src="01_intro_files/libs/quarto-html/tabby.min.js"></script>
-<script src="01_intro_files/libs/quarto-html/popper.min.js"></script>
-<script src="01_intro_files/libs/quarto-html/tippy.umd.min.js"></script>
-<link href="01_intro_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="01_intro_files/libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="01_intro_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
-<link href="01_intro_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+<script src="02_data_models_vector_files/libs/clipboard/clipboard.min.js"></script>
+<script src="02_data_models_vector_files/libs/quarto-html/tabby.min.js"></script>
+<script src="02_data_models_vector_files/libs/quarto-html/popper.min.js"></script>
+<script src="02_data_models_vector_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="02_data_models_vector_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="02_data_models_vector_files/libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="02_data_models_vector_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
+<link href="02_data_models_vector_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.4.553">
 
   <meta name="author" content="Juan Carlos Villaseñor-Derbez (JC)">
-  <title>EVR662 - Intermediate Spatial Analysis</title>
+  <title>Geographic data models</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
-  <link rel="stylesheet" href="01_intro_files/libs/revealjs/dist/reset.css">
-  <link rel="stylesheet" href="01_intro_files/libs/revealjs/dist/reveal.css">
+  <link rel="stylesheet" href="02_data_models_vector_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="02_data_models_vector_files/libs/revealjs/dist/reveal.css">
   <style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
@@ -30,11 +30,11 @@
       vertical-align: middle;
     }
   </style>
-  <link rel="stylesheet" href="01_intro_files/libs/revealjs/dist/theme/quarto.css">
-  <link href="01_intro_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
-  <link href="01_intro_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
-  <link href="01_intro_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
-  <link href="01_intro_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <link rel="stylesheet" href="02_data_models_vector_files/libs/revealjs/dist/theme/quarto.css">
+  <link href="02_data_models_vector_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="02_data_models_vector_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="02_data_models_vector_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="02_data_models_vector_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
   <style type="text/css">
 
   .callout {
@@ -326,8 +326,8 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">EVR662 - Intermediate Spatial Analysis</h1>
-  <p class="subtitle">Day 1: The whys and the hows</p>
+  <h1 class="title">Geographic data models</h1>
+  <p class="subtitle">Vector data</p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -338,81 +338,32 @@ Juan Carlos Villaseñor-Derbez (JC)
 </div>
 
 </section>
-<section id="quarto" class="slide level2">
-<h2>Quarto</h2>
-<p>Quarto enables you to weave together content and executable code into a finished presentation. To learn more about Quarto presentations see <a href="https://quarto.org/docs/presentations/" class="uri">https://quarto.org/docs/presentations/</a>.</p>
-</section>
-<section id="bullets" class="slide level2">
-<h2>Bullets</h2>
-<p>When you click the <strong>Render</strong> button a document will be generated that includes:</p>
-<ul>
-<li class="fragment">Content authored with markdown</li>
-<li class="fragment">Output from executable code</li>
-</ul>
-</section>
-<section id="code" class="slide level2">
-<h2>Code</h2>
-<p>When you click the <strong>Render</strong> button a presentation will be generated that includes both content and the output of embedded code. You can embed code like this:</p>
-
-<img data-src="01_intro_files/figure-revealjs/unnamed-chunk-1-1.png" width="960" class="r-stretch"></section>
-<section>
-<section id="section-slide" class="title-slide slide level1 center">
-<h1>Section slide</h1>
-<p>This is a section</p>
-</section>
-<section id="slide" class="slide level2">
-<h2>Slide</h2>
-<p>This should be a slide</p>
-</section>
-<section id="another-slide" class="slide level2">
-<h2>Another slide</h2>
-<p>This should be another slide</p>
-<h3 id="header-within-a-slide">Header within a slide</h3>
-</section>
-<section id="adding-columns" class="slide level2">
-<h2>Adding columns</h2>
-<pre><code>:::: {.columns}
-
-::: {.column width="40%"}
-contents...
-:::
-
-::: {.column width="60%"}
-contents...
-:::
-
-::::</code></pre>
-<div class="columns">
-<div class="column" style="width:40%;">
-<p>Should be column 1</p>
-</div><div class="column" style="width:60%;">
-<p>Should be column 2</p>
-</div>
-</div>
+<section id="intro-slide" class="slide level2">
+<h2>Intro slide</h2>
 <div class="quarto-auto-generated-content">
 <p><img src="https://ucomm.miami.edu/_assets/images/tools-and-resources/signatures/png/um-horizontal-rgb.png" class="slide-logo"></p>
 <div class="footer footer-default">
-<p>EVR 662</p>
+<p><a href="https://jcvdav.github.io/EVR_662/">EVR 662</a></p>
 </div>
 </div>
-</section></section>
+</section>
     </div>
   </div>
 
   <script>window.backupDefine = window.define; window.define = undefined;</script>
-  <script src="01_intro_files/libs/revealjs/dist/reveal.js"></script>
+  <script src="02_data_models_vector_files/libs/revealjs/dist/reveal.js"></script>
   <!-- reveal.js plugins -->
-  <script src="01_intro_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
-  <script src="01_intro_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
-  <script src="01_intro_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
-  <script src="01_intro_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
-  <script src="01_intro_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  <script src="02_data_models_vector_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="02_data_models_vector_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="02_data_models_vector_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="02_data_models_vector_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="02_data_models_vector_files/libs/revealjs/plugin/quarto-support/support.js"></script>
   
 
-  <script src="01_intro_files/libs/revealjs/plugin/notes/notes.js"></script>
-  <script src="01_intro_files/libs/revealjs/plugin/search/search.js"></script>
-  <script src="01_intro_files/libs/revealjs/plugin/zoom/zoom.js"></script>
-  <script src="01_intro_files/libs/revealjs/plugin/math/math.js"></script>
+  <script src="02_data_models_vector_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="02_data_models_vector_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="02_data_models_vector_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="02_data_models_vector_files/libs/revealjs/plugin/math/math.js"></script>
   <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
 
   <script>
@@ -606,44 +557,6 @@ contents...
         ]
       });
     </script>
-    
-    <script>
-      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
-      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
-      // slide changes (different for each slide format).
-      (function () {
-        // dispatch for htmlwidgets
-        function fireSlideEnter() {
-          const event = window.document.createEvent("Event");
-          event.initEvent("slideenter", true, true);
-          window.document.dispatchEvent(event);
-        }
-
-        function fireSlideChanged(previousSlide, currentSlide) {
-          fireSlideEnter();
-
-          // dispatch for shiny
-          if (window.jQuery) {
-            if (previousSlide) {
-              window.jQuery(previousSlide).trigger("hidden");
-            }
-            if (currentSlide) {
-              window.jQuery(currentSlide).trigger("shown");
-            }
-          }
-        }
-
-        // hookup for slidy
-        if (window.w3c_slidy) {
-          window.w3c_slidy.add_observer(function (slide_num) {
-            // slide_num starts at position 1
-            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
-          });
-        }
-
-      })();
-    </script>
-
     <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
       const toggleBodyColorMode = (bsSheetEl) => {

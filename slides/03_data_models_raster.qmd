@@ -1,0 +1,6 @@
+---
+title: "Geographic data models"
+subtitle: "Raster data"
+---
+
+## Intro slide

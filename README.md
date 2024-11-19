@@ -1,15 +1,13 @@
-`Handle with care: Course page is still under construction.`
-
 # Instructor information
 
 -   Juan Carlos Villaseñor-Derbez
 -   Office: MSC 326
--   Contact e-mail: jc_villasenor\@xxx.edu
+-   Contact e-mail: jc_villasenor\@miami.edu
 -   Office hours: By appointment
 
 # Class schedule
 
--   TBD, but Spring 2025
+-   M / W \@ 12:00 - 13:15 SLAB 114
 
 # Class description
 
@@ -44,7 +42,7 @@ Required: previous exposure to GIS, such as EVR 660. Introduction to Marine Geog
 
 # Course contents
 
-1.  [Intro to spatial analysis in R](./01_intro.html)
+1.  Intro to spatial analysis in R
 2.  Geographic data models in R
     -   2.1 Vector data in R
 
