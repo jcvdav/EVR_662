@@ -40,5 +40,5 @@ ggplot2::update_geom_defaults(geom = "sf",
 ## COLOR PALETTES ##############################################################
 options(ggplot2.discrete.colour="viridis")
 options(ggplot2.continuous.colour="viridis")
-options(ggplot2.discrete.fill="viridis")
-options(ggplot2.continuous.fill="viridis")
+options(ggplot2.discrete.fill = function(){scale_fill_viridis_d(option = "mako")})
+

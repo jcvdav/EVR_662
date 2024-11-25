@@ -12,3 +12,6 @@ format:
     logo: https://ucomm.miami.edu/_assets/images/tools-and-resources/signatures/png/um-horizontal-rgb.png
     footer: "[EVR 662](https://jcvdav.github.io/EVR_662/)"
     reference-location: document
+    toc: true
+    code-fold: true
+    echo: true

@@ -3,4 +3,187 @@ title: "Geographic data models"
 subtitle: "Vector data"
 ---
 
-## Intro slide
+```{r, echo=FALSE}
+pacman::p_load(
+  tidyverse,
+  sf,
+  terra,
+  mapview
+)
+```
+
+
+## How do we get the world into a computer?
+
+- Imagine an attribute that occurs somewhere in the World:
+    - SST
+    - site identity
+    - hurricane path
+    - city boundaries
+- How do we represent it?
+- How do we work on it?
+- How do we store the data?
+
+## We need a *model*
+
+Data can bre represented in a `vector` model, or a `raster` model
+
+In today's class:
+
+- Introduce the *why* behind each model
+- Discuss where and when they are used
+- Briefly compare their pro's and cons
+- Focus on `vector`:
+    - It's main attributes
+    - It's implementation in R
+
+## Two mdels
+:::: {.columns}
+
+::: {.column width="50%"}
+### `vector`
+- World is represented using points, lines, and polygons
+- Discrete and well-defined borders = high precision
+- Computationally intensive
+:::
+
+::: {.column width="50%"}
+### `raster`
+- Space is divided into equal-sized grid cells (or pixels)
+- Aggregate spatial features to a given *resolution*
+- You can lose some precision, but much faster to work with
+:::
+
+::::
+
+. . . 
+
+> "`raster` is faster, but `vector` is correctr"
+
+
+## Example: Rosenstiel
+
+:::: {.panel-tabset}
+
+### Point (1D)
+
+```{r}
+rsmaes_pt_coords <- 
+    st_point(
+        x = c(-80.1632879, 25.7328129),
+        dim = "XY") %>% 
+    st_sfc(crs = 4326)
+
+rsmaes_pt <-
+    st_sf(id = "Rosenstiel (point)",
+          geometry = rsmaes_pt_coords)
+
+mapview(rsmaes_pt)
+```
+
+### Line (2D)
+
+```{r}
+rsmaes_line_coords <- 
+    st_linestring(
+        x = matrix(
+            data = c(
+                -80.163017, 25.733950,
+                -80.164236, 25.732816,
+                -80.163772, 25.732353,
+                -80.163924, 25.732148,
+                -80.163455, 25.731597,
+                -80.162187, 25.731605,
+                -80.160968, 25.732172,
+                -80.163017, 25.733950),
+            ncol = 2,
+            byrow = T),
+        dim = "XY") %>% 
+    list() %>% 
+    st_sfc(crs = 4326)
+
+rsmaes_line <-
+    st_sf(id = "Rosenstiel (line)",
+          geometry = rsmaes_line_coords)
+
+mapview(rsmaes_line)
+
+```
+
+### Polygon (3D)
+
+```{r}
+rsmaes_poly_coords <- 
+    st_polygon(
+        x = list(
+                matrix(
+                    data = c(
+                        -80.163017, 25.733950,
+                        -80.164236, 25.732816,
+                        -80.163772, 25.732353,
+                        -80.163924, 25.732148,
+                        -80.163455, 25.731597,
+                        -80.162187, 25.731605,
+                        -80.160968, 25.732172,
+                        -80.163017, 25.733950),
+                    ncol = 2,
+                    byrow = T)),
+        dim = "XY") %>% 
+    st_sfc(crs = 4326)
+
+rsmaes_poly <-
+    st_sf(id = "Rosenstiel (polygon)",
+          geometry = rsmaes_poly_coords)
+
+mapview(rsmaes_poly)
+```
+
+
+### Raster
+```{r}
+rsmaes_rast <-
+    rasterize(
+        x = vect(rsmaes_poly),
+        y = rast(resolution = 0.0001,
+            crs = "EPSG:4326",
+            val = 0,
+            xmin = -80.168, xmax = -80.155,
+            ymin = 25.730, ymax = 25.735),
+        field = 1)
+
+names(rsmaes_rast) <- "Rosenstiel"
+rsmaes_rast[is.na(rsmaes_rast)] <- 0
+
+mapview(
+    rsmaes_rast,
+    zcol = "Rosenstiel",
+    legend = F)
+
+```
+
+::::
+
+## Combinations {.scrollable}
+
+Different types of vector data can be combined into a single object
+
+```{r}
+rsmaes_multi <- bind_rows(rsmaes_poly, rsmaes_line, rsmaes_pt)
+
+ggplot(rsmaes_multi) +
+    geom_sf(aes(color = id,
+                fill = id),
+            linewidth = 1,
+            size = 3) +
+scale_fill_viridis_d(aesthetics = c("fill","color"))
+```
+
+
+## What should you use?
+
+- The "correct" type of data varies
+
+- Spatial analysis is a lot like working on a car
+
+
+

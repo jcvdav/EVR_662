@@ -29,6 +29,71 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="02_data_models_vector_files/libs/revealjs/dist/theme/quarto.css">
   <link href="02_data_models_vector_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
@@ -320,6 +385,27 @@
       margin-right: 0; 
     }
   </style>
+  <link href="02_data_models_vector_files/libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
+  <script src="02_data_models_vector_files/libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+  <script src="02_data_models_vector_files/libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+  <link href="02_data_models_vector_files/libs/leaflet-1.3.1/leaflet.css" rel="stylesheet">
+  <script src="02_data_models_vector_files/libs/leaflet-1.3.1/leaflet.js"></script>
+  <link href="02_data_models_vector_files/libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet">
+  <script src="02_data_models_vector_files/libs/proj4-2.6.2/proj4.min.js"></script>
+  <script src="02_data_models_vector_files/libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+  <link href="02_data_models_vector_files/libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet">
+  <script src="02_data_models_vector_files/libs/leaflet-binding-2.2.2/leaflet.js"></script>
+  <script src="02_data_models_vector_files/libs/leaflet-providers-2.0.0/leaflet-providers_2.0.0.js"></script>
+  <script src="02_data_models_vector_files/libs/leaflet-providers-plugin-2.2.2/leaflet-providers-plugin.js"></script>
+  <link href="02_data_models_vector_files/libs/HomeButton-0.0.1/home-button.css" rel="stylesheet">
+  <script src="02_data_models_vector_files/libs/HomeButton-0.0.1/home-button.js"></script>
+  <script src="02_data_models_vector_files/libs/HomeButton-0.0.1/easy-button-src.min.js"></script>
+  <script src="02_data_models_vector_files/libs/clipboard-0.0.1/setClipboardText.js"></script>
+  <link href="02_data_models_vector_files/libs/mapviewCSS-0.0.1/mapview-popup.css" rel="stylesheet">
+  <link href="02_data_models_vector_files/libs/mapviewCSS-0.0.1/mapview.css" rel="stylesheet">
+  <script src="02_data_models_vector_files/libs/rsmaes_rast - 1_9ec601-1/data_stars_rsmaes_rast19720ed.txt"></script>
+  <script src="02_data_models_vector_files/libs/joda-0.0.1/joda.js"></script>
+  <script src="02_data_models_vector_files/libs/joda-0.0.1/addImageQuery-bindings.js"></script>
 </head>
 <body class="quarto-light">
   <div class="reveal">
@@ -337,9 +423,224 @@ Juan Carlos Villaseñor-Derbez (JC)
 </div>
 </div>
 
+</section><section id="TOC">
+<nav role="doc-toc"> 
+<h2 id="toc-title">Table of contents</h2>
+<ul>
+<li class="fragment"><a href="#/how-do-we-get-the-world-into-a-computer" id="/toc-how-do-we-get-the-world-into-a-computer">How do we get the world into a computer?</a></li>
+<li class="fragment"><a href="#/we-need-a-model" id="/toc-we-need-a-model">We need a <em>model</em></a></li>
+<li class="fragment"><a href="#/two-mdels" id="/toc-two-mdels">Two mdels</a></li>
+<li class="fragment"><a href="#/example-rosenstiel" id="/toc-example-rosenstiel">Example: Rosenstiel</a></li>
+<li class="fragment"><a href="#/combinations" id="/toc-combinations">Combinations</a></li>
+<li class="fragment"><a href="#/what-should-you-use" id="/toc-what-should-you-use">What should you use?</a></li>
+</ul>
+</nav>
 </section>
-<section id="intro-slide" class="slide level2">
-<h2>Intro slide</h2>
+<section id="how-do-we-get-the-world-into-a-computer" class="slide level2">
+<h2>How do we get the world into a computer?</h2>
+<ul>
+<li class="fragment">Imagine an attribute that occurs somewhere in the World:
+<ul>
+<li class="fragment">SST</li>
+<li class="fragment">site identity</li>
+<li class="fragment">hurricane path</li>
+<li class="fragment">city boundaries</li>
+</ul></li>
+<li class="fragment">How do we represent it?</li>
+<li class="fragment">How do we work on it?</li>
+<li class="fragment">How do we store the data?</li>
+</ul>
+</section>
+<section id="we-need-a-model" class="slide level2">
+<h2>We need a <em>model</em></h2>
+<p>Data can bre represented in a <code>vector</code> model, or a <code>raster</code> model</p>
+<p>In today’s class:</p>
+<ul>
+<li class="fragment">Introduce the <em>why</em> behind each model</li>
+<li class="fragment">Discuss where and when they are used</li>
+<li class="fragment">Briefly compare their pro’s and cons</li>
+<li class="fragment">Focus on <code>vector</code>:
+<ul>
+<li class="fragment">It’s main attributes</li>
+<li class="fragment">It’s implementation in R</li>
+</ul></li>
+</ul>
+</section>
+<section id="two-mdels" class="slide level2">
+<h2>Two mdels</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3 id="vector"><code>vector</code></h3>
+<ul>
+<li class="fragment">World is represented using points, lines, and polygons</li>
+<li class="fragment">Discrete and well-defined borders = high precision</li>
+<li class="fragment">Computationally intensive</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<h3 id="raster"><code>raster</code></h3>
+<ul>
+<li class="fragment">Space is divided into equal-sized grid cells (or pixels)</li>
+<li class="fragment">Aggregate spatial features to a given <em>resolution</em></li>
+<li class="fragment">You can lose some precision, but much faster to work with</li>
+</ul>
+</div>
+</div>
+<div class="fragment">
+<blockquote>
+<p>“<code>raster</code> is faster, but <code>vector</code> is correctr”</p>
+</blockquote>
+</div>
+</section>
+<section id="example-rosenstiel" class="slide level2">
+<h2>Example: Rosenstiel</h2>
+<div class="panel-tabset">
+<ul id="tabset-1" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-1-1">Point (1D)</a></li><li><a href="#tabset-1-2">Line (2D)</a></li><li><a href="#tabset-1-3">Polygon (3D)</a></li><li><a href="#tabset-1-4">Raster</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1">
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href=""></a>rsmaes_pt_coords <span class="ot">&lt;-</span> </span>
+<span id="cb1-2"><a href=""></a>    <span class="fu">st_point</span>(</span>
+<span id="cb1-3"><a href=""></a>        <span class="at">x =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">80.1632879</span>, <span class="fl">25.7328129</span>),</span>
+<span id="cb1-4"><a href=""></a>        <span class="at">dim =</span> <span class="st">"XY"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb1-5"><a href=""></a>    <span class="fu">st_sfc</span>(<span class="at">crs =</span> <span class="dv">4326</span>)</span>
+<span id="cb1-6"><a href=""></a></span>
+<span id="cb1-7"><a href=""></a>rsmaes_pt <span class="ot">&lt;-</span></span>
+<span id="cb1-8"><a href=""></a>    <span class="fu">st_sf</span>(<span class="at">id =</span> <span class="st">"Rosenstiel (point)"</span>,</span>
+<span id="cb1-9"><a href=""></a>          <span class="at">geometry =</span> rsmaes_pt_coords)</span>
+<span id="cb1-10"><a href=""></a></span>
+<span id="cb1-11"><a href=""></a><span class="fu">mapview</span>(rsmaes_pt)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div class="leaflet html-widget html-fill-item" id="htmlwidget-2abf16504acfeb131f5d" style="width:960px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-2abf16504acfeb131f5d">{"x":{"options":{"minZoom":1,"maxZoom":52,"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}},"preferCanvas":false,"bounceAtZoomLimits":false,"maxBounds":[[[-90,-370]],[[90,370]]]},"calls":[{"method":"addProviderTiles","args":["CartoDB.Positron","CartoDB.Positron","CartoDB.Positron",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"addProviderTiles","args":["CartoDB.DarkMatter","CartoDB.DarkMatter","CartoDB.DarkMatter",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"addProviderTiles","args":["OpenStreetMap","OpenStreetMap","OpenStreetMap",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"addProviderTiles","args":["Esri.WorldImagery","Esri.WorldImagery","Esri.WorldImagery",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"addProviderTiles","args":["OpenTopoMap","OpenTopoMap","OpenTopoMap",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"createMapPane","args":["point",440]},{"method":"addCircleMarkers","args":[25.7328129,-80.1632879,6,null,"rsmaes_pt",{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}},"pane":"point","stroke":true,"color":"#333333","weight":1,"opacity":0.9,"fill":true,"fillColor":"#6666FF","fillOpacity":0.6},null,null,"<div class='scrollableContainer'><table class=mapview-popup id='popup'><tr class='coord'><td><\/td><th><b>Feature ID&emsp;<\/b><\/th><td>1&emsp;<\/td><\/tr><tr><td>1<\/td><th>id&emsp;<\/th><td>Rosenstiel (point)&emsp;<\/td><\/tr><tr><td>2<\/td><th>geometry&emsp;<\/th><td>sfc_POINT&emsp;<\/td><\/tr><\/table><\/div>",{"maxWidth":800,"minWidth":50,"autoPan":true,"keepInView":false,"closeButton":true,"closeOnClick":true,"className":""},"Rosenstiel (point)",{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addScaleBar","args":[{"maxWidth":100,"metric":true,"imperial":true,"updateWhenIdle":true,"position":"bottomleft"}]},{"method":"addHomeButton","args":[-80.1632879,25.7328129,-80.1632879,25.7328129,true,"rsmaes_pt","Zoom to rsmaes_pt","<strong> rsmaes_pt <\/strong>","bottomright"]},{"method":"addLayersControl","args":[["CartoDB.Positron","CartoDB.DarkMatter","OpenStreetMap","Esri.WorldImagery","OpenTopoMap"],"rsmaes_pt",{"collapsed":true,"autoZIndex":true,"position":"topleft"}]},{"method":"addLegend","args":[{"colors":["#6666FF"],"labels":["Rosenstiel (point)"],"na_color":null,"na_label":"NA","opacity":1,"position":"topright","type":"factor","title":"","extra":null,"layerId":null,"className":"info legend","group":"rsmaes_pt"}]}],"limits":{"lat":[25.7328129,25.7328129],"lng":[-80.1632879,-80.1632879]},"setView":[[25.7328129,-80.1632879],18,[]]},"evals":[],"jsHooks":{"render":[{"code":"function(el, x, data) {\n  return (\n      function(el, x, data) {\n      // get the leaflet map\n      var map = this; //HTMLWidgets.find('#' + el.id);\n      // we need a new div element because we have to handle\n      // the mouseover output separately\n      // debugger;\n      function addElement () {\n      // generate new div Element\n      var newDiv = $(document.createElement('div'));\n      // append at end of leaflet htmlwidget container\n      $(el).append(newDiv);\n      //provide ID and style\n      newDiv.addClass('lnlt');\n      newDiv.css({\n      'position': 'relative',\n      'bottomleft':  '0px',\n      'background-color': 'rgba(255, 255, 255, 0.7)',\n      'box-shadow': '0 0 2px #bbb',\n      'background-clip': 'padding-box',\n      'margin': '0',\n      'padding-left': '5px',\n      'color': '#333',\n      'font': '9px/1.5 \"Helvetica Neue\", Arial, Helvetica, sans-serif',\n      'z-index': '700',\n      });\n      return newDiv;\n      }\n\n\n      // check for already existing lnlt class to not duplicate\n      var lnlt = $(el).find('.lnlt');\n\n      if(!lnlt.length) {\n      lnlt = addElement();\n\n      // grab the special div we generated in the beginning\n      // and put the mousmove output there\n\n      map.on('mousemove', function (e) {\n      if (e.originalEvent.ctrlKey) {\n      if (document.querySelector('.lnlt') === null) lnlt = addElement();\n      lnlt.text(\n                           ' lon: ' + (e.latlng.lng).toFixed(5) +\n                           ' | lat: ' + (e.latlng.lat).toFixed(5) +\n                           ' | zoom: ' + map.getZoom() +\n                           ' | x: ' + L.CRS.EPSG3857.project(e.latlng).x.toFixed(0) +\n                           ' | y: ' + L.CRS.EPSG3857.project(e.latlng).y.toFixed(0) +\n                           ' | epsg: 3857 ' +\n                           ' | proj4: +proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs ');\n      } else {\n      if (document.querySelector('.lnlt') === null) lnlt = addElement();\n      lnlt.text(\n                      ' lon: ' + (e.latlng.lng).toFixed(5) +\n                      ' | lat: ' + (e.latlng.lat).toFixed(5) +\n                      ' | zoom: ' + map.getZoom() + ' ');\n      }\n      });\n\n      // remove the lnlt div when mouse leaves map\n      map.on('mouseout', function (e) {\n      var strip = document.querySelector('.lnlt');\n      if( strip !==null) strip.remove();\n      });\n\n      };\n\n      //$(el).keypress(67, function(e) {\n      map.on('preclick', function(e) {\n      if (e.originalEvent.ctrlKey) {\n      if (document.querySelector('.lnlt') === null) lnlt = addElement();\n      lnlt.text(\n                      ' lon: ' + (e.latlng.lng).toFixed(5) +\n                      ' | lat: ' + (e.latlng.lat).toFixed(5) +\n                      ' | zoom: ' + map.getZoom() + ' ');\n      var txt = document.querySelector('.lnlt').textContent;\n      console.log(txt);\n      //txt.innerText.focus();\n      //txt.select();\n      setClipboardText('\"' + txt + '\"');\n      }\n      });\n\n      }\n      ).call(this.getMap(), el, x, data);\n}","data":null},{"code":"function(el, x, data) {\n  return (function(el,x,data){\n           var map = this;\n\n           map.on('keypress', function(e) {\n               console.log(e.originalEvent.code);\n               var key = e.originalEvent.code;\n               if (key === 'KeyE') {\n                   var bb = this.getBounds();\n                   var txt = JSON.stringify(bb);\n                   console.log(txt);\n\n                   setClipboardText('\\'' + txt + '\\'');\n               }\n           })\n        }).call(this.getMap(), el, x, data);\n}","data":null}]}}</script>
+</div>
+</div>
+</div>
+<div id="tabset-1-2">
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href=""></a>rsmaes_line_coords <span class="ot">&lt;-</span> </span>
+<span id="cb2-2"><a href=""></a>    <span class="fu">st_linestring</span>(</span>
+<span id="cb2-3"><a href=""></a>        <span class="at">x =</span> <span class="fu">matrix</span>(</span>
+<span id="cb2-4"><a href=""></a>            <span class="at">data =</span> <span class="fu">c</span>(</span>
+<span id="cb2-5"><a href=""></a>                <span class="sc">-</span><span class="fl">80.163017</span>, <span class="fl">25.733950</span>,</span>
+<span id="cb2-6"><a href=""></a>                <span class="sc">-</span><span class="fl">80.164236</span>, <span class="fl">25.732816</span>,</span>
+<span id="cb2-7"><a href=""></a>                <span class="sc">-</span><span class="fl">80.163772</span>, <span class="fl">25.732353</span>,</span>
+<span id="cb2-8"><a href=""></a>                <span class="sc">-</span><span class="fl">80.163924</span>, <span class="fl">25.732148</span>,</span>
+<span id="cb2-9"><a href=""></a>                <span class="sc">-</span><span class="fl">80.163455</span>, <span class="fl">25.731597</span>,</span>
+<span id="cb2-10"><a href=""></a>                <span class="sc">-</span><span class="fl">80.162187</span>, <span class="fl">25.731605</span>,</span>
+<span id="cb2-11"><a href=""></a>                <span class="sc">-</span><span class="fl">80.160968</span>, <span class="fl">25.732172</span>,</span>
+<span id="cb2-12"><a href=""></a>                <span class="sc">-</span><span class="fl">80.163017</span>, <span class="fl">25.733950</span>),</span>
+<span id="cb2-13"><a href=""></a>            <span class="at">ncol =</span> <span class="dv">2</span>,</span>
+<span id="cb2-14"><a href=""></a>            <span class="at">byrow =</span> T),</span>
+<span id="cb2-15"><a href=""></a>        <span class="at">dim =</span> <span class="st">"XY"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb2-16"><a href=""></a>    <span class="fu">list</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb2-17"><a href=""></a>    <span class="fu">st_sfc</span>(<span class="at">crs =</span> <span class="dv">4326</span>)</span>
+<span id="cb2-18"><a href=""></a></span>
+<span id="cb2-19"><a href=""></a>rsmaes_line <span class="ot">&lt;-</span></span>
+<span id="cb2-20"><a href=""></a>    <span class="fu">st_sf</span>(<span class="at">id =</span> <span class="st">"Rosenstiel (line)"</span>,</span>
+<span id="cb2-21"><a href=""></a>          <span class="at">geometry =</span> rsmaes_line_coords)</span>
+<span id="cb2-22"><a href=""></a></span>
+<span id="cb2-23"><a href=""></a><span class="fu">mapview</span>(rsmaes_line)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div class="leaflet html-widget html-fill-item" id="htmlwidget-68564da4c3af3fa4c28f" style="width:960px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-68564da4c3af3fa4c28f">{"x":{"options":{"minZoom":1,"maxZoom":52,"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}},"preferCanvas":false,"bounceAtZoomLimits":false,"maxBounds":[[[-90,-370]],[[90,370]]]},"calls":[{"method":"addProviderTiles","args":["CartoDB.Positron","CartoDB.Positron","CartoDB.Positron",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"addProviderTiles","args":["CartoDB.DarkMatter","CartoDB.DarkMatter","CartoDB.DarkMatter",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"addProviderTiles","args":["OpenStreetMap","OpenStreetMap","OpenStreetMap",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"addProviderTiles","args":["Esri.WorldImagery","Esri.WorldImagery","Esri.WorldImagery",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"addProviderTiles","args":["OpenTopoMap","OpenTopoMap","OpenTopoMap",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"createMapPane","args":["line",430]},{"method":"addPolylines","args":[[[[{"lng":[-80.163017,-80.164236,-80.16377199999999,-80.16392399999999,-80.163455,-80.162187,-80.160968,-80.163017],"lat":[25.73395,25.732816,25.732353,25.732148,25.731597,25.731605,25.732172,25.73395]}]]],null,"rsmaes_line",{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}},"pane":"line","stroke":true,"color":"#6666FF","weight":2,"opacity":0.9,"fill":false,"fillColor":"#6666FF","fillOpacity":1,"smoothFactor":1,"noClip":false},"<div class='scrollableContainer'><table class=mapview-popup id='popup'><tr class='coord'><td><\/td><th><b>Feature ID&emsp;<\/b><\/th><td>1&emsp;<\/td><\/tr><tr><td>1<\/td><th>id&emsp;<\/th><td>Rosenstiel (line)&emsp;<\/td><\/tr><tr><td>2<\/td><th>geometry&emsp;<\/th><td>sfc_LINESTRING&emsp;<\/td><\/tr><\/table><\/div>",{"maxWidth":800,"minWidth":50,"autoPan":true,"keepInView":false,"closeButton":true,"closeOnClick":true,"className":""},"Rosenstiel (line)",{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},{"stroke":true,"weight":3,"opacity":1,"fill":false,"fillOpacity":0,"bringToFront":false,"sendToBack":false}]},{"method":"addScaleBar","args":[{"maxWidth":100,"metric":true,"imperial":true,"updateWhenIdle":true,"position":"bottomleft"}]},{"method":"addHomeButton","args":[-80.164236,25.731597,-80.160968,25.73395,true,"rsmaes_line","Zoom to rsmaes_line","<strong> rsmaes_line <\/strong>","bottomright"]},{"method":"addLayersControl","args":[["CartoDB.Positron","CartoDB.DarkMatter","OpenStreetMap","Esri.WorldImagery","OpenTopoMap"],"rsmaes_line",{"collapsed":true,"autoZIndex":true,"position":"topleft"}]},{"method":"addLegend","args":[{"colors":["#6666FF"],"labels":["Rosenstiel (line)"],"na_color":null,"na_label":"NA","opacity":1,"position":"topright","type":"factor","title":"","extra":null,"layerId":null,"className":"info legend","group":"rsmaes_line"}]}],"limits":{"lat":[25.731597,25.73395],"lng":[-80.164236,-80.160968]},"fitBounds":[25.731597,-80.164236,25.73395,-80.160968,[]]},"evals":[],"jsHooks":{"render":[{"code":"function(el, x, data) {\n  return (\n      function(el, x, data) {\n      // get the leaflet map\n      var map = this; //HTMLWidgets.find('#' + el.id);\n      // we need a new div element because we have to handle\n      // the mouseover output separately\n      // debugger;\n      function addElement () {\n      // generate new div Element\n      var newDiv = $(document.createElement('div'));\n      // append at end of leaflet htmlwidget container\n      $(el).append(newDiv);\n      //provide ID and style\n      newDiv.addClass('lnlt');\n      newDiv.css({\n      'position': 'relative',\n      'bottomleft':  '0px',\n      'background-color': 'rgba(255, 255, 255, 0.7)',\n      'box-shadow': '0 0 2px #bbb',\n      'background-clip': 'padding-box',\n      'margin': '0',\n      'padding-left': '5px',\n      'color': '#333',\n      'font': '9px/1.5 \"Helvetica Neue\", Arial, Helvetica, sans-serif',\n      'z-index': '700',\n      });\n      return newDiv;\n      }\n\n\n      // check for already existing lnlt class to not duplicate\n      var lnlt = $(el).find('.lnlt');\n\n      if(!lnlt.length) {\n      lnlt = addElement();\n\n      // grab the special div we generated in the beginning\n      // and put the mousmove output there\n\n      map.on('mousemove', function (e) {\n      if (e.originalEvent.ctrlKey) {\n      if (document.querySelector('.lnlt') === null) lnlt = addElement();\n      lnlt.text(\n                           ' lon: ' + (e.latlng.lng).toFixed(5) +\n                           ' | lat: ' + (e.latlng.lat).toFixed(5) +\n                           ' | zoom: ' + map.getZoom() +\n                           ' | x: ' + L.CRS.EPSG3857.project(e.latlng).x.toFixed(0) +\n                           ' | y: ' + L.CRS.EPSG3857.project(e.latlng).y.toFixed(0) +\n                           ' | epsg: 3857 ' +\n                           ' | proj4: +proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs ');\n      } else {\n      if (document.querySelector('.lnlt') === null) lnlt = addElement();\n      lnlt.text(\n                      ' lon: ' + (e.latlng.lng).toFixed(5) +\n                      ' | lat: ' + (e.latlng.lat).toFixed(5) +\n                      ' | zoom: ' + map.getZoom() + ' ');\n      }\n      });\n\n      // remove the lnlt div when mouse leaves map\n      map.on('mouseout', function (e) {\n      var strip = document.querySelector('.lnlt');\n      if( strip !==null) strip.remove();\n      });\n\n      };\n\n      //$(el).keypress(67, function(e) {\n      map.on('preclick', function(e) {\n      if (e.originalEvent.ctrlKey) {\n      if (document.querySelector('.lnlt') === null) lnlt = addElement();\n      lnlt.text(\n                      ' lon: ' + (e.latlng.lng).toFixed(5) +\n                      ' | lat: ' + (e.latlng.lat).toFixed(5) +\n                      ' | zoom: ' + map.getZoom() + ' ');\n      var txt = document.querySelector('.lnlt').textContent;\n      console.log(txt);\n      //txt.innerText.focus();\n      //txt.select();\n      setClipboardText('\"' + txt + '\"');\n      }\n      });\n\n      }\n      ).call(this.getMap(), el, x, data);\n}","data":null},{"code":"function(el, x, data) {\n  return (function(el,x,data){\n           var map = this;\n\n           map.on('keypress', function(e) {\n               console.log(e.originalEvent.code);\n               var key = e.originalEvent.code;\n               if (key === 'KeyE') {\n                   var bb = this.getBounds();\n                   var txt = JSON.stringify(bb);\n                   console.log(txt);\n\n                   setClipboardText('\\'' + txt + '\\'');\n               }\n           })\n        }).call(this.getMap(), el, x, data);\n}","data":null}]}}</script>
+</div>
+</div>
+</div>
+<div id="tabset-1-3">
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href=""></a>rsmaes_poly_coords <span class="ot">&lt;-</span> </span>
+<span id="cb3-2"><a href=""></a>    <span class="fu">st_polygon</span>(</span>
+<span id="cb3-3"><a href=""></a>        <span class="at">x =</span> <span class="fu">list</span>(</span>
+<span id="cb3-4"><a href=""></a>                <span class="fu">matrix</span>(</span>
+<span id="cb3-5"><a href=""></a>                    <span class="at">data =</span> <span class="fu">c</span>(</span>
+<span id="cb3-6"><a href=""></a>                        <span class="sc">-</span><span class="fl">80.163017</span>, <span class="fl">25.733950</span>,</span>
+<span id="cb3-7"><a href=""></a>                        <span class="sc">-</span><span class="fl">80.164236</span>, <span class="fl">25.732816</span>,</span>
+<span id="cb3-8"><a href=""></a>                        <span class="sc">-</span><span class="fl">80.163772</span>, <span class="fl">25.732353</span>,</span>
+<span id="cb3-9"><a href=""></a>                        <span class="sc">-</span><span class="fl">80.163924</span>, <span class="fl">25.732148</span>,</span>
+<span id="cb3-10"><a href=""></a>                        <span class="sc">-</span><span class="fl">80.163455</span>, <span class="fl">25.731597</span>,</span>
+<span id="cb3-11"><a href=""></a>                        <span class="sc">-</span><span class="fl">80.162187</span>, <span class="fl">25.731605</span>,</span>
+<span id="cb3-12"><a href=""></a>                        <span class="sc">-</span><span class="fl">80.160968</span>, <span class="fl">25.732172</span>,</span>
+<span id="cb3-13"><a href=""></a>                        <span class="sc">-</span><span class="fl">80.163017</span>, <span class="fl">25.733950</span>),</span>
+<span id="cb3-14"><a href=""></a>                    <span class="at">ncol =</span> <span class="dv">2</span>,</span>
+<span id="cb3-15"><a href=""></a>                    <span class="at">byrow =</span> T)),</span>
+<span id="cb3-16"><a href=""></a>        <span class="at">dim =</span> <span class="st">"XY"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb3-17"><a href=""></a>    <span class="fu">st_sfc</span>(<span class="at">crs =</span> <span class="dv">4326</span>)</span>
+<span id="cb3-18"><a href=""></a></span>
+<span id="cb3-19"><a href=""></a>rsmaes_poly <span class="ot">&lt;-</span></span>
+<span id="cb3-20"><a href=""></a>    <span class="fu">st_sf</span>(<span class="at">id =</span> <span class="st">"Rosenstiel (polygon)"</span>,</span>
+<span id="cb3-21"><a href=""></a>          <span class="at">geometry =</span> rsmaes_poly_coords)</span>
+<span id="cb3-22"><a href=""></a></span>
+<span id="cb3-23"><a href=""></a><span class="fu">mapview</span>(rsmaes_poly)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div class="leaflet html-widget html-fill-item" id="htmlwidget-acd69ff7cdf4005a8ab0" style="width:960px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-acd69ff7cdf4005a8ab0">{"x":{"options":{"minZoom":1,"maxZoom":52,"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}},"preferCanvas":false,"bounceAtZoomLimits":false,"maxBounds":[[[-90,-370]],[[90,370]]]},"calls":[{"method":"addProviderTiles","args":["CartoDB.Positron","CartoDB.Positron","CartoDB.Positron",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"addProviderTiles","args":["CartoDB.DarkMatter","CartoDB.DarkMatter","CartoDB.DarkMatter",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"addProviderTiles","args":["OpenStreetMap","OpenStreetMap","OpenStreetMap",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"addProviderTiles","args":["Esri.WorldImagery","Esri.WorldImagery","Esri.WorldImagery",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"addProviderTiles","args":["OpenTopoMap","OpenTopoMap","OpenTopoMap",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"createMapPane","args":["polygon",420]},{"method":"addPolygons","args":[[[[{"lng":[-80.163017,-80.164236,-80.16377199999999,-80.16392399999999,-80.163455,-80.162187,-80.160968,-80.163017],"lat":[25.73395,25.732816,25.732353,25.732148,25.731597,25.731605,25.732172,25.73395]}]]],null,"rsmaes_poly",{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}},"pane":"polygon","stroke":true,"color":"#333333","weight":0.5,"opacity":0.9,"fill":true,"fillColor":"#6666FF","fillOpacity":0.6,"smoothFactor":1,"noClip":false},"<div class='scrollableContainer'><table class=mapview-popup id='popup'><tr class='coord'><td><\/td><th><b>Feature ID&emsp;<\/b><\/th><td>1&emsp;<\/td><\/tr><tr><td>1<\/td><th>id&emsp;<\/th><td>Rosenstiel (polygon)&emsp;<\/td><\/tr><tr><td>2<\/td><th>geometry&emsp;<\/th><td>sfc_POLYGON&emsp;<\/td><\/tr><\/table><\/div>",{"maxWidth":800,"minWidth":50,"autoPan":true,"keepInView":false,"closeButton":true,"closeOnClick":true,"className":""},"Rosenstiel (polygon)",{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},{"stroke":true,"weight":1,"opacity":0.9,"fillOpacity":0.84,"bringToFront":false,"sendToBack":false}]},{"method":"addScaleBar","args":[{"maxWidth":100,"metric":true,"imperial":true,"updateWhenIdle":true,"position":"bottomleft"}]},{"method":"addHomeButton","args":[-80.164236,25.731597,-80.160968,25.73395,true,"rsmaes_poly","Zoom to rsmaes_poly","<strong> rsmaes_poly <\/strong>","bottomright"]},{"method":"addLayersControl","args":[["CartoDB.Positron","CartoDB.DarkMatter","OpenStreetMap","Esri.WorldImagery","OpenTopoMap"],"rsmaes_poly",{"collapsed":true,"autoZIndex":true,"position":"topleft"}]},{"method":"addLegend","args":[{"colors":["#6666FF"],"labels":["Rosenstiel (polygon)"],"na_color":null,"na_label":"NA","opacity":1,"position":"topright","type":"factor","title":"","extra":null,"layerId":null,"className":"info legend","group":"rsmaes_poly"}]}],"limits":{"lat":[25.731597,25.73395],"lng":[-80.164236,-80.160968]},"fitBounds":[25.731597,-80.164236,25.73395,-80.160968,[]]},"evals":[],"jsHooks":{"render":[{"code":"function(el, x, data) {\n  return (\n      function(el, x, data) {\n      // get the leaflet map\n      var map = this; //HTMLWidgets.find('#' + el.id);\n      // we need a new div element because we have to handle\n      // the mouseover output separately\n      // debugger;\n      function addElement () {\n      // generate new div Element\n      var newDiv = $(document.createElement('div'));\n      // append at end of leaflet htmlwidget container\n      $(el).append(newDiv);\n      //provide ID and style\n      newDiv.addClass('lnlt');\n      newDiv.css({\n      'position': 'relative',\n      'bottomleft':  '0px',\n      'background-color': 'rgba(255, 255, 255, 0.7)',\n      'box-shadow': '0 0 2px #bbb',\n      'background-clip': 'padding-box',\n      'margin': '0',\n      'padding-left': '5px',\n      'color': '#333',\n      'font': '9px/1.5 \"Helvetica Neue\", Arial, Helvetica, sans-serif',\n      'z-index': '700',\n      });\n      return newDiv;\n      }\n\n\n      // check for already existing lnlt class to not duplicate\n      var lnlt = $(el).find('.lnlt');\n\n      if(!lnlt.length) {\n      lnlt = addElement();\n\n      // grab the special div we generated in the beginning\n      // and put the mousmove output there\n\n      map.on('mousemove', function (e) {\n      if (e.originalEvent.ctrlKey) {\n      if (document.querySelector('.lnlt') === null) lnlt = addElement();\n      lnlt.text(\n                           ' lon: ' + (e.latlng.lng).toFixed(5) +\n                           ' | lat: ' + (e.latlng.lat).toFixed(5) +\n                           ' | zoom: ' + map.getZoom() +\n                           ' | x: ' + L.CRS.EPSG3857.project(e.latlng).x.toFixed(0) +\n                           ' | y: ' + L.CRS.EPSG3857.project(e.latlng).y.toFixed(0) +\n                           ' | epsg: 3857 ' +\n                           ' | proj4: +proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs ');\n      } else {\n      if (document.querySelector('.lnlt') === null) lnlt = addElement();\n      lnlt.text(\n                      ' lon: ' + (e.latlng.lng).toFixed(5) +\n                      ' | lat: ' + (e.latlng.lat).toFixed(5) +\n                      ' | zoom: ' + map.getZoom() + ' ');\n      }\n      });\n\n      // remove the lnlt div when mouse leaves map\n      map.on('mouseout', function (e) {\n      var strip = document.querySelector('.lnlt');\n      if( strip !==null) strip.remove();\n      });\n\n      };\n\n      //$(el).keypress(67, function(e) {\n      map.on('preclick', function(e) {\n      if (e.originalEvent.ctrlKey) {\n      if (document.querySelector('.lnlt') === null) lnlt = addElement();\n      lnlt.text(\n                      ' lon: ' + (e.latlng.lng).toFixed(5) +\n                      ' | lat: ' + (e.latlng.lat).toFixed(5) +\n                      ' | zoom: ' + map.getZoom() + ' ');\n      var txt = document.querySelector('.lnlt').textContent;\n      console.log(txt);\n      //txt.innerText.focus();\n      //txt.select();\n      setClipboardText('\"' + txt + '\"');\n      }\n      });\n\n      }\n      ).call(this.getMap(), el, x, data);\n}","data":null},{"code":"function(el, x, data) {\n  return (function(el,x,data){\n           var map = this;\n\n           map.on('keypress', function(e) {\n               console.log(e.originalEvent.code);\n               var key = e.originalEvent.code;\n               if (key === 'KeyE') {\n                   var bb = this.getBounds();\n                   var txt = JSON.stringify(bb);\n                   console.log(txt);\n\n                   setClipboardText('\\'' + txt + '\\'');\n               }\n           })\n        }).call(this.getMap(), el, x, data);\n}","data":null}]}}</script>
+</div>
+</div>
+</div>
+<div id="tabset-1-4">
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href=""></a>rsmaes_rast <span class="ot">&lt;-</span></span>
+<span id="cb4-2"><a href=""></a>    <span class="fu">rasterize</span>(</span>
+<span id="cb4-3"><a href=""></a>        <span class="at">x =</span> <span class="fu">vect</span>(rsmaes_poly),</span>
+<span id="cb4-4"><a href=""></a>        <span class="at">y =</span> <span class="fu">rast</span>(<span class="at">resolution =</span> <span class="fl">0.0001</span>,</span>
+<span id="cb4-5"><a href=""></a>            <span class="at">crs =</span> <span class="st">"EPSG:4326"</span>,</span>
+<span id="cb4-6"><a href=""></a>            <span class="at">val =</span> <span class="dv">0</span>,</span>
+<span id="cb4-7"><a href=""></a>            <span class="at">xmin =</span> <span class="sc">-</span><span class="fl">80.168</span>, <span class="at">xmax =</span> <span class="sc">-</span><span class="fl">80.155</span>,</span>
+<span id="cb4-8"><a href=""></a>            <span class="at">ymin =</span> <span class="fl">25.730</span>, <span class="at">ymax =</span> <span class="fl">25.735</span>),</span>
+<span id="cb4-9"><a href=""></a>        <span class="at">field =</span> <span class="dv">1</span>)</span>
+<span id="cb4-10"><a href=""></a></span>
+<span id="cb4-11"><a href=""></a><span class="fu">names</span>(rsmaes_rast) <span class="ot">&lt;-</span> <span class="st">"Rosenstiel"</span></span>
+<span id="cb4-12"><a href=""></a>rsmaes_rast[<span class="fu">is.na</span>(rsmaes_rast)] <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb4-13"><a href=""></a></span>
+<span id="cb4-14"><a href=""></a><span class="fu">mapview</span>(</span>
+<span id="cb4-15"><a href=""></a>    rsmaes_rast,</span>
+<span id="cb4-16"><a href=""></a>    <span class="at">zcol =</span> <span class="st">"Rosenstiel"</span>,</span>
+<span id="cb4-17"><a href=""></a>    <span class="at">legend =</span> F)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div class="leaflet html-widget html-fill-item" id="htmlwidget-09990081e63c80538900" style="width:960px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-09990081e63c80538900">{"x":{"options":{"minZoom":1,"maxZoom":52,"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}},"preferCanvas":false,"bounceAtZoomLimits":false,"maxBounds":[[[-90,-370]],[[90,370]]]},"calls":[{"method":"addProviderTiles","args":["CartoDB.Positron","CartoDB.Positron","CartoDB.Positron",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"addProviderTiles","args":["CartoDB.DarkMatter","CartoDB.DarkMatter","CartoDB.DarkMatter",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"addProviderTiles","args":["OpenStreetMap","OpenStreetMap","OpenStreetMap",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"addProviderTiles","args":["Esri.WorldImagery","Esri.WorldImagery","Esri.WorldImagery",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"addProviderTiles","args":["OpenTopoMap","OpenTopoMap","OpenTopoMap",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"addRasterImage","args":["data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHwAAAA1CAYAAACDSY8aAAABQElEQVR4nO3ZsU3DUBCA4QOlp6LyCFY2yVKMwBhUNF4lI2QOqCwSIJKTvGff6f//2sVJn+4k6z29vuy/whB9fL6/PW89hK2b4LAEhyU4LMFhCQ5LcFiCwxIcluCwBIdVGvx0PGw9QrnKgs/Yot9WSfDfyKIvrxz4NVzRl7XbeoClLQGdvxnGqfc4ZSux4bdur9t+vfTg9+KJ/n+pwR9FE/1vacFbYYl+WUrw1kii/5QOvBfO6XgQPhKC946Ong58jX9oMno68AjRe5YSPEL0XqUFjxC9R6nBrX2Cw0oNvta5JZ311OBrPXOSnlPLvIf3iAQ9lx58GKemJ5eIfF7qkz7XAmkYJzx2RBHwiPvRhb4s/Uk/T7jHK7Ph1ibBYQkOS3BYgsMSHJbgsASHJTgswWEJDktwWILDEhyW4LAEh/UNDktRekGJqpQAAAAASUVORK5CYII=",[[25.73500014421401,-80.16799999999999],[25.72996980166076,-80.15493528167518]],0.8,null,"rsmaes_rast - 1","rsmaes_rast - 1"]},{"method":"removeLayersControl","args":[]},{"method":"addLayersControl","args":[["CartoDB.Positron","CartoDB.DarkMatter","OpenStreetMap","Esri.WorldImagery","OpenTopoMap"],"rsmaes_rast - 1",{"collapsed":true,"autoZIndex":true,"position":"topleft"}]},{"method":"addControl","args":["","topright","imageValues-rsmaes_rast - 1","info legend "]},{"method":"addImageQuery","args":["rsmaes_rast - 1",[-80.16799999999999,25.72990014388282,-80.15489999914929,25.73500014421401],"mousemove",7,"Layer"]},{"method":"addScaleBar","args":[{"maxWidth":100,"metric":true,"imperial":true,"updateWhenIdle":true,"position":"bottomleft"}]},{"method":"addHomeButton","args":[-80.16800000000001,25.73,-80.155,25.735,true,"rsmaes_rast - 1","Zoom to rsmaes_rast - 1","<strong> rsmaes_rast - 1 <\/strong>","bottomright"]}],"limits":{"lat":[25.72996980166076,25.73500014421401],"lng":[-80.16799999999999,-80.15493528167518]}},"evals":[],"jsHooks":{"render":[{"code":"function(el, x, data) {\n  return (\n      function(el, x, data) {\n      // get the leaflet map\n      var map = this; //HTMLWidgets.find('#' + el.id);\n      // we need a new div element because we have to handle\n      // the mouseover output separately\n      // debugger;\n      function addElement () {\n      // generate new div Element\n      var newDiv = $(document.createElement('div'));\n      // append at end of leaflet htmlwidget container\n      $(el).append(newDiv);\n      //provide ID and style\n      newDiv.addClass('lnlt');\n      newDiv.css({\n      'position': 'relative',\n      'bottomleft':  '0px',\n      'background-color': 'rgba(255, 255, 255, 0.7)',\n      'box-shadow': '0 0 2px #bbb',\n      'background-clip': 'padding-box',\n      'margin': '0',\n      'padding-left': '5px',\n      'color': '#333',\n      'font': '9px/1.5 \"Helvetica Neue\", Arial, Helvetica, sans-serif',\n      'z-index': '700',\n      });\n      return newDiv;\n      }\n\n\n      // check for already existing lnlt class to not duplicate\n      var lnlt = $(el).find('.lnlt');\n\n      if(!lnlt.length) {\n      lnlt = addElement();\n\n      // grab the special div we generated in the beginning\n      // and put the mousmove output there\n\n      map.on('mousemove', function (e) {\n      if (e.originalEvent.ctrlKey) {\n      if (document.querySelector('.lnlt') === null) lnlt = addElement();\n      lnlt.text(\n                           ' lon: ' + (e.latlng.lng).toFixed(5) +\n                           ' | lat: ' + (e.latlng.lat).toFixed(5) +\n                           ' | zoom: ' + map.getZoom() +\n                           ' | x: ' + L.CRS.EPSG3857.project(e.latlng).x.toFixed(0) +\n                           ' | y: ' + L.CRS.EPSG3857.project(e.latlng).y.toFixed(0) +\n                           ' | epsg: 3857 ' +\n                           ' | proj4: +proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs ');\n      } else {\n      if (document.querySelector('.lnlt') === null) lnlt = addElement();\n      lnlt.text(\n                      ' lon: ' + (e.latlng.lng).toFixed(5) +\n                      ' | lat: ' + (e.latlng.lat).toFixed(5) +\n                      ' | zoom: ' + map.getZoom() + ' ');\n      }\n      });\n\n      // remove the lnlt div when mouse leaves map\n      map.on('mouseout', function (e) {\n      var strip = document.querySelector('.lnlt');\n      if( strip !==null) strip.remove();\n      });\n\n      };\n\n      //$(el).keypress(67, function(e) {\n      map.on('preclick', function(e) {\n      if (e.originalEvent.ctrlKey) {\n      if (document.querySelector('.lnlt') === null) lnlt = addElement();\n      lnlt.text(\n                      ' lon: ' + (e.latlng.lng).toFixed(5) +\n                      ' | lat: ' + (e.latlng.lat).toFixed(5) +\n                      ' | zoom: ' + map.getZoom() + ' ');\n      var txt = document.querySelector('.lnlt').textContent;\n      console.log(txt);\n      //txt.innerText.focus();\n      //txt.select();\n      setClipboardText('\"' + txt + '\"');\n      }\n      });\n\n      }\n      ).call(this.getMap(), el, x, data);\n}","data":null},{"code":"function(el, x, data) {\n  return (function(el,x,data){\n           var map = this;\n\n           map.on('keypress', function(e) {\n               console.log(e.originalEvent.code);\n               var key = e.originalEvent.code;\n               if (key === 'KeyE') {\n                   var bb = this.getBounds();\n                   var txt = JSON.stringify(bb);\n                   console.log(txt);\n\n                   setClipboardText('\\'' + txt + '\\'');\n               }\n           })\n        }).call(this.getMap(), el, x, data);\n}","data":null}]}}</script>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="combinations" class="slide level2 scrollable">
+<h2>Combinations</h2>
+<p>Different types of vector data can be combined into a single object</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href=""></a>rsmaes_multi <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(rsmaes_poly, rsmaes_line, rsmaes_pt)</span>
+<span id="cb5-2"><a href=""></a></span>
+<span id="cb5-3"><a href=""></a><span class="fu">ggplot</span>(rsmaes_multi) <span class="sc">+</span></span>
+<span id="cb5-4"><a href=""></a>    <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">color =</span> id,</span>
+<span id="cb5-5"><a href=""></a>                <span class="at">fill =</span> id),</span>
+<span id="cb5-6"><a href=""></a>            <span class="at">linewidth =</span> <span class="dv">1</span>,</span>
+<span id="cb5-7"><a href=""></a>            <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb5-8"><a href=""></a><span class="fu">scale_fill_viridis_d</span>(<span class="at">aesthetics =</span> <span class="fu">c</span>(<span class="st">"fill"</span>,<span class="st">"color"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+
+</div>
+<img data-src="02_data_models_vector_files/figure-revealjs/unnamed-chunk-6-1.png" width="960" class="r-stretch"></section>
+<section id="what-should-you-use" class="slide level2">
+<h2>What should you use?</h2>
+<ul>
+<li class="fragment"><p>The “correct” type of data varies</p></li>
+<li class="fragment"><p>Spatial analysis is a lot like working on a car</p></li>
+</ul>
 <div class="quarto-auto-generated-content">
 <p><img src="https://ucomm.miami.edu/_assets/images/tools-and-resources/signatures/png/um-horizontal-rgb.png" class="slide-logo"></p>
 <div class="footer footer-default">
@@ -557,6 +858,44 @@ Juan Carlos Villaseñor-Derbez (JC)
         ]
       });
     </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
     <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
       const toggleBodyColorMode = (bsSheetEl) => {

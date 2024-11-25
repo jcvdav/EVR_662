@@ -35,4 +35,20 @@ ggplot(wrld, aes(fill = continent)) +
   geom_sf()
 ```
 
+## A (general) instruction format
+
+:::: {.columns}
+
+::: {.column width="50%"}
+### Lecture sessions
+- A
+:::
+
+::: {.column width="50%"}
+### Hands-on sessions
+- B
+:::
+
+::::
+
 
