@@ -1,9 +1,11 @@
 ---
 title: "Geographic data models"
 subtitle: "Vector data"
+editor_options: 
+  chunk_output_type: inline
 ---
 
-```{r, echo=FALSE}
+```{r set-up, echo=FALSE}
 pacman::p_load(
   tidyverse,
   sf,
@@ -37,7 +39,7 @@ In today's class:
     - It's main attributes
     - It's implementation in R
 
-## Two mdels
+## Two models
 :::: {.columns}
 
 ::: {.column width="50%"}
@@ -61,129 +63,218 @@ In today's class:
 > "`raster` is faster, but `vector` is correctr"
 
 
-## Example: Rosenstiel
+
+## Example: Rosenstiel {.scrollable}
 
 :::: {.panel-tabset}
 
 ### Point (1D)
 
-```{r}
-rsmaes_pt_coords <- 
-    st_point(
-        x = c(-80.1632879, 25.7328129),
-        dim = "XY") %>% 
-    st_sfc(crs = 4326)
-
-rsmaes_pt <-
-    st_sf(id = "Rosenstiel (point)",
-          geometry = rsmaes_pt_coords)
-
+```{r point-example}
+# Build the "spatial" part
+rsmaes_pt_coords <- st_point(x = c(-80.1632879, 25.7328129),
+                             dim = "XY") |> 
+  st_sfc(crs = 4326)
+# Combine with the "attributes" part
+rsmaes_pt <- st_sf(id = "Rosenstiel (point)",
+                   geometry = rsmaes_pt_coords)
+# Visualize
 mapview(rsmaes_pt)
 ```
 
 ### Line (2D)
 
-```{r}
-rsmaes_line_coords <- 
-    st_linestring(
-        x = matrix(
-            data = c(
-                -80.163017, 25.733950,
-                -80.164236, 25.732816,
-                -80.163772, 25.732353,
-                -80.163924, 25.732148,
-                -80.163455, 25.731597,
-                -80.162187, 25.731605,
-                -80.160968, 25.732172,
-                -80.163017, 25.733950),
-            ncol = 2,
-            byrow = T),
-        dim = "XY") %>% 
-    list() %>% 
-    st_sfc(crs = 4326)
+```{r line-example}
+rsmaes_line_coords <- st_linestring(
+  x = matrix(data = c(-80.163017, 25.733950,
+                      -80.164236, 25.732816,
+                      -80.163772, 25.732353,
+                      -80.163924, 25.732148,
+                      -80.163455, 25.731597,
+                      -80.162187, 25.731605,
+                      -80.160968, 25.732172,
+                      -80.163017, 25.733950),
+             ncol = 2,
+             byrow = T),
+  dim = "XY") |> 
+  list() |> 
+  st_sfc(crs = 4326)
 
-rsmaes_line <-
-    st_sf(id = "Rosenstiel (line)",
-          geometry = rsmaes_line_coords)
+rsmaes_line <- st_sf(id = "Rosenstiel (line)",
+                     geometry = rsmaes_line_coords)
 
 mapview(rsmaes_line)
-
 ```
 
 ### Polygon (3D)
 
-```{r}
-rsmaes_poly_coords <- 
-    st_polygon(
-        x = list(
-                matrix(
-                    data = c(
-                        -80.163017, 25.733950,
-                        -80.164236, 25.732816,
-                        -80.163772, 25.732353,
-                        -80.163924, 25.732148,
-                        -80.163455, 25.731597,
-                        -80.162187, 25.731605,
-                        -80.160968, 25.732172,
-                        -80.163017, 25.733950),
-                    ncol = 2,
-                    byrow = T)),
-        dim = "XY") %>% 
-    st_sfc(crs = 4326)
+```{r polygon-example}
+rsmaes_poly_coords <- st_polygon(
+  x = list(
+    matrix(
+      data = c(
+        -80.163017, 25.733950,
+        -80.164236, 25.732816,
+        -80.163772, 25.732353,
+        -80.163924, 25.732148,
+        -80.163455, 25.731597,
+        -80.162187, 25.731605,
+        -80.160968, 25.732172,
+        -80.163017, 25.733950),
+      ncol = 2,
+      byrow = T)),
+  dim = "XY") |> 
+  st_sfc(crs = 4326)
 
-rsmaes_poly <-
-    st_sf(id = "Rosenstiel (polygon)",
-          geometry = rsmaes_poly_coords)
+rsmaes_poly <- st_sf(id = "Rosenstiel (polygon)",
+                     geometry = rsmaes_poly_coords)
 
 mapview(rsmaes_poly)
 ```
 
 
 ### Raster
-```{r}
-rsmaes_rast <-
-    rasterize(
-        x = vect(rsmaes_poly),
-        y = rast(resolution = 0.0001,
-            crs = "EPSG:4326",
-            val = 0,
-            xmin = -80.168, xmax = -80.155,
-            ymin = 25.730, ymax = 25.735),
-        field = 1)
+```{r raster-example}
+rsmaes_rast <- rasterize(
+  x = vect(rsmaes_poly),
+  y = rast(resolution = 0.0001,
+           crs = "EPSG:4326",
+           val = 0,
+           xmin = -80.168, xmax = -80.155,
+           ymin = 25.730, ymax = 25.735),
+  field = 1)
 
 names(rsmaes_rast) <- "Rosenstiel"
 rsmaes_rast[is.na(rsmaes_rast)] <- 0
 
-mapview(
-    rsmaes_rast,
-    zcol = "Rosenstiel",
-    legend = F)
-
+mapview(rsmaes_rast,
+        legend = F)
 ```
 
 ::::
 
-## Combinations {.scrollable}
 
-Different types of vector data can be combined into a single object
+## Common uses
+:::: {.columns}
 
-```{r}
-rsmaes_multi <- bind_rows(rsmaes_poly, rsmaes_line, rsmaes_pt)
+::: {.column width="50%"}
+### `vector`
+- Common in social sciences:
+    - Census tract boundaries
+    - Political boundaries
+    - Roads
+:::
 
-ggplot(rsmaes_multi) +
-    geom_sf(aes(color = id,
-                fill = id),
-            linewidth = 1,
-            size = 3) +
-scale_fill_viridis_d(aesthetics = c("fill","color"))
-```
+::: {.column width="50%"}
+### `raster`
+- Common in natural sciences:
+    - Sea surface temperature
+    - Satellite imagery
+    - Species distribution models
+:::
+
+::::
+
+- As environmental scientists and practitioners we will typically use both
+
+- The "correct" type of data varies by use case
+
+- There may be more than one valid approach for the same analysis
+
+- You'll be able to make this choice in a few weeks
+
+## Vector data model
+
+> World is represented using points, lines, and polygons
+
+. . .
+
+**Q:** How do we represent a point?
+
+. . .
+
+**A:** Coordinates
+
+. . .
+
+**Q:** What are coordinates?
+
+. . .
+
+**A:** Two numbers representing distance from an **origin**^[At least in Cartesian coordinates]: a coordinate reference system
+
+. . .
+
+**Q:** What is a line?
+
+. . .
+
+**A:** A sequence of points
+
+. . .
+
+**Q:** What is polygon?
+
+. . .
+
+**A:** A sequence of points (where first and last coordinates are the same)
+
+::: {.callout-note}
+
+The vector data model is based on points located within a coordinate reference system (CRS)
+
+:::
+
+## Rosenstiel in different CRSs
+
+The geographic coordinates for Rosenstiel are `st_coordinates(-80.1632879, 25.7328129)`
+
+This uses a Geodetic CRS based on WGS 84, coordinates are represented in **degrees** from the origin at `(0, 0)`
 
 
-## What should you use?
+## How are these compotents handled in a computer?
 
-- The "correct" type of data varies
+- `GDAL`
+- `PROJ`
+- `GEOS`
+- **`S2`**
 
-- Spatial analysis is a lot like working on a car
+. . . 
+
+From R, you will work in `sf`, which relies on these libraries in the background
+
+## SF
+
+
+<!-- To do: -->
+- Add deffinition of GDAL, proj....
+- Add information on SF. What is it, its history
+- What are simple features? emphasize STANDARDS
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Main points
+- There are two models with which we represent spatial data (`vector` and `raster`)
+- The `vector` model relies on `simple features`: points, lines, and polygons (coordinates)
+- `sf` is the main R package for working with vector data
+- an `sf` object should have three things:
+    - attributes (what: data frame)
+    - features (where: geometry column)
+    - CRS (in relation to what?: in the header)

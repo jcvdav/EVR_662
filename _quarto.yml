@@ -15,3 +15,6 @@ format:
     toc: true
     code-fold: true
     echo: true
+    slide-number: true
+    smaller: true
+    fig-align: center
