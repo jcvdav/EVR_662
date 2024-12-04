@@ -189,6 +189,14 @@ mapview(rsmaes_rast,
 
 . . .
 
+**Q:** What is a line? What is a polygon?
+
+. . .
+
+**A:** A sequence of points
+
+. . .
+
 **Q:** How do we represent a point?
 
 . . .
@@ -205,19 +213,6 @@ mapview(rsmaes_rast,
 
 . . .
 
-**Q:** What is a line?
-
-. . .
-
-**A:** A sequence of points
-
-. . .
-
-**Q:** What is polygon?
-
-. . .
-
-**A:** A sequence of points (where first and last coordinates are the same)
 
 ::: {.callout-note}
 
@@ -225,11 +220,66 @@ The vector data model is based on points located within a coordinate reference s
 
 :::
 
-## Rosenstiel in different CRSs
+# What is where? And what does "where' mean?
 
-The geographic coordinates for Rosenstiel are `st_coordinates(-80.1632879, 25.7328129)`
+Coordinates, Coordinate Reference Systems, and Attributes
+
+## Locating things on a map
+
+<!-- Give them the location for Rosenstiel in geographic and UTM -->
+
+<!-- Ask them if they can place them on the map -->
+
+<!-- Then ask if they know what it is -->
+
+<!-- This should help them realize we need three things: coordinates, CRS, attributes -->
+
+Consider the following two coordinates:
+
+- `(-80.1632879, 25.7328129)`
+
+- `(1186764, 2863941)`
+
+. . .
+
+Where are they?
+
+. . .
+
+```{r, echo=FALSE}
+rsmaes_pt_coords <- st_point(x = c(-80.1632879, 25.7328129),
+                             dim = "XY") |> 
+  st_sfc(crs = "EPSG:4326")
+
+p1 <- ggplot() +
+  geom_vline(xintercept = 0) +
+  geom_hline(yintercept = 0) +
+  geom_sf(data = rnaturalearth::ne_states(geounit = "United States of America") |> 
+            filter(name == "Florida")) +
+  geom_sf(data = rsmaes_pt_coords)
+
+p2 <- p1 + 
+  coord_sf(crs = "EPSG:26916",
+           datum = st_crs("EPSG:26916")) +
+  theme(axis.text.x = element_text(angle = 90))
+
+cowplot::plot_grid(p1, p2, ncol = 2, rel_widths = c(3, 1))
+```
+
+## The importance of attributes
 
 This uses a Geodetic CRS based on WGS 84, coordinates are represented in **degrees** from the origin at `(0, 0)`
+
+This information is enough to place the point on a map, but not enough to convey information about the place
+
+
+```{r}
+# Combine with the "attributes" part
+rsmaes_pt <- st_sf(id = "Rosenstiel (point)",
+                   geometry = rsmaes_pt_coords)
+```
+
+
 
 
 ## How are these compotents handled in a computer?
