@@ -33,12 +33,11 @@ ggplot2::update_geom_defaults(geom = "smooth",
                                          color = "black"))
 
 ggplot2::update_geom_defaults(geom = "sf",
-                              new = list(linewidth = 0.1,
+                              new = list(linewidth = 0.5,
                                          color = "black",
                                          fill = "gray50"))
 
 ## COLOR PALETTES ##############################################################
-options(ggplot2.discrete.colour="viridis")
-options(ggplot2.continuous.colour="viridis")
 options(ggplot2.discrete.fill = function(){scale_fill_viridis_d(option = "mako")})
+options(ggplot2.discrete.colour = function(){scale_colour_viridis_d(option = "mako")})
 

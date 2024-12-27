@@ -403,7 +403,7 @@
   <script src="02_data_models_vector_files/libs/clipboard-0.0.1/setClipboardText.js"></script>
   <link href="02_data_models_vector_files/libs/mapviewCSS-0.0.1/mapview-popup.css" rel="stylesheet">
   <link href="02_data_models_vector_files/libs/mapviewCSS-0.0.1/mapview.css" rel="stylesheet">
-  <script src="02_data_models_vector_files/libs/rsmaes_rast - 1_63718d-1/data_stars_rsmaes_rast1e028d7.txt"></script>
+  <script src="02_data_models_vector_files/libs/rsmaes_rast - 1_ae37c8-1/data_stars_rsmaes_rast1f369b7.txt"></script>
   <script src="02_data_models_vector_files/libs/joda-0.0.1/joda.js"></script>
   <script src="02_data_models_vector_files/libs/joda-0.0.1/addImageQuery-bindings.js"></script>
 </head>
@@ -423,26 +423,11 @@ Juan Carlos Villaseñor-Derbez (JC)
 </div>
 </div>
 
-</section><section id="TOC">
-<nav role="doc-toc"> 
-<h2 id="toc-title">Table of contents</h2>
-<ul>
-<li class="fragment"><a href="#/how-do-we-get-the-world-into-a-computer" id="/toc-how-do-we-get-the-world-into-a-computer">How do we get the world into a computer?</a></li>
-<li class="fragment"><a href="#/we-need-a-model" id="/toc-we-need-a-model">We need a <em>model</em></a></li>
-<li class="fragment"><a href="#/two-models" id="/toc-two-models">Two models</a></li>
-<li class="fragment"><a href="#/example-rosenstiel" id="/toc-example-rosenstiel">Example: Rosenstiel</a></li>
-<li class="fragment"><a href="#/common-uses" id="/toc-common-uses">Common uses</a></li>
-<li class="fragment"><a href="#/vector-data-model" id="/toc-vector-data-model">Vector data model</a></li>
-<li class="fragment"><a href="#/what-is-where-and-what-does-where-mean" id="/toc-what-is-where-and-what-does-where-mean">What is where? And what does “where’ mean?</a>
-<ul>
-<li class="fragment"><a href="#/locating-things-on-a-map" id="/toc-locating-things-on-a-map">Locating things on a map</a></li>
-<li class="fragment"><a href="#/the-importance-of-attributes" id="/toc-the-importance-of-attributes">The importance of attributes</a></li>
-<li class="fragment"><a href="#/how-are-these-compotents-handled-in-a-computer" id="/toc-how-are-these-compotents-handled-in-a-computer">How are these compotents handled in a computer?</a></li>
-<li class="fragment"><a href="#/sf" id="/toc-sf">SF</a></li>
-<li class="fragment"><a href="#/main-points" id="/toc-main-points">Main points</a></li>
-</ul></li>
-</ul>
-</nav>
+</section>
+<section>
+<section id="introduction" class="title-slide slide level1 center">
+<h1>Introduction</h1>
+
 </section>
 <section id="how-do-we-get-the-world-into-a-computer" class="slide level2">
 <h2>How do we get the world into a computer?</h2>
@@ -461,17 +446,27 @@ Juan Carlos Villaseñor-Derbez (JC)
 </section>
 <section id="we-need-a-model" class="slide level2">
 <h2>We need a <em>model</em></h2>
-<p>Data can bre represented in a <code>vector</code> model, or a <code>raster</code> model</p>
+<p>Data can be represented in a <code>vector</code> model, or a <code>raster</code> model</p>
 <p>In today’s class:</p>
 <ul>
 <li class="fragment">Introduce the <em>why</em> behind each model</li>
 <li class="fragment">Discuss where and when they are used</li>
-<li class="fragment">Briefly compare their pro’s and cons</li>
 <li class="fragment">Focus on <code>vector</code>:
 <ul>
 <li class="fragment">It’s main attributes</li>
 <li class="fragment">It’s implementation in R</li>
 </ul></li>
+</ul>
+</section>
+<section id="todays-goals" class="slide level2">
+<h2>Today’s goals</h2>
+<p>By the end of the lecture, you should be able to:</p>
+<ul>
+<li class="fragment">list the two main data models, and articulate their main characteristics</li>
+<li class="fragment">understand the principles of <code>vector</code> data</li>
+<li class="fragment">list the three main components of a spatial <code>vector</code> object</li>
+<li class="fragment">list the tree main types of a <em>simple feature</em></li>
+<li class="fragment">given an <code>sf</code> object, plot it and inspect it</li>
 </ul>
 </section>
 <section id="two-models" class="slide level2">
@@ -480,7 +475,7 @@ Juan Carlos Villaseñor-Derbez (JC)
 <div class="column" style="width:50%;">
 <h3 id="vector"><code>vector</code></h3>
 <ul>
-<li class="fragment">World is represented using points, lines, and polygons</li>
+<li class="fragment">World is represented using geometries: points, lines, and polygons</li>
 <li class="fragment">Discrete and well-defined borders = high precision</li>
 <li class="fragment">Computationally intensive</li>
 </ul>
@@ -493,9 +488,19 @@ Juan Carlos Villaseñor-Derbez (JC)
 </ul>
 </div></div>
 <div class="fragment">
-<blockquote>
-<p>“<code>raster</code> is faster, but <code>vector</code> is correctr”</p>
-</blockquote>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Note</strong></p>
+</div>
+<div class="callout-content">
+<p>Spatial data can be represented in a <code>vector</code> or <code>raster</code> model</p>
+</div>
+</div>
+</div>
 </div>
 </section>
 <section id="example-rosenstiel" class="slide level2 scrollable">
@@ -518,8 +523,8 @@ Juan Carlos Villaseñor-Derbez (JC)
 <span id="cb1-9"><a href=""></a><span class="fu">mapview</span>(rsmaes_pt)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div class="leaflet html-widget html-fill-item" id="htmlwidget-8abf1cbdda4bd5b4f608" style="width:960px;height:480px;"></div>
-<script type="application/json" data-for="htmlwidget-8abf1cbdda4bd5b4f608">{"x":{"options":{"minZoom":1,"maxZoom":52,"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}},"preferCanvas":false,"bounceAtZoomLimits":false,"maxBounds":[[[-90,-370]],[[90,370]]]},"calls":[{"method":"addProviderTiles","args":["CartoDB.Positron","CartoDB.Positron","CartoDB.Positron",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"addProviderTiles","args":["CartoDB.DarkMatter","CartoDB.DarkMatter","CartoDB.DarkMatter",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"addProviderTiles","args":["OpenStreetMap","OpenStreetMap","OpenStreetMap",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"addProviderTiles","args":["Esri.WorldImagery","Esri.WorldImagery","Esri.WorldImagery",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"addProviderTiles","args":["OpenTopoMap","OpenTopoMap","OpenTopoMap",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"createMapPane","args":["point",440]},{"method":"addCircleMarkers","args":[25.7328129,-80.1632879,6,null,"rsmaes_pt",{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}},"pane":"point","stroke":true,"color":"#333333","weight":1,"opacity":0.9,"fill":true,"fillColor":"#6666FF","fillOpacity":0.6},null,null,"<div class='scrollableContainer'><table class=mapview-popup id='popup'><tr class='coord'><td><\/td><th><b>Feature ID&emsp;<\/b><\/th><td>1&emsp;<\/td><\/tr><tr><td>1<\/td><th>id&emsp;<\/th><td>Rosenstiel (point)&emsp;<\/td><\/tr><tr><td>2<\/td><th>geometry&emsp;<\/th><td>sfc_POINT&emsp;<\/td><\/tr><\/table><\/div>",{"maxWidth":800,"minWidth":50,"autoPan":true,"keepInView":false,"closeButton":true,"closeOnClick":true,"className":""},"Rosenstiel (point)",{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addScaleBar","args":[{"maxWidth":100,"metric":true,"imperial":true,"updateWhenIdle":true,"position":"bottomleft"}]},{"method":"addHomeButton","args":[-80.1632879,25.7328129,-80.1632879,25.7328129,true,"rsmaes_pt","Zoom to rsmaes_pt","<strong> rsmaes_pt <\/strong>","bottomright"]},{"method":"addLayersControl","args":[["CartoDB.Positron","CartoDB.DarkMatter","OpenStreetMap","Esri.WorldImagery","OpenTopoMap"],"rsmaes_pt",{"collapsed":true,"autoZIndex":true,"position":"topleft"}]},{"method":"addLegend","args":[{"colors":["#6666FF"],"labels":["Rosenstiel (point)"],"na_color":null,"na_label":"NA","opacity":1,"position":"topright","type":"factor","title":"","extra":null,"layerId":null,"className":"info legend","group":"rsmaes_pt"}]}],"limits":{"lat":[25.7328129,25.7328129],"lng":[-80.1632879,-80.1632879]},"setView":[[25.7328129,-80.1632879],18,[]]},"evals":[],"jsHooks":{"render":[{"code":"function(el, x, data) {\n  return (\n      function(el, x, data) {\n      // get the leaflet map\n      var map = this; //HTMLWidgets.find('#' + el.id);\n      // we need a new div element because we have to handle\n      // the mouseover output separately\n      // debugger;\n      function addElement () {\n      // generate new div Element\n      var newDiv = $(document.createElement('div'));\n      // append at end of leaflet htmlwidget container\n      $(el).append(newDiv);\n      //provide ID and style\n      newDiv.addClass('lnlt');\n      newDiv.css({\n      'position': 'relative',\n      'bottomleft':  '0px',\n      'background-color': 'rgba(255, 255, 255, 0.7)',\n      'box-shadow': '0 0 2px #bbb',\n      'background-clip': 'padding-box',\n      'margin': '0',\n      'padding-left': '5px',\n      'color': '#333',\n      'font': '9px/1.5 \"Helvetica Neue\", Arial, Helvetica, sans-serif',\n      'z-index': '700',\n      });\n      return newDiv;\n      }\n\n\n      // check for already existing lnlt class to not duplicate\n      var lnlt = $(el).find('.lnlt');\n\n      if(!lnlt.length) {\n      lnlt = addElement();\n\n      // grab the special div we generated in the beginning\n      // and put the mousmove output there\n\n      map.on('mousemove', function (e) {\n      if (e.originalEvent.ctrlKey) {\n      if (document.querySelector('.lnlt') === null) lnlt = addElement();\n      lnlt.text(\n                           ' lon: ' + (e.latlng.lng).toFixed(5) +\n                           ' | lat: ' + (e.latlng.lat).toFixed(5) +\n                           ' | zoom: ' + map.getZoom() +\n                           ' | x: ' + L.CRS.EPSG3857.project(e.latlng).x.toFixed(0) +\n                           ' | y: ' + L.CRS.EPSG3857.project(e.latlng).y.toFixed(0) +\n                           ' | epsg: 3857 ' +\n                           ' | proj4: +proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs ');\n      } else {\n      if (document.querySelector('.lnlt') === null) lnlt = addElement();\n      lnlt.text(\n                      ' lon: ' + (e.latlng.lng).toFixed(5) +\n                      ' | lat: ' + (e.latlng.lat).toFixed(5) +\n                      ' | zoom: ' + map.getZoom() + ' ');\n      }\n      });\n\n      // remove the lnlt div when mouse leaves map\n      map.on('mouseout', function (e) {\n      var strip = document.querySelector('.lnlt');\n      if( strip !==null) strip.remove();\n      });\n\n      };\n\n      //$(el).keypress(67, function(e) {\n      map.on('preclick', function(e) {\n      if (e.originalEvent.ctrlKey) {\n      if (document.querySelector('.lnlt') === null) lnlt = addElement();\n      lnlt.text(\n                      ' lon: ' + (e.latlng.lng).toFixed(5) +\n                      ' | lat: ' + (e.latlng.lat).toFixed(5) +\n                      ' | zoom: ' + map.getZoom() + ' ');\n      var txt = document.querySelector('.lnlt').textContent;\n      console.log(txt);\n      //txt.innerText.focus();\n      //txt.select();\n      setClipboardText('\"' + txt + '\"');\n      }\n      });\n\n      }\n      ).call(this.getMap(), el, x, data);\n}","data":null},{"code":"function(el, x, data) {\n  return (function(el,x,data){\n           var map = this;\n\n           map.on('keypress', function(e) {\n               console.log(e.originalEvent.code);\n               var key = e.originalEvent.code;\n               if (key === 'KeyE') {\n                   var bb = this.getBounds();\n                   var txt = JSON.stringify(bb);\n                   console.log(txt);\n\n                   setClipboardText('\\'' + txt + '\\'');\n               }\n           })\n        }).call(this.getMap(), el, x, data);\n}","data":null}]}}</script>
+<div class="leaflet html-widget html-fill-item" id="htmlwidget-0fca1be133dc34d599ac" style="width:960px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-0fca1be133dc34d599ac">{"x":{"options":{"minZoom":1,"maxZoom":52,"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}},"preferCanvas":false,"bounceAtZoomLimits":false,"maxBounds":[[[-90,-370]],[[90,370]]]},"calls":[{"method":"addProviderTiles","args":["CartoDB.Positron","CartoDB.Positron","CartoDB.Positron",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"addProviderTiles","args":["CartoDB.DarkMatter","CartoDB.DarkMatter","CartoDB.DarkMatter",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"addProviderTiles","args":["OpenStreetMap","OpenStreetMap","OpenStreetMap",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"addProviderTiles","args":["Esri.WorldImagery","Esri.WorldImagery","Esri.WorldImagery",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"addProviderTiles","args":["OpenTopoMap","OpenTopoMap","OpenTopoMap",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"createMapPane","args":["point",440]},{"method":"addCircleMarkers","args":[25.7328129,-80.1632879,6,null,"rsmaes_pt",{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}},"pane":"point","stroke":true,"color":"#333333","weight":1,"opacity":0.9,"fill":true,"fillColor":"#6666FF","fillOpacity":0.6},null,null,"<div class='scrollableContainer'><table class=mapview-popup id='popup'><tr class='coord'><td><\/td><th><b>Feature ID&emsp;<\/b><\/th><td>1&emsp;<\/td><\/tr><tr><td>1<\/td><th>id&emsp;<\/th><td>Rosenstiel (point)&emsp;<\/td><\/tr><tr><td>2<\/td><th>geometry&emsp;<\/th><td>sfc_POINT&emsp;<\/td><\/tr><\/table><\/div>",{"maxWidth":800,"minWidth":50,"autoPan":true,"keepInView":false,"closeButton":true,"closeOnClick":true,"className":""},"Rosenstiel (point)",{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addScaleBar","args":[{"maxWidth":100,"metric":true,"imperial":true,"updateWhenIdle":true,"position":"bottomleft"}]},{"method":"addHomeButton","args":[-80.1632879,25.7328129,-80.1632879,25.7328129,true,"rsmaes_pt","Zoom to rsmaes_pt","<strong> rsmaes_pt <\/strong>","bottomright"]},{"method":"addLayersControl","args":[["CartoDB.Positron","CartoDB.DarkMatter","OpenStreetMap","Esri.WorldImagery","OpenTopoMap"],"rsmaes_pt",{"collapsed":true,"autoZIndex":true,"position":"topleft"}]},{"method":"addLegend","args":[{"colors":["#6666FF"],"labels":["Rosenstiel (point)"],"na_color":null,"na_label":"NA","opacity":1,"position":"topright","type":"factor","title":"","extra":null,"layerId":null,"className":"info legend","group":"rsmaes_pt"}]}],"limits":{"lat":[25.7328129,25.7328129],"lng":[-80.1632879,-80.1632879]},"setView":[[25.7328129,-80.1632879],18,[]]},"evals":[],"jsHooks":{"render":[{"code":"function(el, x, data) {\n  return (\n      function(el, x, data) {\n      // get the leaflet map\n      var map = this; //HTMLWidgets.find('#' + el.id);\n      // we need a new div element because we have to handle\n      // the mouseover output separately\n      // debugger;\n      function addElement () {\n      // generate new div Element\n      var newDiv = $(document.createElement('div'));\n      // append at end of leaflet htmlwidget container\n      $(el).append(newDiv);\n      //provide ID and style\n      newDiv.addClass('lnlt');\n      newDiv.css({\n      'position': 'relative',\n      'bottomleft':  '0px',\n      'background-color': 'rgba(255, 255, 255, 0.7)',\n      'box-shadow': '0 0 2px #bbb',\n      'background-clip': 'padding-box',\n      'margin': '0',\n      'padding-left': '5px',\n      'color': '#333',\n      'font': '9px/1.5 \"Helvetica Neue\", Arial, Helvetica, sans-serif',\n      'z-index': '700',\n      });\n      return newDiv;\n      }\n\n\n      // check for already existing lnlt class to not duplicate\n      var lnlt = $(el).find('.lnlt');\n\n      if(!lnlt.length) {\n      lnlt = addElement();\n\n      // grab the special div we generated in the beginning\n      // and put the mousmove output there\n\n      map.on('mousemove', function (e) {\n      if (e.originalEvent.ctrlKey) {\n      if (document.querySelector('.lnlt') === null) lnlt = addElement();\n      lnlt.text(\n                           ' lon: ' + (e.latlng.lng).toFixed(5) +\n                           ' | lat: ' + (e.latlng.lat).toFixed(5) +\n                           ' | zoom: ' + map.getZoom() +\n                           ' | x: ' + L.CRS.EPSG3857.project(e.latlng).x.toFixed(0) +\n                           ' | y: ' + L.CRS.EPSG3857.project(e.latlng).y.toFixed(0) +\n                           ' | epsg: 3857 ' +\n                           ' | proj4: +proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs ');\n      } else {\n      if (document.querySelector('.lnlt') === null) lnlt = addElement();\n      lnlt.text(\n                      ' lon: ' + (e.latlng.lng).toFixed(5) +\n                      ' | lat: ' + (e.latlng.lat).toFixed(5) +\n                      ' | zoom: ' + map.getZoom() + ' ');\n      }\n      });\n\n      // remove the lnlt div when mouse leaves map\n      map.on('mouseout', function (e) {\n      var strip = document.querySelector('.lnlt');\n      if( strip !==null) strip.remove();\n      });\n\n      };\n\n      //$(el).keypress(67, function(e) {\n      map.on('preclick', function(e) {\n      if (e.originalEvent.ctrlKey) {\n      if (document.querySelector('.lnlt') === null) lnlt = addElement();\n      lnlt.text(\n                      ' lon: ' + (e.latlng.lng).toFixed(5) +\n                      ' | lat: ' + (e.latlng.lat).toFixed(5) +\n                      ' | zoom: ' + map.getZoom() + ' ');\n      var txt = document.querySelector('.lnlt').textContent;\n      console.log(txt);\n      //txt.innerText.focus();\n      //txt.select();\n      setClipboardText('\"' + txt + '\"');\n      }\n      });\n\n      }\n      ).call(this.getMap(), el, x, data);\n}","data":null},{"code":"function(el, x, data) {\n  return (function(el,x,data){\n           var map = this;\n\n           map.on('keypress', function(e) {\n               console.log(e.originalEvent.code);\n               var key = e.originalEvent.code;\n               if (key === 'KeyE') {\n                   var bb = this.getBounds();\n                   var txt = JSON.stringify(bb);\n                   console.log(txt);\n\n                   setClipboardText('\\'' + txt + '\\'');\n               }\n           })\n        }).call(this.getMap(), el, x, data);\n}","data":null}]}}</script>
 </div>
 </div>
 </div>
@@ -548,8 +553,8 @@ Juan Carlos Villaseñor-Derbez (JC)
 <span id="cb2-19"><a href=""></a><span class="fu">mapview</span>(rsmaes_line)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div class="leaflet html-widget html-fill-item" id="htmlwidget-86f3484c69ad0e47c9f3" style="width:960px;height:480px;"></div>
-<script type="application/json" data-for="htmlwidget-86f3484c69ad0e47c9f3">{"x":{"options":{"minZoom":1,"maxZoom":52,"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}},"preferCanvas":false,"bounceAtZoomLimits":false,"maxBounds":[[[-90,-370]],[[90,370]]]},"calls":[{"method":"addProviderTiles","args":["CartoDB.Positron","CartoDB.Positron","CartoDB.Positron",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"addProviderTiles","args":["CartoDB.DarkMatter","CartoDB.DarkMatter","CartoDB.DarkMatter",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"addProviderTiles","args":["OpenStreetMap","OpenStreetMap","OpenStreetMap",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"addProviderTiles","args":["Esri.WorldImagery","Esri.WorldImagery","Esri.WorldImagery",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"addProviderTiles","args":["OpenTopoMap","OpenTopoMap","OpenTopoMap",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"createMapPane","args":["line",430]},{"method":"addPolylines","args":[[[[{"lng":[-80.163017,-80.164236,-80.16377199999999,-80.16392399999999,-80.163455,-80.162187,-80.160968,-80.163017],"lat":[25.73395,25.732816,25.732353,25.732148,25.731597,25.731605,25.732172,25.73395]}]]],null,"rsmaes_line",{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}},"pane":"line","stroke":true,"color":"#6666FF","weight":2,"opacity":0.9,"fill":false,"fillColor":"#6666FF","fillOpacity":1,"smoothFactor":1,"noClip":false},"<div class='scrollableContainer'><table class=mapview-popup id='popup'><tr class='coord'><td><\/td><th><b>Feature ID&emsp;<\/b><\/th><td>1&emsp;<\/td><\/tr><tr><td>1<\/td><th>id&emsp;<\/th><td>Rosenstiel (line)&emsp;<\/td><\/tr><tr><td>2<\/td><th>geometry&emsp;<\/th><td>sfc_LINESTRING&emsp;<\/td><\/tr><\/table><\/div>",{"maxWidth":800,"minWidth":50,"autoPan":true,"keepInView":false,"closeButton":true,"closeOnClick":true,"className":""},"Rosenstiel (line)",{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},{"stroke":true,"weight":3,"opacity":1,"fill":false,"fillOpacity":0,"bringToFront":false,"sendToBack":false}]},{"method":"addScaleBar","args":[{"maxWidth":100,"metric":true,"imperial":true,"updateWhenIdle":true,"position":"bottomleft"}]},{"method":"addHomeButton","args":[-80.164236,25.731597,-80.160968,25.73395,true,"rsmaes_line","Zoom to rsmaes_line","<strong> rsmaes_line <\/strong>","bottomright"]},{"method":"addLayersControl","args":[["CartoDB.Positron","CartoDB.DarkMatter","OpenStreetMap","Esri.WorldImagery","OpenTopoMap"],"rsmaes_line",{"collapsed":true,"autoZIndex":true,"position":"topleft"}]},{"method":"addLegend","args":[{"colors":["#6666FF"],"labels":["Rosenstiel (line)"],"na_color":null,"na_label":"NA","opacity":1,"position":"topright","type":"factor","title":"","extra":null,"layerId":null,"className":"info legend","group":"rsmaes_line"}]}],"limits":{"lat":[25.731597,25.73395],"lng":[-80.164236,-80.160968]},"fitBounds":[25.731597,-80.164236,25.73395,-80.160968,[]]},"evals":[],"jsHooks":{"render":[{"code":"function(el, x, data) {\n  return (\n      function(el, x, data) {\n      // get the leaflet map\n      var map = this; //HTMLWidgets.find('#' + el.id);\n      // we need a new div element because we have to handle\n      // the mouseover output separately\n      // debugger;\n      function addElement () {\n      // generate new div Element\n      var newDiv = $(document.createElement('div'));\n      // append at end of leaflet htmlwidget container\n      $(el).append(newDiv);\n      //provide ID and style\n      newDiv.addClass('lnlt');\n      newDiv.css({\n      'position': 'relative',\n      'bottomleft':  '0px',\n      'background-color': 'rgba(255, 255, 255, 0.7)',\n      'box-shadow': '0 0 2px #bbb',\n      'background-clip': 'padding-box',\n      'margin': '0',\n      'padding-left': '5px',\n      'color': '#333',\n      'font': '9px/1.5 \"Helvetica Neue\", Arial, Helvetica, sans-serif',\n      'z-index': '700',\n      });\n      return newDiv;\n      }\n\n\n      // check for already existing lnlt class to not duplicate\n      var lnlt = $(el).find('.lnlt');\n\n      if(!lnlt.length) {\n      lnlt = addElement();\n\n      // grab the special div we generated in the beginning\n      // and put the mousmove output there\n\n      map.on('mousemove', function (e) {\n      if (e.originalEvent.ctrlKey) {\n      if (document.querySelector('.lnlt') === null) lnlt = addElement();\n      lnlt.text(\n                           ' lon: ' + (e.latlng.lng).toFixed(5) +\n                           ' | lat: ' + (e.latlng.lat).toFixed(5) +\n                           ' | zoom: ' + map.getZoom() +\n                           ' | x: ' + L.CRS.EPSG3857.project(e.latlng).x.toFixed(0) +\n                           ' | y: ' + L.CRS.EPSG3857.project(e.latlng).y.toFixed(0) +\n                           ' | epsg: 3857 ' +\n                           ' | proj4: +proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs ');\n      } else {\n      if (document.querySelector('.lnlt') === null) lnlt = addElement();\n      lnlt.text(\n                      ' lon: ' + (e.latlng.lng).toFixed(5) +\n                      ' | lat: ' + (e.latlng.lat).toFixed(5) +\n                      ' | zoom: ' + map.getZoom() + ' ');\n      }\n      });\n\n      // remove the lnlt div when mouse leaves map\n      map.on('mouseout', function (e) {\n      var strip = document.querySelector('.lnlt');\n      if( strip !==null) strip.remove();\n      });\n\n      };\n\n      //$(el).keypress(67, function(e) {\n      map.on('preclick', function(e) {\n      if (e.originalEvent.ctrlKey) {\n      if (document.querySelector('.lnlt') === null) lnlt = addElement();\n      lnlt.text(\n                      ' lon: ' + (e.latlng.lng).toFixed(5) +\n                      ' | lat: ' + (e.latlng.lat).toFixed(5) +\n                      ' | zoom: ' + map.getZoom() + ' ');\n      var txt = document.querySelector('.lnlt').textContent;\n      console.log(txt);\n      //txt.innerText.focus();\n      //txt.select();\n      setClipboardText('\"' + txt + '\"');\n      }\n      });\n\n      }\n      ).call(this.getMap(), el, x, data);\n}","data":null},{"code":"function(el, x, data) {\n  return (function(el,x,data){\n           var map = this;\n\n           map.on('keypress', function(e) {\n               console.log(e.originalEvent.code);\n               var key = e.originalEvent.code;\n               if (key === 'KeyE') {\n                   var bb = this.getBounds();\n                   var txt = JSON.stringify(bb);\n                   console.log(txt);\n\n                   setClipboardText('\\'' + txt + '\\'');\n               }\n           })\n        }).call(this.getMap(), el, x, data);\n}","data":null}]}}</script>
+<div class="leaflet html-widget html-fill-item" id="htmlwidget-35f19e85d024d91e896c" style="width:960px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-35f19e85d024d91e896c">{"x":{"options":{"minZoom":1,"maxZoom":52,"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}},"preferCanvas":false,"bounceAtZoomLimits":false,"maxBounds":[[[-90,-370]],[[90,370]]]},"calls":[{"method":"addProviderTiles","args":["CartoDB.Positron","CartoDB.Positron","CartoDB.Positron",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"addProviderTiles","args":["CartoDB.DarkMatter","CartoDB.DarkMatter","CartoDB.DarkMatter",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"addProviderTiles","args":["OpenStreetMap","OpenStreetMap","OpenStreetMap",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"addProviderTiles","args":["Esri.WorldImagery","Esri.WorldImagery","Esri.WorldImagery",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"addProviderTiles","args":["OpenTopoMap","OpenTopoMap","OpenTopoMap",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"createMapPane","args":["line",430]},{"method":"addPolylines","args":[[[[{"lng":[-80.163017,-80.164236,-80.16377199999999,-80.16392399999999,-80.163455,-80.162187,-80.160968,-80.163017],"lat":[25.73395,25.732816,25.732353,25.732148,25.731597,25.731605,25.732172,25.73395]}]]],null,"rsmaes_line",{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}},"pane":"line","stroke":true,"color":"#6666FF","weight":2,"opacity":0.9,"fill":false,"fillColor":"#6666FF","fillOpacity":1,"smoothFactor":1,"noClip":false},"<div class='scrollableContainer'><table class=mapview-popup id='popup'><tr class='coord'><td><\/td><th><b>Feature ID&emsp;<\/b><\/th><td>1&emsp;<\/td><\/tr><tr><td>1<\/td><th>id&emsp;<\/th><td>Rosenstiel (line)&emsp;<\/td><\/tr><tr><td>2<\/td><th>geometry&emsp;<\/th><td>sfc_LINESTRING&emsp;<\/td><\/tr><\/table><\/div>",{"maxWidth":800,"minWidth":50,"autoPan":true,"keepInView":false,"closeButton":true,"closeOnClick":true,"className":""},"Rosenstiel (line)",{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},{"stroke":true,"weight":3,"opacity":1,"fill":false,"fillOpacity":0,"bringToFront":false,"sendToBack":false}]},{"method":"addScaleBar","args":[{"maxWidth":100,"metric":true,"imperial":true,"updateWhenIdle":true,"position":"bottomleft"}]},{"method":"addHomeButton","args":[-80.164236,25.731597,-80.160968,25.73395,true,"rsmaes_line","Zoom to rsmaes_line","<strong> rsmaes_line <\/strong>","bottomright"]},{"method":"addLayersControl","args":[["CartoDB.Positron","CartoDB.DarkMatter","OpenStreetMap","Esri.WorldImagery","OpenTopoMap"],"rsmaes_line",{"collapsed":true,"autoZIndex":true,"position":"topleft"}]},{"method":"addLegend","args":[{"colors":["#6666FF"],"labels":["Rosenstiel (line)"],"na_color":null,"na_label":"NA","opacity":1,"position":"topright","type":"factor","title":"","extra":null,"layerId":null,"className":"info legend","group":"rsmaes_line"}]}],"limits":{"lat":[25.731597,25.73395],"lng":[-80.164236,-80.160968]},"fitBounds":[25.731597,-80.164236,25.73395,-80.160968,[]]},"evals":[],"jsHooks":{"render":[{"code":"function(el, x, data) {\n  return (\n      function(el, x, data) {\n      // get the leaflet map\n      var map = this; //HTMLWidgets.find('#' + el.id);\n      // we need a new div element because we have to handle\n      // the mouseover output separately\n      // debugger;\n      function addElement () {\n      // generate new div Element\n      var newDiv = $(document.createElement('div'));\n      // append at end of leaflet htmlwidget container\n      $(el).append(newDiv);\n      //provide ID and style\n      newDiv.addClass('lnlt');\n      newDiv.css({\n      'position': 'relative',\n      'bottomleft':  '0px',\n      'background-color': 'rgba(255, 255, 255, 0.7)',\n      'box-shadow': '0 0 2px #bbb',\n      'background-clip': 'padding-box',\n      'margin': '0',\n      'padding-left': '5px',\n      'color': '#333',\n      'font': '9px/1.5 \"Helvetica Neue\", Arial, Helvetica, sans-serif',\n      'z-index': '700',\n      });\n      return newDiv;\n      }\n\n\n      // check for already existing lnlt class to not duplicate\n      var lnlt = $(el).find('.lnlt');\n\n      if(!lnlt.length) {\n      lnlt = addElement();\n\n      // grab the special div we generated in the beginning\n      // and put the mousmove output there\n\n      map.on('mousemove', function (e) {\n      if (e.originalEvent.ctrlKey) {\n      if (document.querySelector('.lnlt') === null) lnlt = addElement();\n      lnlt.text(\n                           ' lon: ' + (e.latlng.lng).toFixed(5) +\n                           ' | lat: ' + (e.latlng.lat).toFixed(5) +\n                           ' | zoom: ' + map.getZoom() +\n                           ' | x: ' + L.CRS.EPSG3857.project(e.latlng).x.toFixed(0) +\n                           ' | y: ' + L.CRS.EPSG3857.project(e.latlng).y.toFixed(0) +\n                           ' | epsg: 3857 ' +\n                           ' | proj4: +proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs ');\n      } else {\n      if (document.querySelector('.lnlt') === null) lnlt = addElement();\n      lnlt.text(\n                      ' lon: ' + (e.latlng.lng).toFixed(5) +\n                      ' | lat: ' + (e.latlng.lat).toFixed(5) +\n                      ' | zoom: ' + map.getZoom() + ' ');\n      }\n      });\n\n      // remove the lnlt div when mouse leaves map\n      map.on('mouseout', function (e) {\n      var strip = document.querySelector('.lnlt');\n      if( strip !==null) strip.remove();\n      });\n\n      };\n\n      //$(el).keypress(67, function(e) {\n      map.on('preclick', function(e) {\n      if (e.originalEvent.ctrlKey) {\n      if (document.querySelector('.lnlt') === null) lnlt = addElement();\n      lnlt.text(\n                      ' lon: ' + (e.latlng.lng).toFixed(5) +\n                      ' | lat: ' + (e.latlng.lat).toFixed(5) +\n                      ' | zoom: ' + map.getZoom() + ' ');\n      var txt = document.querySelector('.lnlt').textContent;\n      console.log(txt);\n      //txt.innerText.focus();\n      //txt.select();\n      setClipboardText('\"' + txt + '\"');\n      }\n      });\n\n      }\n      ).call(this.getMap(), el, x, data);\n}","data":null},{"code":"function(el, x, data) {\n  return (function(el,x,data){\n           var map = this;\n\n           map.on('keypress', function(e) {\n               console.log(e.originalEvent.code);\n               var key = e.originalEvent.code;\n               if (key === 'KeyE') {\n                   var bb = this.getBounds();\n                   var txt = JSON.stringify(bb);\n                   console.log(txt);\n\n                   setClipboardText('\\'' + txt + '\\'');\n               }\n           })\n        }).call(this.getMap(), el, x, data);\n}","data":null}]}}</script>
 </div>
 </div>
 </div>
@@ -580,8 +585,8 @@ Juan Carlos Villaseñor-Derbez (JC)
 <span id="cb3-21"><a href=""></a><span class="fu">mapview</span>(rsmaes_poly)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div class="leaflet html-widget html-fill-item" id="htmlwidget-1dfc06823db153270a25" style="width:960px;height:480px;"></div>
-<script type="application/json" data-for="htmlwidget-1dfc06823db153270a25">{"x":{"options":{"minZoom":1,"maxZoom":52,"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}},"preferCanvas":false,"bounceAtZoomLimits":false,"maxBounds":[[[-90,-370]],[[90,370]]]},"calls":[{"method":"addProviderTiles","args":["CartoDB.Positron","CartoDB.Positron","CartoDB.Positron",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"addProviderTiles","args":["CartoDB.DarkMatter","CartoDB.DarkMatter","CartoDB.DarkMatter",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"addProviderTiles","args":["OpenStreetMap","OpenStreetMap","OpenStreetMap",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"addProviderTiles","args":["Esri.WorldImagery","Esri.WorldImagery","Esri.WorldImagery",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"addProviderTiles","args":["OpenTopoMap","OpenTopoMap","OpenTopoMap",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"createMapPane","args":["polygon",420]},{"method":"addPolygons","args":[[[[{"lng":[-80.163017,-80.164236,-80.16377199999999,-80.16392399999999,-80.163455,-80.162187,-80.160968,-80.163017],"lat":[25.73395,25.732816,25.732353,25.732148,25.731597,25.731605,25.732172,25.73395]}]]],null,"rsmaes_poly",{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}},"pane":"polygon","stroke":true,"color":"#333333","weight":0.5,"opacity":0.9,"fill":true,"fillColor":"#6666FF","fillOpacity":0.6,"smoothFactor":1,"noClip":false},"<div class='scrollableContainer'><table class=mapview-popup id='popup'><tr class='coord'><td><\/td><th><b>Feature ID&emsp;<\/b><\/th><td>1&emsp;<\/td><\/tr><tr><td>1<\/td><th>id&emsp;<\/th><td>Rosenstiel (polygon)&emsp;<\/td><\/tr><tr><td>2<\/td><th>geometry&emsp;<\/th><td>sfc_POLYGON&emsp;<\/td><\/tr><\/table><\/div>",{"maxWidth":800,"minWidth":50,"autoPan":true,"keepInView":false,"closeButton":true,"closeOnClick":true,"className":""},"Rosenstiel (polygon)",{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},{"stroke":true,"weight":1,"opacity":0.9,"fillOpacity":0.84,"bringToFront":false,"sendToBack":false}]},{"method":"addScaleBar","args":[{"maxWidth":100,"metric":true,"imperial":true,"updateWhenIdle":true,"position":"bottomleft"}]},{"method":"addHomeButton","args":[-80.164236,25.731597,-80.160968,25.73395,true,"rsmaes_poly","Zoom to rsmaes_poly","<strong> rsmaes_poly <\/strong>","bottomright"]},{"method":"addLayersControl","args":[["CartoDB.Positron","CartoDB.DarkMatter","OpenStreetMap","Esri.WorldImagery","OpenTopoMap"],"rsmaes_poly",{"collapsed":true,"autoZIndex":true,"position":"topleft"}]},{"method":"addLegend","args":[{"colors":["#6666FF"],"labels":["Rosenstiel (polygon)"],"na_color":null,"na_label":"NA","opacity":1,"position":"topright","type":"factor","title":"","extra":null,"layerId":null,"className":"info legend","group":"rsmaes_poly"}]}],"limits":{"lat":[25.731597,25.73395],"lng":[-80.164236,-80.160968]},"fitBounds":[25.731597,-80.164236,25.73395,-80.160968,[]]},"evals":[],"jsHooks":{"render":[{"code":"function(el, x, data) {\n  return (\n      function(el, x, data) {\n      // get the leaflet map\n      var map = this; //HTMLWidgets.find('#' + el.id);\n      // we need a new div element because we have to handle\n      // the mouseover output separately\n      // debugger;\n      function addElement () {\n      // generate new div Element\n      var newDiv = $(document.createElement('div'));\n      // append at end of leaflet htmlwidget container\n      $(el).append(newDiv);\n      //provide ID and style\n      newDiv.addClass('lnlt');\n      newDiv.css({\n      'position': 'relative',\n      'bottomleft':  '0px',\n      'background-color': 'rgba(255, 255, 255, 0.7)',\n      'box-shadow': '0 0 2px #bbb',\n      'background-clip': 'padding-box',\n      'margin': '0',\n      'padding-left': '5px',\n      'color': '#333',\n      'font': '9px/1.5 \"Helvetica Neue\", Arial, Helvetica, sans-serif',\n      'z-index': '700',\n      });\n      return newDiv;\n      }\n\n\n      // check for already existing lnlt class to not duplicate\n      var lnlt = $(el).find('.lnlt');\n\n      if(!lnlt.length) {\n      lnlt = addElement();\n\n      // grab the special div we generated in the beginning\n      // and put the mousmove output there\n\n      map.on('mousemove', function (e) {\n      if (e.originalEvent.ctrlKey) {\n      if (document.querySelector('.lnlt') === null) lnlt = addElement();\n      lnlt.text(\n                           ' lon: ' + (e.latlng.lng).toFixed(5) +\n                           ' | lat: ' + (e.latlng.lat).toFixed(5) +\n                           ' | zoom: ' + map.getZoom() +\n                           ' | x: ' + L.CRS.EPSG3857.project(e.latlng).x.toFixed(0) +\n                           ' | y: ' + L.CRS.EPSG3857.project(e.latlng).y.toFixed(0) +\n                           ' | epsg: 3857 ' +\n                           ' | proj4: +proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs ');\n      } else {\n      if (document.querySelector('.lnlt') === null) lnlt = addElement();\n      lnlt.text(\n                      ' lon: ' + (e.latlng.lng).toFixed(5) +\n                      ' | lat: ' + (e.latlng.lat).toFixed(5) +\n                      ' | zoom: ' + map.getZoom() + ' ');\n      }\n      });\n\n      // remove the lnlt div when mouse leaves map\n      map.on('mouseout', function (e) {\n      var strip = document.querySelector('.lnlt');\n      if( strip !==null) strip.remove();\n      });\n\n      };\n\n      //$(el).keypress(67, function(e) {\n      map.on('preclick', function(e) {\n      if (e.originalEvent.ctrlKey) {\n      if (document.querySelector('.lnlt') === null) lnlt = addElement();\n      lnlt.text(\n                      ' lon: ' + (e.latlng.lng).toFixed(5) +\n                      ' | lat: ' + (e.latlng.lat).toFixed(5) +\n                      ' | zoom: ' + map.getZoom() + ' ');\n      var txt = document.querySelector('.lnlt').textContent;\n      console.log(txt);\n      //txt.innerText.focus();\n      //txt.select();\n      setClipboardText('\"' + txt + '\"');\n      }\n      });\n\n      }\n      ).call(this.getMap(), el, x, data);\n}","data":null},{"code":"function(el, x, data) {\n  return (function(el,x,data){\n           var map = this;\n\n           map.on('keypress', function(e) {\n               console.log(e.originalEvent.code);\n               var key = e.originalEvent.code;\n               if (key === 'KeyE') {\n                   var bb = this.getBounds();\n                   var txt = JSON.stringify(bb);\n                   console.log(txt);\n\n                   setClipboardText('\\'' + txt + '\\'');\n               }\n           })\n        }).call(this.getMap(), el, x, data);\n}","data":null}]}}</script>
+<div class="leaflet html-widget html-fill-item" id="htmlwidget-e2f40794de962cdf755b" style="width:960px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-e2f40794de962cdf755b">{"x":{"options":{"minZoom":1,"maxZoom":52,"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}},"preferCanvas":false,"bounceAtZoomLimits":false,"maxBounds":[[[-90,-370]],[[90,370]]]},"calls":[{"method":"addProviderTiles","args":["CartoDB.Positron","CartoDB.Positron","CartoDB.Positron",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"addProviderTiles","args":["CartoDB.DarkMatter","CartoDB.DarkMatter","CartoDB.DarkMatter",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"addProviderTiles","args":["OpenStreetMap","OpenStreetMap","OpenStreetMap",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"addProviderTiles","args":["Esri.WorldImagery","Esri.WorldImagery","Esri.WorldImagery",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"addProviderTiles","args":["OpenTopoMap","OpenTopoMap","OpenTopoMap",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"createMapPane","args":["polygon",420]},{"method":"addPolygons","args":[[[[{"lng":[-80.163017,-80.164236,-80.16377199999999,-80.16392399999999,-80.163455,-80.162187,-80.160968,-80.163017],"lat":[25.73395,25.732816,25.732353,25.732148,25.731597,25.731605,25.732172,25.73395]}]]],null,"rsmaes_poly",{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}},"pane":"polygon","stroke":true,"color":"#333333","weight":0.5,"opacity":0.9,"fill":true,"fillColor":"#6666FF","fillOpacity":0.6,"smoothFactor":1,"noClip":false},"<div class='scrollableContainer'><table class=mapview-popup id='popup'><tr class='coord'><td><\/td><th><b>Feature ID&emsp;<\/b><\/th><td>1&emsp;<\/td><\/tr><tr><td>1<\/td><th>id&emsp;<\/th><td>Rosenstiel (polygon)&emsp;<\/td><\/tr><tr><td>2<\/td><th>geometry&emsp;<\/th><td>sfc_POLYGON&emsp;<\/td><\/tr><\/table><\/div>",{"maxWidth":800,"minWidth":50,"autoPan":true,"keepInView":false,"closeButton":true,"closeOnClick":true,"className":""},"Rosenstiel (polygon)",{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},{"stroke":true,"weight":1,"opacity":0.9,"fillOpacity":0.84,"bringToFront":false,"sendToBack":false}]},{"method":"addScaleBar","args":[{"maxWidth":100,"metric":true,"imperial":true,"updateWhenIdle":true,"position":"bottomleft"}]},{"method":"addHomeButton","args":[-80.164236,25.731597,-80.160968,25.73395,true,"rsmaes_poly","Zoom to rsmaes_poly","<strong> rsmaes_poly <\/strong>","bottomright"]},{"method":"addLayersControl","args":[["CartoDB.Positron","CartoDB.DarkMatter","OpenStreetMap","Esri.WorldImagery","OpenTopoMap"],"rsmaes_poly",{"collapsed":true,"autoZIndex":true,"position":"topleft"}]},{"method":"addLegend","args":[{"colors":["#6666FF"],"labels":["Rosenstiel (polygon)"],"na_color":null,"na_label":"NA","opacity":1,"position":"topright","type":"factor","title":"","extra":null,"layerId":null,"className":"info legend","group":"rsmaes_poly"}]}],"limits":{"lat":[25.731597,25.73395],"lng":[-80.164236,-80.160968]},"fitBounds":[25.731597,-80.164236,25.73395,-80.160968,[]]},"evals":[],"jsHooks":{"render":[{"code":"function(el, x, data) {\n  return (\n      function(el, x, data) {\n      // get the leaflet map\n      var map = this; //HTMLWidgets.find('#' + el.id);\n      // we need a new div element because we have to handle\n      // the mouseover output separately\n      // debugger;\n      function addElement () {\n      // generate new div Element\n      var newDiv = $(document.createElement('div'));\n      // append at end of leaflet htmlwidget container\n      $(el).append(newDiv);\n      //provide ID and style\n      newDiv.addClass('lnlt');\n      newDiv.css({\n      'position': 'relative',\n      'bottomleft':  '0px',\n      'background-color': 'rgba(255, 255, 255, 0.7)',\n      'box-shadow': '0 0 2px #bbb',\n      'background-clip': 'padding-box',\n      'margin': '0',\n      'padding-left': '5px',\n      'color': '#333',\n      'font': '9px/1.5 \"Helvetica Neue\", Arial, Helvetica, sans-serif',\n      'z-index': '700',\n      });\n      return newDiv;\n      }\n\n\n      // check for already existing lnlt class to not duplicate\n      var lnlt = $(el).find('.lnlt');\n\n      if(!lnlt.length) {\n      lnlt = addElement();\n\n      // grab the special div we generated in the beginning\n      // and put the mousmove output there\n\n      map.on('mousemove', function (e) {\n      if (e.originalEvent.ctrlKey) {\n      if (document.querySelector('.lnlt') === null) lnlt = addElement();\n      lnlt.text(\n                           ' lon: ' + (e.latlng.lng).toFixed(5) +\n                           ' | lat: ' + (e.latlng.lat).toFixed(5) +\n                           ' | zoom: ' + map.getZoom() +\n                           ' | x: ' + L.CRS.EPSG3857.project(e.latlng).x.toFixed(0) +\n                           ' | y: ' + L.CRS.EPSG3857.project(e.latlng).y.toFixed(0) +\n                           ' | epsg: 3857 ' +\n                           ' | proj4: +proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs ');\n      } else {\n      if (document.querySelector('.lnlt') === null) lnlt = addElement();\n      lnlt.text(\n                      ' lon: ' + (e.latlng.lng).toFixed(5) +\n                      ' | lat: ' + (e.latlng.lat).toFixed(5) +\n                      ' | zoom: ' + map.getZoom() + ' ');\n      }\n      });\n\n      // remove the lnlt div when mouse leaves map\n      map.on('mouseout', function (e) {\n      var strip = document.querySelector('.lnlt');\n      if( strip !==null) strip.remove();\n      });\n\n      };\n\n      //$(el).keypress(67, function(e) {\n      map.on('preclick', function(e) {\n      if (e.originalEvent.ctrlKey) {\n      if (document.querySelector('.lnlt') === null) lnlt = addElement();\n      lnlt.text(\n                      ' lon: ' + (e.latlng.lng).toFixed(5) +\n                      ' | lat: ' + (e.latlng.lat).toFixed(5) +\n                      ' | zoom: ' + map.getZoom() + ' ');\n      var txt = document.querySelector('.lnlt').textContent;\n      console.log(txt);\n      //txt.innerText.focus();\n      //txt.select();\n      setClipboardText('\"' + txt + '\"');\n      }\n      });\n\n      }\n      ).call(this.getMap(), el, x, data);\n}","data":null},{"code":"function(el, x, data) {\n  return (function(el,x,data){\n           var map = this;\n\n           map.on('keypress', function(e) {\n               console.log(e.originalEvent.code);\n               var key = e.originalEvent.code;\n               if (key === 'KeyE') {\n                   var bb = this.getBounds();\n                   var txt = JSON.stringify(bb);\n                   console.log(txt);\n\n                   setClipboardText('\\'' + txt + '\\'');\n               }\n           })\n        }).call(this.getMap(), el, x, data);\n}","data":null}]}}</script>
 </div>
 </div>
 </div>
@@ -605,8 +610,8 @@ Juan Carlos Villaseñor-Derbez (JC)
 <span id="cb4-14"><a href=""></a>        <span class="at">legend =</span> F)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div class="leaflet html-widget html-fill-item" id="htmlwidget-483f2d629f5364b39de0" style="width:960px;height:480px;"></div>
-<script type="application/json" data-for="htmlwidget-483f2d629f5364b39de0">{"x":{"options":{"minZoom":1,"maxZoom":52,"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}},"preferCanvas":false,"bounceAtZoomLimits":false,"maxBounds":[[[-90,-370]],[[90,370]]]},"calls":[{"method":"addProviderTiles","args":["CartoDB.Positron","CartoDB.Positron","CartoDB.Positron",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"addProviderTiles","args":["CartoDB.DarkMatter","CartoDB.DarkMatter","CartoDB.DarkMatter",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"addProviderTiles","args":["OpenStreetMap","OpenStreetMap","OpenStreetMap",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"addProviderTiles","args":["Esri.WorldImagery","Esri.WorldImagery","Esri.WorldImagery",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"addProviderTiles","args":["OpenTopoMap","OpenTopoMap","OpenTopoMap",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"addRasterImage","args":["data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHwAAAA1CAYAAACDSY8aAAABQElEQVR4nO3ZsU3DUBCA4QOlp6LyCFY2yVKMwBhUNF4lI2QOqCwSIJKTvGff6f//2sVJn+4k6z29vuy/whB9fL6/PW89hK2b4LAEhyU4LMFhCQ5LcFiCwxIcluCwBIdVGvx0PGw9QrnKgs/Yot9WSfDfyKIvrxz4NVzRl7XbeoClLQGdvxnGqfc4ZSux4bdur9t+vfTg9+KJ/n+pwR9FE/1vacFbYYl+WUrw1kii/5QOvBfO6XgQPhKC946Ong58jX9oMno68AjRe5YSPEL0XqUFjxC9R6nBrX2Cw0oNvta5JZ311OBrPXOSnlPLvIf3iAQ9lx58GKemJ5eIfF7qkz7XAmkYJzx2RBHwiPvRhb4s/Uk/T7jHK7Ph1ibBYQkOS3BYgsMSHJbgsASHJTgswWEJDktwWILDEhyW4LAEh/UNDktRekGJqpQAAAAASUVORK5CYII=",[[25.73500014421401,-80.16799999999999],[25.72996980166076,-80.15493528167518]],0.8,null,"rsmaes_rast - 1","rsmaes_rast - 1"]},{"method":"removeLayersControl","args":[]},{"method":"addLayersControl","args":[["CartoDB.Positron","CartoDB.DarkMatter","OpenStreetMap","Esri.WorldImagery","OpenTopoMap"],"rsmaes_rast - 1",{"collapsed":true,"autoZIndex":true,"position":"topleft"}]},{"method":"addControl","args":["","topright","imageValues-rsmaes_rast - 1","info legend "]},{"method":"addImageQuery","args":["rsmaes_rast - 1",[-80.16799999999999,25.72990014388282,-80.15489999914929,25.73500014421401],"mousemove",7,"Layer"]},{"method":"addScaleBar","args":[{"maxWidth":100,"metric":true,"imperial":true,"updateWhenIdle":true,"position":"bottomleft"}]},{"method":"addHomeButton","args":[-80.16800000000001,25.73,-80.155,25.735,true,"rsmaes_rast - 1","Zoom to rsmaes_rast - 1","<strong> rsmaes_rast - 1 <\/strong>","bottomright"]}],"limits":{"lat":[25.72996980166076,25.73500014421401],"lng":[-80.16799999999999,-80.15493528167518]}},"evals":[],"jsHooks":{"render":[{"code":"function(el, x, data) {\n  return (\n      function(el, x, data) {\n      // get the leaflet map\n      var map = this; //HTMLWidgets.find('#' + el.id);\n      // we need a new div element because we have to handle\n      // the mouseover output separately\n      // debugger;\n      function addElement () {\n      // generate new div Element\n      var newDiv = $(document.createElement('div'));\n      // append at end of leaflet htmlwidget container\n      $(el).append(newDiv);\n      //provide ID and style\n      newDiv.addClass('lnlt');\n      newDiv.css({\n      'position': 'relative',\n      'bottomleft':  '0px',\n      'background-color': 'rgba(255, 255, 255, 0.7)',\n      'box-shadow': '0 0 2px #bbb',\n      'background-clip': 'padding-box',\n      'margin': '0',\n      'padding-left': '5px',\n      'color': '#333',\n      'font': '9px/1.5 \"Helvetica Neue\", Arial, Helvetica, sans-serif',\n      'z-index': '700',\n      });\n      return newDiv;\n      }\n\n\n      // check for already existing lnlt class to not duplicate\n      var lnlt = $(el).find('.lnlt');\n\n      if(!lnlt.length) {\n      lnlt = addElement();\n\n      // grab the special div we generated in the beginning\n      // and put the mousmove output there\n\n      map.on('mousemove', function (e) {\n      if (e.originalEvent.ctrlKey) {\n      if (document.querySelector('.lnlt') === null) lnlt = addElement();\n      lnlt.text(\n                           ' lon: ' + (e.latlng.lng).toFixed(5) +\n                           ' | lat: ' + (e.latlng.lat).toFixed(5) +\n                           ' | zoom: ' + map.getZoom() +\n                           ' | x: ' + L.CRS.EPSG3857.project(e.latlng).x.toFixed(0) +\n                           ' | y: ' + L.CRS.EPSG3857.project(e.latlng).y.toFixed(0) +\n                           ' | epsg: 3857 ' +\n                           ' | proj4: +proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs ');\n      } else {\n      if (document.querySelector('.lnlt') === null) lnlt = addElement();\n      lnlt.text(\n                      ' lon: ' + (e.latlng.lng).toFixed(5) +\n                      ' | lat: ' + (e.latlng.lat).toFixed(5) +\n                      ' | zoom: ' + map.getZoom() + ' ');\n      }\n      });\n\n      // remove the lnlt div when mouse leaves map\n      map.on('mouseout', function (e) {\n      var strip = document.querySelector('.lnlt');\n      if( strip !==null) strip.remove();\n      });\n\n      };\n\n      //$(el).keypress(67, function(e) {\n      map.on('preclick', function(e) {\n      if (e.originalEvent.ctrlKey) {\n      if (document.querySelector('.lnlt') === null) lnlt = addElement();\n      lnlt.text(\n                      ' lon: ' + (e.latlng.lng).toFixed(5) +\n                      ' | lat: ' + (e.latlng.lat).toFixed(5) +\n                      ' | zoom: ' + map.getZoom() + ' ');\n      var txt = document.querySelector('.lnlt').textContent;\n      console.log(txt);\n      //txt.innerText.focus();\n      //txt.select();\n      setClipboardText('\"' + txt + '\"');\n      }\n      });\n\n      }\n      ).call(this.getMap(), el, x, data);\n}","data":null},{"code":"function(el, x, data) {\n  return (function(el,x,data){\n           var map = this;\n\n           map.on('keypress', function(e) {\n               console.log(e.originalEvent.code);\n               var key = e.originalEvent.code;\n               if (key === 'KeyE') {\n                   var bb = this.getBounds();\n                   var txt = JSON.stringify(bb);\n                   console.log(txt);\n\n                   setClipboardText('\\'' + txt + '\\'');\n               }\n           })\n        }).call(this.getMap(), el, x, data);\n}","data":null}]}}</script>
+<div class="leaflet html-widget html-fill-item" id="htmlwidget-c4c54d8c4861885d1210" style="width:960px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-c4c54d8c4861885d1210">{"x":{"options":{"minZoom":1,"maxZoom":52,"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}},"preferCanvas":false,"bounceAtZoomLimits":false,"maxBounds":[[[-90,-370]],[[90,370]]]},"calls":[{"method":"addProviderTiles","args":["CartoDB.Positron","CartoDB.Positron","CartoDB.Positron",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"addProviderTiles","args":["CartoDB.DarkMatter","CartoDB.DarkMatter","CartoDB.DarkMatter",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"addProviderTiles","args":["OpenStreetMap","OpenStreetMap","OpenStreetMap",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"addProviderTiles","args":["Esri.WorldImagery","Esri.WorldImagery","Esri.WorldImagery",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"addProviderTiles","args":["OpenTopoMap","OpenTopoMap","OpenTopoMap",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"addRasterImage","args":["data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHwAAAA1CAYAAACDSY8aAAABQElEQVR4nO3ZsU3DUBCA4QOlp6LyCFY2yVKMwBhUNF4lI2QOqCwSIJKTvGff6f//2sVJn+4k6z29vuy/whB9fL6/PW89hK2b4LAEhyU4LMFhCQ5LcFiCwxIcluCwBIdVGvx0PGw9QrnKgs/Yot9WSfDfyKIvrxz4NVzRl7XbeoClLQGdvxnGqfc4ZSux4bdur9t+vfTg9+KJ/n+pwR9FE/1vacFbYYl+WUrw1kii/5QOvBfO6XgQPhKC946Ong58jX9oMno68AjRe5YSPEL0XqUFjxC9R6nBrX2Cw0oNvta5JZ311OBrPXOSnlPLvIf3iAQ9lx58GKemJ5eIfF7qkz7XAmkYJzx2RBHwiPvRhb4s/Uk/T7jHK7Ph1ibBYQkOS3BYgsMSHJbgsASHJTgswWEJDktwWILDEhyW4LAEh/UNDktRekGJqpQAAAAASUVORK5CYII=",[[25.73500014421401,-80.16799999999999],[25.72996980166076,-80.15493528167518]],0.8,null,"rsmaes_rast - 1","rsmaes_rast - 1"]},{"method":"removeLayersControl","args":[]},{"method":"addLayersControl","args":[["CartoDB.Positron","CartoDB.DarkMatter","OpenStreetMap","Esri.WorldImagery","OpenTopoMap"],"rsmaes_rast - 1",{"collapsed":true,"autoZIndex":true,"position":"topleft"}]},{"method":"addControl","args":["","topright","imageValues-rsmaes_rast - 1","info legend "]},{"method":"addImageQuery","args":["rsmaes_rast - 1",[-80.16799999999999,25.72990014388282,-80.15489999914929,25.73500014421401],"mousemove",7,"Layer"]},{"method":"addScaleBar","args":[{"maxWidth":100,"metric":true,"imperial":true,"updateWhenIdle":true,"position":"bottomleft"}]},{"method":"addHomeButton","args":[-80.16800000000001,25.73,-80.155,25.735,true,"rsmaes_rast - 1","Zoom to rsmaes_rast - 1","<strong> rsmaes_rast - 1 <\/strong>","bottomright"]}],"limits":{"lat":[25.72996980166076,25.73500014421401],"lng":[-80.16799999999999,-80.15493528167518]}},"evals":[],"jsHooks":{"render":[{"code":"function(el, x, data) {\n  return (\n      function(el, x, data) {\n      // get the leaflet map\n      var map = this; //HTMLWidgets.find('#' + el.id);\n      // we need a new div element because we have to handle\n      // the mouseover output separately\n      // debugger;\n      function addElement () {\n      // generate new div Element\n      var newDiv = $(document.createElement('div'));\n      // append at end of leaflet htmlwidget container\n      $(el).append(newDiv);\n      //provide ID and style\n      newDiv.addClass('lnlt');\n      newDiv.css({\n      'position': 'relative',\n      'bottomleft':  '0px',\n      'background-color': 'rgba(255, 255, 255, 0.7)',\n      'box-shadow': '0 0 2px #bbb',\n      'background-clip': 'padding-box',\n      'margin': '0',\n      'padding-left': '5px',\n      'color': '#333',\n      'font': '9px/1.5 \"Helvetica Neue\", Arial, Helvetica, sans-serif',\n      'z-index': '700',\n      });\n      return newDiv;\n      }\n\n\n      // check for already existing lnlt class to not duplicate\n      var lnlt = $(el).find('.lnlt');\n\n      if(!lnlt.length) {\n      lnlt = addElement();\n\n      // grab the special div we generated in the beginning\n      // and put the mousmove output there\n\n      map.on('mousemove', function (e) {\n      if (e.originalEvent.ctrlKey) {\n      if (document.querySelector('.lnlt') === null) lnlt = addElement();\n      lnlt.text(\n                           ' lon: ' + (e.latlng.lng).toFixed(5) +\n                           ' | lat: ' + (e.latlng.lat).toFixed(5) +\n                           ' | zoom: ' + map.getZoom() +\n                           ' | x: ' + L.CRS.EPSG3857.project(e.latlng).x.toFixed(0) +\n                           ' | y: ' + L.CRS.EPSG3857.project(e.latlng).y.toFixed(0) +\n                           ' | epsg: 3857 ' +\n                           ' | proj4: +proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs ');\n      } else {\n      if (document.querySelector('.lnlt') === null) lnlt = addElement();\n      lnlt.text(\n                      ' lon: ' + (e.latlng.lng).toFixed(5) +\n                      ' | lat: ' + (e.latlng.lat).toFixed(5) +\n                      ' | zoom: ' + map.getZoom() + ' ');\n      }\n      });\n\n      // remove the lnlt div when mouse leaves map\n      map.on('mouseout', function (e) {\n      var strip = document.querySelector('.lnlt');\n      if( strip !==null) strip.remove();\n      });\n\n      };\n\n      //$(el).keypress(67, function(e) {\n      map.on('preclick', function(e) {\n      if (e.originalEvent.ctrlKey) {\n      if (document.querySelector('.lnlt') === null) lnlt = addElement();\n      lnlt.text(\n                      ' lon: ' + (e.latlng.lng).toFixed(5) +\n                      ' | lat: ' + (e.latlng.lat).toFixed(5) +\n                      ' | zoom: ' + map.getZoom() + ' ');\n      var txt = document.querySelector('.lnlt').textContent;\n      console.log(txt);\n      //txt.innerText.focus();\n      //txt.select();\n      setClipboardText('\"' + txt + '\"');\n      }\n      });\n\n      }\n      ).call(this.getMap(), el, x, data);\n}","data":null},{"code":"function(el, x, data) {\n  return (function(el,x,data){\n           var map = this;\n\n           map.on('keypress', function(e) {\n               console.log(e.originalEvent.code);\n               var key = e.originalEvent.code;\n               if (key === 'KeyE') {\n                   var bb = this.getBounds();\n                   var txt = JSON.stringify(bb);\n                   console.log(txt);\n\n                   setClipboardText('\\'' + txt + '\\'');\n               }\n           })\n        }).call(this.getMap(), el, x, data);\n}","data":null}]}}</script>
 </div>
 </div>
 </div>
@@ -640,14 +645,18 @@ Juan Carlos Villaseñor-Derbez (JC)
 <ul>
 <li class="fragment"><p>As environmental scientists and practitioners we will typically use both</p></li>
 <li class="fragment"><p>The “correct” type of data varies by use case</p></li>
-<li class="fragment"><p>There may be more than one valid approach for the same analysis</p></li>
 <li class="fragment"><p>You’ll be able to make this choice in a few weeks</p></li>
 </ul>
+<div class="fragment">
+<blockquote>
+<p>“<code>raster</code> is faster, but <code>vector</code> is correctr”</p>
+</blockquote>
+</div>
 </section>
 <section id="vector-data-model" class="slide level2">
 <h2>Vector data model</h2>
 <blockquote>
-<p>World is represented using points, lines, and polygons</p>
+<p>World is represented using geometries: points, lines, and polygons</p>
 </blockquote>
 <div class="fragment">
 <p><strong>Q:</strong> What is a line? What is a polygon?</p>
@@ -665,7 +674,7 @@ Juan Carlos Villaseñor-Derbez (JC)
 <p><strong>Q:</strong> What are coordinates?</p>
 </div>
 <div class="fragment">
-<p><strong>A:</strong> Two numbers representing distance from an <strong>origin</strong><a href="#/footnotes" class="footnote-ref" id="fnref1" role="doc-noteref" data-footnote-href="#/fn1" onclick=""><sup>1</sup></a>: a coordinate reference system</p>
+<p><strong>A:</strong> Two numbers representing distance from an <strong>origin</strong>: a coordinate reference system</p>
 </div>
 <div class="fragment">
 <div class="callout callout-note callout-titled callout-style-default">
@@ -682,18 +691,14 @@ Juan Carlos Villaseñor-Derbez (JC)
 </div>
 </div>
 </div>
-<aside></aside></section>
+</section></section>
 <section>
 <section id="what-is-where-and-what-does-where-mean" class="title-slide slide level1 center">
-<h1>What is where? And what does “where’ mean?</h1>
+<h1>What is where? And what does “where” mean?</h1>
 <p>Coordinates, Coordinate Reference Systems, and Attributes</p>
 </section>
-<section id="locating-things-on-a-map" class="slide level2">
-<h2>Locating things on a map</h2>
-<!-- Give them the location for Rosenstiel in geographic and UTM -->
-<!-- Ask them if they can place them on the map -->
-<!-- Then ask if they know what it is -->
-<!-- This should help them realize we need three things: coordinates, CRS, attributes -->
+<section id="what-does-where-mean" class="slide level2">
+<h2>What does “where” mean?</h2>
 <p>Consider the following two coordinates:</p>
 <ul>
 <li class="fragment"><p><code>(-80.1632879, 25.7328129)</code></p></li>
@@ -716,37 +721,325 @@ Juan Carlos Villaseñor-Derbez (JC)
 </section>
 <section id="the-importance-of-attributes" class="slide level2">
 <h2>The importance of attributes</h2>
-<p>This uses a Geodetic CRS based on WGS 84, coordinates are represented in <strong>degrees</strong> from the origin at <code>(0, 0)</code></p>
-<p>This information is enough to place the point on a map, but not enough to convey information about the place</p>
-<div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href=""></a><span class="co"># Combine with the "attributes" part</span></span>
-<span id="cb5-2"><a href=""></a>rsmaes_pt <span class="ot">&lt;-</span> <span class="fu">st_sf</span>(<span class="at">id =</span> <span class="st">"Rosenstiel (point)"</span>,</span>
-<span id="cb5-3"><a href=""></a>                   <span class="at">geometry =</span> rsmaes_pt_coords)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
+<ul>
+<li class="fragment">Coordinates and a CRS are enough to place the point on a map</li>
+<li class="fragment">Also enough to perform spatial analysis</li>
+<li class="fragment">But not enough to convey <em>information</em> about the location</li>
+<li class="fragment">Often not enough to derive insights</li>
+<li class="fragment">We also need attributes</li>
+</ul>
+<div class="fragment">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
 </div>
+<p><strong>Note</strong></p>
+</div>
+<div class="callout-content">
+<p>The three main components of a spatial <code>vector</code> object are attributes (what), geometry, and CRS (where)</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="attributes" class="slide level2">
+<h2>Attributes</h2>
+<ul>
+<li class="fragment">Are not inherently spatial</li>
+<li class="fragment">Can be a discrete or categorical variable representing a characteristic of interest:
+<ul>
+<li class="fragment">Identity</li>
+<li class="fragment">Sea Surface Temperature</li>
+<li class="fragment">Time</li>
+</ul></li>
+<li class="fragment">Note that you can have more than one attribute tied to a geometry
+<ul>
+<li class="fragment">2 attributes: vessel-tracking data or hurricane path (id and time)</li>
+<li class="fragment">2+ attributes: Buoy weather data (id, time, and all variables measured)</li>
+</ul></li>
+</ul>
+</section></section>
+<section>
+<section id="handling-spatial-data-in-a-computer" class="title-slide slide level1 center">
+<h1>Handling spatial data in a computer</h1>
+
 </section>
 <section id="how-are-these-compotents-handled-in-a-computer" class="slide level2">
 <h2>How are these compotents handled in a computer?</h2>
+<p>We rely on four key low-level libraries for geocomputation:</p>
 <ul>
-<li class="fragment"><code>GDAL</code></li>
-<li class="fragment"><code>PROJ</code></li>
-<li class="fragment"><code>GEOS</code></li>
-<li class="fragment"><strong><code>S2</code></strong></li>
+<li class="fragment"><code>GDAL</code>: read, write, and manipulating geographic data</li>
+<li class="fragment"><code>PROJ</code>: coordinate system transformation</li>
+<li class="fragment"><code>GEOS</code>: <strong>planar</strong> geometry engine only to be used with data with a <em>projected</em> CRS)</li>
+<li class="fragment"><strong><code>S2</code></strong>: a <strong>spherical</strong> geometry engine, written in C++ (fast) and developed by Google (reliable)</li>
 </ul>
 <div class="fragment">
-<p>From R, you will work in <code>sf</code>, which relies on these libraries in the background</p>
+<p>All are incredibly powerful and open source, but not exactly user-friendly</p>
 </div>
 </section>
-<section id="sf" class="slide level2">
-<h2>SF</h2>
-<!-- To do: -->
+<section id="ways-of-interacting-with-these-libraries" class="slide level2">
+<h2>Ways of interacting with these libraries</h2>
+
+<img data-src="img/cli_and_gui.png" class="r-stretch"></section>
+<section id="the-sf-package" class="slide level2">
+<h2>The <code>sf</code> package</h2>
 <ul>
-<li class="fragment">Add deffinition of GDAL, proj….</li>
-<li class="fragment">Add information on SF. What is it, its history</li>
-<li class="fragment">What are simple features? emphasize STANDARDS</li>
+<li class="fragment">From R, our main point of access will be the <code>sf</code> package</li>
+<li class="fragment">When we load <code>sf</code>, it automatically links to these low level libraries</li>
 </ul>
+<div class="fragment">
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href=""></a><span class="fu">library</span>(sf)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>Linking to GEOS 3.13.0, GDAL 3.10.0, PROJ 9.5.1; sf_use_s2() is TRUE</code></pre>
+</div>
+<div class="fragment">
+<ul>
+<li class="fragment"><code>sf</code> provides:
+<ul>
+<li class="fragment">A consistent command-line interface to communicate with the libraries</li>
+<li class="fragment">R classes and objects to handle <code>vector</code> data using the <em>Simple Feature</em> standard</li>
+</ul></li>
+</ul>
+</div>
+</section></section>
+<section>
+<section id="introduction-to-simple-features" class="title-slide slide level1 center">
+<h1>Introduction to Simple Features</h1>
+
+</section>
+<section id="simple-features" class="slide level2">
+<h2>Simple Features</h2>
+<ul>
+<li class="fragment">Simple feature is an official, open <a href="https://www.iso.org/standard/40114.html"><em>standard</em></a> (<em>i.e.</em> registered at the ISO)</li>
+<li class="fragment">Hierarchical data model to represent types of geometries (<em>i.e.</em> points, lines, polygons, multi-, and collections)</li>
+</ul>
+<div class="fragment">
+<p>The standard says:</p>
+<blockquote>
+<p>“A simple feature is defined by the OpenGIS Abstract specification to have both spatial and non-spatial attributes. Spatial attributes are geometry valued, and simple features are based on 2D geometry with linear interpolation between vertices.”</p>
+</blockquote>
+<p>—Pebesma, 2024</p>
+</div>
+</section>
+<section id="working-with-sf-objects-in-r" class="slide level2">
+<h2>Working with <code>sf</code> objects in R</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href=""></a><span class="co"># Read the data</span></span>
+<span id="cb7-2"><a href=""></a>milton <span class="ot">&lt;-</span> <span class="fu">read_sf</span>(<span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"milton.gpkg"</span>), <span class="at">quiet =</span> T)</span>
+<span id="cb7-3"><a href=""></a></span>
+<span id="cb7-4"><a href=""></a><span class="co"># Inspect it</span></span>
+<span id="cb7-5"><a href=""></a><span class="fu">class</span>(milton)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "sf"         "tbl_df"     "tbl"        "data.frame"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href=""></a><span class="co"># See its names</span></span>
+<span id="cb9-2"><a href=""></a><span class="fu">names</span>(milton)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "NAME"     "ISO_TIME" "USA_WIND" "USA_PRES" "USA_SSHS" "geom"    </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href=""></a><span class="co"># Plot it (note you get one plot per column, except for geometry)</span></span>
+<span id="cb11-2"><a href=""></a><span class="fu">plot</span>(milton)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="02_data_models_vector_files/figure-revealjs/unnamed-chunk-3-1.png" width="960" class="r-stretch"></section>
+<section id="using-sf-object-as-a-data.frame" class="slide level2 scrollable">
+<h2>Using <code>sf</code> object as a <code>data.frame</code></h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p>You can quickly calculate summary statistics for any attribute variable</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href=""></a><span class="fu">summary</span>(milton<span class="sc">$</span>USA_WIND)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  25.00   34.00   75.00   81.87  134.00  150.00 </code></pre>
+</div>
+</div>
+<p>Keep only some columns</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href=""></a>milton_light <span class="ot">&lt;-</span> milton[,<span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">3</span>)]</span>
+<span id="cb14-2"><a href=""></a>milton_light</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Simple feature collection with 55 features and 2 fields
+Geometry type: POINT
+Dimension:     XY
+Bounding box:  xmin: -95.5 ymin: 20.6 xmax: -77.5 ymax: 29.5
+Geodetic CRS:  WGS 84
+# A tibble: 55 × 3
+   ISO_TIME            USA_WIND         geom
+   &lt;dttm&gt;                 &lt;dbl&gt;  &lt;POINT [°]&gt;
+ 1 2024-10-03 20:00:00       25 (-94.7 20.6)
+ 2 2024-10-03 23:00:00       25 (-94.8 20.7)
+ 3 2024-10-04 02:00:00       25 (-94.9 20.7)
+ 4 2024-10-04 05:00:00       25   (-95 20.7)
+ 5 2024-10-04 08:00:00       25   (-95 20.8)
+ 6 2024-10-04 11:00:00       25 (-95.1 20.8)
+ 7 2024-10-04 14:00:00       25 (-95.1 20.9)
+ 8 2024-10-04 17:00:00       28   (-95.1 21)
+ 9 2024-10-04 20:00:00       30 (-95.2 21.1)
+10 2024-10-04 23:00:00       30 (-95.3 21.3)
+# ℹ 45 more rows</code></pre>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<p>Or plot the attribute variables</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href=""></a><span class="fu">ggplot</span>(<span class="at">data =</span> milton_light,</span>
+<span id="cb16-2"><a href=""></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> ISO_TIME,</span>
+<span id="cb16-3"><a href=""></a>                     <span class="at">y =</span> USA_WIND)) <span class="sc">+</span></span>
+<span id="cb16-4"><a href=""></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb16-5"><a href=""></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb16-6"><a href=""></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Date"</span>,</span>
+<span id="cb16-7"><a href=""></a>       <span class="at">y =</span> <span class="st">"Maximum sustained wind speed (knots)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="02_data_models_vector_files/figure-revealjs/unnamed-chunk-6-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+</section></section>
+<section id="why-simple-features" class="title-slide slide level1 center">
+<h1>Why simple features</h1>
+<ul>
+<li class="fragment"><strong>STANDARD</strong> = transferability and reproducibility</li>
+<li class="fragment">Relatively quick</li>
+<li class="fragment">Intergrated pipeline for data manipulation and visualiztion (tibbles and data.frames)</li>
+<li class="fragment"></li>
+</ul>
+</section>
+
+<section id="basic-maps" class="title-slide slide level1 center">
+<h1>Basic maps</h1>
+
+</section>
+
+<section>
+<section id="geometry-types" class="title-slide slide level1 center">
+<h1>Geometry types</h1>
+
+</section>
+<section id="the-main-types-of-simple-features" class="slide level2">
+<h2>The main<sup>1</sup> types of simple features</h2>
+<ul>
+<li class="fragment"><code>POINT</code> zero-dimensional geometry containing a single point</li>
+<li class="fragment"><code>LINESTRING</code> sequence of points connected by straight, non-self intersecting line pieces; one-dimensional geometry</li>
+<li class="fragment"><code>POLYGON</code> geometry with a positive area (two-dimensional); sequence of points form a closed, non-self intersecting ring; the first ring <code>denotes</code> the exterior ring, zero or more subsequent rings denote holes in this exterior ring</li>
+<li class="fragment"><code>MULTIPOINT</code> set of points</li>
+<li class="fragment"><code>MULTILINESTRING</code> set of linestrings</li>
+<li class="fragment"><code>MULTIPOLYGON</code> set of polygons</li>
+<li class="fragment"><code>GEOMETRYCOLLECTION</code> set of geometries of any type except <code>GEOMETRYCOLLECTION</code></li>
+</ul>
+<aside><ol class="aside-footnotes"><li id="fn1"><p>Other less common types include <code>CIRCULARSTRING</code>, <code>COMPOUNDCURVE</code>, <code>CURVEPOLYGON</code>, <code>MULTICURVE</code>, <code>MULTISURFACE</code>, <code>CURVE</code>, <code>SURFACE</code>, <code>POLYHEDRALSURFACE</code>, <code>TIN</code></p></li></ol></aside></section>
+<section id="the-main-types-of-simple-features-1" class="slide level2">
+<h2>The main types of simple features</h2>
+
+<img data-src="https://r.geocompx.org/images/sf-classes.png" class="r-stretch quarto-figure-center"><p class="caption">GeoCompR, 2024</p></section>
+<section id="sf-objects" class="slide level2 scrollable">
+<h2><code>sf</code> objects</h2>
+<p>Remember the objects I built on the slides with tabs?</p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p>Point</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href=""></a><span class="fu">class</span>(rsmaes_pt)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "sf"         "data.frame"</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href=""></a>rsmaes_pt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Simple feature collection with 1 feature and 1 field
+Geometry type: POINT
+Dimension:     XY
+Bounding box:  xmin: -80.16329 ymin: 25.73281 xmax: -80.16329 ymax: 25.73281
+Geodetic CRS:  WGS 84
+                  id                   geometry
+1 Rosenstiel (point) POINT (-80.16329 25.73281)</code></pre>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<p>Polygon</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href=""></a><span class="fu">class</span>(rsmaes_poly)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "sf"         "data.frame"</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href=""></a>rsmaes_poly</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Simple feature collection with 1 feature and 1 field
+Geometry type: POLYGON
+Dimension:     XY
+Bounding box:  xmin: -80.16424 ymin: 25.7316 xmax: -80.16097 ymax: 25.73395
+Geodetic CRS:  WGS 84
+                    id                       geometry
+1 Rosenstiel (polygon) POLYGON ((-80.16302 25.7339...</code></pre>
+</div>
+</div>
+</div></div>
+<div class="fragment">
+<p>Both are <code>sf</code> objects, which are <code>data.frames</code> with a special column called <code>geometry</code></p>
+</div>
+</section></section>
+<section>
+<section id="the-sf-class" class="title-slide slide level1 center">
+<h1>The <code>sf</code> class</h1>
+
+</section>
+<section id="an-sf-object" class="slide level2">
+<h2>An <code>sf</code> object</h2>
+
+<img data-src="https://r.geocompx.org/images/02-sfdiagram.png" class="r-stretch quarto-figure-center"><p class="caption">GeoCompR, 2024</p><div class="cell">
+<div class="sourceCode cell-code" id="cb25" data-code-line-numbers="1|2|3|4-6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href=""></a>rsmaes_pt <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">80.1632879</span>, <span class="fl">25.7328129</span>) <span class="sc">|&gt;</span>      <span class="co"># Coordinates</span></span>
+<span id="cb25-2"><a href=""></a>  <span class="fu">st_point</span>() <span class="sc">|&gt;</span>                                 <span class="co"># Build sfg</span></span>
+<span id="cb25-3"><a href=""></a>  <span class="fu">st_sfc</span>() <span class="sc">|&gt;</span>                                   <span class="co"># Build sfc</span></span>
+<span id="cb25-4"><a href=""></a>  <span class="fu">st_sf</span>(                                        <span class="co"># Build sf</span></span>
+<span id="cb25-5"><a href=""></a>    <span class="fu">data.frame</span>(<span class="at">id =</span> <span class="st">"Rosenstiel (point)"</span>,       <span class="co"># Add the data.frame portion</span></span>
+<span id="cb25-6"><a href=""></a>               <span class="at">foundation =</span> <span class="dv">1943</span>))        </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="fragment">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href=""></a>rsmaes_pt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Simple feature collection with 1 feature and 2 fields
+Geometry type: POINT
+Dimension:     XY
+Bounding box:  xmin: -80.16329 ymin: 25.73281 xmax: -80.16329 ymax: 25.73281
+CRS:           NA
+                  id foundation st_sfc.st_point.c..80.1632879..25.7328129...
+1 Rosenstiel (point)       1943                   POINT (-80.16329 25.73281)</code></pre>
+</div>
+</div>
+</div>
+</section></section>
+<section id="simple-feature-geometries-sfg" class="title-slide slide level1 center">
+<h1>Simple feature geometries (<code>sfg</code>)</h1>
+
+</section>
+
+<section id="simple-feature-columngs-sfc" class="title-slide slide level1 center">
+<h1>Simple feature columngs (<code>sfc</code>)</h1>
+
+</section>
+
+<section>
+<section id="working-with-sf-objects" class="title-slide slide level1 center">
+<h1>Working with <code>sf</code> objects</h1>
+
 </section>
 <section id="main-points" class="slide level2">
 <h2>Main points</h2>
@@ -768,12 +1061,7 @@ Juan Carlos Villaseñor-Derbez (JC)
 </div>
 </div>
 </section></section>
-<section id="footnotes" class="footnotes footnotes-end-of-document smaller scrollable" role="doc-endnotes"><h2>Footnotes</h2>
 
-<ol>
-<li id="fn1"><p>At least in Cartesian coordinates</p></li>
-</ol>
-</section>
     </div>
   </div>
 
@@ -927,7 +1215,7 @@ Juan Carlos Villaseñor-Derbez (JC)
         hideCursorTime: 5000,
 
         // Opens links in an iframe preview overlay
-        previewLinks: false,
+        previewLinks: true,
 
         // Transition style (none/fade/slide/convex/concave/zoom)
         transition: 'none',

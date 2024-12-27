@@ -7,13 +7,16 @@ editor_options:
 
 ```{r set-up, echo=FALSE}
 pacman::p_load(
-  tidyverse,
-  sf,
-  terra,
-  mapview
+  "here",
+  "tidyverse",
+  "sf",
+  "terra",
+  "mapview"
 )
+source(here::here("_r_opts.R"))
 ```
 
+# Introduction
 
 ## How do we get the world into a computer?
 
@@ -28,23 +31,33 @@ pacman::p_load(
 
 ## We need a *model*
 
-Data can bre represented in a `vector` model, or a `raster` model
+Data can be represented in a `vector` model, or a `raster` model
 
 In today's class:
 
 - Introduce the *why* behind each model
 - Discuss where and when they are used
-- Briefly compare their pro's and cons
 - Focus on `vector`:
     - It's main attributes
     - It's implementation in R
+    
+## Today's goals
+
+By the end of the lecture, you should be able to:
+
+- list the two main data models, and articulate their main characteristics
+- understand the principles of `vector` data
+- list the three main components of a spatial `vector` object
+- list the tree main types of a _simple feature_
+- given an `sf` object, plot it and inspect it
+
 
 ## Two models
 :::: {.columns}
 
 ::: {.column width="50%"}
 ### `vector`
-- World is represented using points, lines, and polygons
+- World is represented using geometries: points, lines, and polygons
 - Discrete and well-defined borders = high precision
 - Computationally intensive
 :::
@@ -58,9 +71,11 @@ In today's class:
 
 ::::
 
-. . . 
+. . .
 
-> "`raster` is faster, but `vector` is correctr"
+::: {.callout-note}
+Spatial data can be represented in a `vector` or `raster` model
+:::
 
 
 
@@ -179,13 +194,15 @@ mapview(rsmaes_rast,
 
 - The "correct" type of data varies by use case
 
-- There may be more than one valid approach for the same analysis
-
 - You'll be able to make this choice in a few weeks
+
+. . . 
+
+> "`raster` is faster, but `vector` is correctr"
 
 ## Vector data model
 
-> World is represented using points, lines, and polygons
+> World is represented using geometries: points, lines, and polygons
 
 . . .
 
@@ -209,7 +226,7 @@ mapview(rsmaes_rast,
 
 . . .
 
-**A:** Two numbers representing distance from an **origin**^[At least in Cartesian coordinates]: a coordinate reference system
+**A:** Two numbers representing distance from an **origin**: a coordinate reference system
 
 . . .
 
@@ -220,19 +237,13 @@ The vector data model is based on points located within a coordinate reference s
 
 :::
 
-# What is where? And what does "where' mean?
+
+# What is where? And what does "where" mean?
 
 Coordinates, Coordinate Reference Systems, and Attributes
 
-## Locating things on a map
+## What does "where" mean?
 
-<!-- Give them the location for Rosenstiel in geographic and UTM -->
-
-<!-- Ask them if they can place them on the map -->
-
-<!-- Then ask if they know what it is -->
-
-<!-- This should help them realize we need three things: coordinates, CRS, attributes -->
 
 Consider the following two coordinates:
 
@@ -268,57 +279,260 @@ cowplot::plot_grid(p1, p2, ncol = 2, rel_widths = c(3, 1))
 
 ## The importance of attributes
 
-This uses a Geodetic CRS based on WGS 84, coordinates are represented in **degrees** from the origin at `(0, 0)`
+- Coordinates and a CRS are enough to place the point on a map
+- Also enough to perform spatial analysis
+- But not enough to convey *information* about the location
+- Often not enough to derive insights
+- We also need attributes
 
-This information is enough to place the point on a map, but not enough to convey information about the place
+. . .
 
+::: {.callout-note}
+The three main components of a spatial `vector` object are attributes (what), geometry, and CRS (where)
+:::
+
+## Attributes
+
+- Are not inherently spatial
+- Can be a discrete or categorical variable representing a characteristic of interest:
+    - Identity
+    - Sea Surface Temperature
+    - Time
+- Note that you can have more than one attribute tied to a geometry
+    - 2 attributes: vessel-tracking data or hurricane path (id and time)
+    - 2+ attributes: Buoy weather data (id, time, and all variables measured)
+
+# Handling spatial data in a computer
+
+## How are these compotents handled in a computer?
+
+We rely on four key low-level libraries for geocomputation:
+
+- `GDAL`: read, write, and manipulating geographic data
+- `PROJ`: coordinate system transformation
+- `GEOS`: **planar** geometry engine only to be used with data with a _projected_ CRS)
+- **`S2`**: a **spherical** geometry engine, written in C++ (fast) and developed by Google (reliable)
+
+. . .
+
+All are incredibly powerful and open source, but not exactly user-friendly
+
+## Ways of interacting with these libraries
+
+![](img/cli_and_gui.png)
+
+## The `sf` package
+
+- From R, our main point of access will be the `sf` package
+- When we load `sf`, it automatically links to these low level libraries
+
+. . .
+
+```{.r}
+library(sf)
+```
+
+```
+Linking to GEOS 3.13.0, GDAL 3.10.0, PROJ 9.5.1; sf_use_s2() is TRUE
+```
+
+. . .
+
+- `sf` provides:
+    - A consistent command-line interface to communicate with the libraries
+    - R classes and objects to handle `vector` data using the _Simple Feature_ standard
+
+# Introduction to Simple Features
+
+## Simple Features
+
+- Simple feature is an official, open  [_standard_](https://www.iso.org/standard/40114.html) (_i.e._ registered at the ISO)
+- Hierarchical data model to represent types of geometries (_i.e._ points, lines, polygons, multi-, and collections)
+
+. . .
+
+The standard says: 
+
+> “A simple feature is defined by the OpenGIS Abstract specification to have both spatial and non-spatial attributes. Spatial attributes are geometry valued, and simple features are based on 2D geometry with linear interpolation between vertices.”
+
+—Pebesma, 2024
+
+## Working with `sf` objects in R
+
+```{r echo=FALSE, include=FALSE}
+col_names <- names(read_csv("https://www.ncei.noaa.gov/data/international-best-track-archive-for-climate-stewardship-ibtracs/v04r01/access/csv/ibtracs.last3years.list.v04r01.csv", n_max = 0))
+hur <- read_csv("https://www.ncei.noaa.gov/data/international-best-track-archive-for-climate-stewardship-ibtracs/v04r01/access/csv/ibtracs.last3years.list.v04r01.csv",
+                col_names = col_names,
+                skip = 2) |> 
+  filter(NAME == "MILTON") |> 
+  mutate(DIST2LAND = as.numeric(DIST2LAND)) |> 
+  st_as_sf(coords = c("LON", "LAT"),
+           crs = 4326) |> 
+  select(NAME, ISO_TIME, USA_WIND, USA_PRES, USA_SSHS)
+
+st_write(obj = hur,
+         dsn = here("data", "milton.gpkg"),
+         delete_dsn = T)
+```
 
 ```{r}
-# Combine with the "attributes" part
-rsmaes_pt <- st_sf(id = "Rosenstiel (point)",
-                   geometry = rsmaes_pt_coords)
+#| code-fold: false
+# Read the data
+milton <- read_sf(here("data", "milton.gpkg"), quiet = T)
+
+# Inspect it
+class(milton)
+
+# See its names
+names(milton)
+
+# Plot it (note you get one plot per column, except for geometry)
+plot(milton)
+```
+
+## Using `sf` object as a `data.frame` {.scrollable}
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+You can quickly calculate summary statistics for any attribute variable
+
+```{r}
+summary(milton$USA_WIND)
+```
+
+Keep only some columns
+
+```{r}
+milton_light <- milton[,c(2, 3)]
+milton_light
+```
+
+
+:::
+
+::: {.column width="50%"}
+
+Or plot the attribute variables
+
+```{r}
+ggplot(data = milton_light,
+       mapping = aes(x = ISO_TIME,
+                     y = USA_WIND)) +
+  geom_line() +
+  geom_point() +
+  labs(x = "Date",
+       y = "Maximum sustained wind speed (knots)")
+```
+
+:::
+
+::::
+
+
+# Why simple features
+
+- **STANDARD** = transferability and reproducibility
+- Relatively quick
+- Intergrated pipeline for data manipulation and visualiztion (tibbles and data.frames)
+- 
+
+# Basic maps
+
+# Geometry types
+
+## The main^[Other less common types include `CIRCULARSTRING`, `COMPOUNDCURVE`, `CURVEPOLYGON`, `MULTICURVE`, `MULTISURFACE`, `CURVE`, `SURFACE`, `POLYHEDRALSURFACE`, `TIN`] types of simple features
+
+- `POINT`	zero-dimensional geometry containing a single point
+- `LINESTRING`	sequence of points connected by straight, non-self intersecting line pieces; one-dimensional geometry
+- `POLYGON`	geometry with a positive area (two-dimensional); sequence of points form a closed, non-self intersecting ring; the first ring `denotes` the exterior ring, zero or more subsequent rings denote holes in this exterior ring
+- `MULTIPOINT`	set of points
+- `MULTILINESTRING`	set of linestrings
+- `MULTIPOLYGON`	set of polygons
+- `GEOMETRYCOLLECTION` set of geometries of any type except `GEOMETRYCOLLECTION`
+
+## The main types of simple features
+
+![GeoCompR, 2024](https://r.geocompx.org/images/sf-classes.png)
+
+
+## `sf` objects {.scrollable}
+
+Remember the objects I built on the slides with tabs?
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+Point
+
+```{r}
+#| code-fold: false
+class(rsmaes_pt)
+```
+
+```{r}
+#| code-fold: false
+rsmaes_pt
+```
+
+:::
+
+::: {.column width="50%"}
+
+Polygon
+
+```{r}
+#| code-fold: false
+class(rsmaes_poly)
+```
+
+```{r}
+#| code-fold: false
+rsmaes_poly
+```
+
+:::
+
+
+::::
+
+. . . 
+
+Both are `sf` objects, which are `data.frames` with a special column called `geometry`
+
+# The `sf` class
+
+## An `sf` object
+
+![GeoCompR, 2024](https://r.geocompx.org/images/02-sfdiagram.png)
+
+```{r}
+#| code-fold: false
+#| code-line-numbers: "1|2|3|4-6"
+rsmaes_pt <- c(-80.1632879, 25.7328129) |>      # Coordinates
+  st_point() |>                                 # Build sfg
+  st_sfc() |>                                   # Build sfc
+  st_sf(                                        # Build sf
+    data.frame(id = "Rosenstiel (point)",       # Add the data.frame portion
+               foundation = 1943))        
+```
+
+. . .
+
+```{r}
+#| code-fold: false
+rsmaes_pt
 ```
 
 
 
+# Simple feature geometries (`sfg`)
 
-## How are these compotents handled in a computer?
+# Simple feature columngs (`sfc`)
 
-- `GDAL`
-- `PROJ`
-- `GEOS`
-- **`S2`**
-
-. . . 
-
-From R, you will work in `sf`, which relies on these libraries in the background
-
-## SF
-
-
-<!-- To do: -->
-- Add deffinition of GDAL, proj....
-- Add information on SF. What is it, its history
-- What are simple features? emphasize STANDARDS
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+# Working with `sf` objects
 
 ## Main points
 - There are two models with which we represent spatial data (`vector` and `raster`)
