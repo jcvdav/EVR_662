@@ -7,11 +7,11 @@
 
 # Class schedule
 
--   M / W \@ 12:00 - 13:15 SLAB 114
+-   M / W @ 12:00 - 13:15 SLAB 114
 
 # Class description
 
-The course will introduce students to intermediate spatial analysis in R, in the context of Environmental Science and Policy. Introductory knowledge of spatial analysis (*e.g.* GIS sing QGIS or ESRI products) is required, previous exposure to the use of scripting languages (*e.g.* R or Python) will help, but is not required. During the first part of the course (weeks 1-6), students will gain a solid foundation on modern tools and standards for spatial analysis in R (*e.g.* simple features, spherical geometries). The second part (weeks 7-15) will expose students to intermediate techniques (*e.g.* visualization, scripting, and principles of classification for remote sensing). Students will learn how to find, retrieve, and work with a suite of spatial data products commonly used in Environmental Science and Policy.
+The course will introduce students to intermediate spatial analysis in R, in the context of Environmental Science and Policy. Introductory knowledge of spatial analysis (*e.g.* GIS using QGIS or ESRI products) is required, as is previous exposure to the use of scripting languages (*e.g.* R or Python). During the first part of the course (weeks 1-6), students will gain a solid foundation on modern tools and standards for spatial analysis in R (*e.g.* simple features, spherical geometries). The second part (weeks 7-15) will expose students to intermediate techniques (*e.g.* interactive visualization, scripting). Students will learn how to find, retrieve, and work with a suite of spatial data products commonly used in Environmental Science and Policy.
 
 > **Undergraduate students** Some seats are reserved for undergraduate students who have some relevant experience and permission. The expectations for undergraduates are slightly more lenient with regards to the final project. All other expectations remain the same.
 
