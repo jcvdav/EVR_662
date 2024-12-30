@@ -258,6 +258,14 @@ Where are they?
 . . .
 
 ```{r, echo=FALSE}
+USA <- rnaturalearth::ne_states(geounit = "United States of America") |> 
+  filter(!name %in% c("Hawaii", "Alaska"))
+
+FL <- USA |> 
+  filter(name == "Florida")
+
+MEX <- rnaturalearth::ne_countries(country = "Mexico")
+
 rsmaes_pt_coords <- st_point(x = c(-80.1632879, 25.7328129),
                              dim = "XY") |> 
   st_sfc(crs = "EPSG:4326")
@@ -265,8 +273,7 @@ rsmaes_pt_coords <- st_point(x = c(-80.1632879, 25.7328129),
 p1 <- ggplot() +
   geom_vline(xintercept = 0) +
   geom_hline(yintercept = 0) +
-  geom_sf(data = rnaturalearth::ne_states(geounit = "United States of America") |> 
-            filter(name == "Florida")) +
+  geom_sf(data = FL) +
   geom_sf(data = rsmaes_pt_coords)
 
 p2 <- p1 + 
@@ -428,9 +435,9 @@ ggplot(data = milton_light,
 ::::
 
 
-# Diving into Simple Features
+# Why simple features?
 
-## Why simple features?
+## Why use simple features
 
 - **STANDARD** = transferability and reproducibility (important in science and policy making!)
 - Widely supported data model (e.g. QGIS and PostGIS)
@@ -438,18 +445,163 @@ ggplot(data = milton_light,
 - Plotting performance (easy to use attributes to specify visualization characteristics)
 - Full R support: `sf` objects can be treated as data.frames (wrangling and visualization, pipe-friendly)
 
+# Visualizing simple features
+
+(Just an overview for now)
+
 ## Basic maps
 
-You can very quickly visualize your data to produce rough-and-ready maps using the base R function `plot`
+You can quickly produce rough-and-ready maps using the base R function `plot`
 
 ```{r}
-plot(milton)
+#| code-fold: false
+plot(USA)
 ```
 
+This will give you a multi-panel figure with one panel per attribute (default max of 9)
 
-## Geometry types
+## Other parameters to `plot()`
 
-## The main^[Other less common types include `CIRCULARSTRING`, `COMPOUNDCURVE`, `CURVEPOLYGON`, `MULTICURVE`, `MULTISURFACE`, `CURVE`, `SURFACE`, `POLYHEDRALSURFACE`, `TIN`] types of simple features
+You can specify you only want one panel
+
+```{r}
+#| code-fold: false
+plot(USA, max.plot = 1)
+```
+
+## Other parameters to `plot()`
+
+Or that you specificlaly want a column (either by name or by position)
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+```{r}
+#| code-fold: false
+plot(USA["woe_id"])
+```
+:::
+
+::: {.column width="50%"}
+
+```{r}
+#| code-fold: false
+plot(USA[,18])
+```
+
+:::
+
+::::
+
+## Adding layers
+
+Use `reset = FALSE` and `add = TRUE`
+
+```{r}
+#| code-fold: false
+plot(USA[,1], reset = F)
+plot(FL, add = T, col = "orange")
+plot(milton, add = T, col = "red")
+plot(MEX, add = T, col = "gray")
+```
+
+## Adding layers
+
+`reset = FALSE` needed when plotting the first layer produces a key OR the extent needs to be updated as new layers come in
+
+```{r}
+#| code-fold: false
+plot(USA$geometry)
+plot(FL, add = T, col = "orange")
+plot(milton, add = T, col = "red")
+plot(MEX, add = T)
+```
+
+> See `?sf::plot_sf()` for more details
+
+## Basic = limitations
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+Base `plot()` is great for:
+
+- Rapidly visualizing your data (just a few lines of code)
+- Checking correspondence between layers
+
+:::
+::: {.column width="50%"}
+
+Base `plot()` is terrible for:
+
+- Building complex visualizations (including formal maps)
+
+:::
+::::
+
+. . .
+
+We will cover visualization in more detail in a few weeks. In the meantime, two quick ways
+
+## Visualizing `sf` objects with `ggplot`
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+```{r}
+#| code-fold: false
+p <- ggplot(data = USA) +
+  geom_sf(fill = "gray90")
+
+p
+```
+
+:::
+
+::: {.column width="50%"}
+
+```{r}
+#| code-fold: false
+p +
+  geom_sf(data = FL, fill = "orange") +
+  geom_sf(data = milton, color = "red", size = 1) +
+  geom_sf(data = MEX)
+```
+:::
+::::
+
+This is what I use to build 99% of my maps, including those for publications and proposals
+
+## Visualizing `sf` objects with `mapview`
+
+- Just like `plot()`, `mapview` produces quick visualizations
+- Customization is painful, but worth it (although `leaflet` may be better)
+
+. . .
+
+```{r}
+#| code-fold: false
+mapview(list(USA, FL, milton, MEX))
+```
+
+This is what I use to interactively explore my data
+
+:::{.callout-note}
+For now, recall that you can quickly visualize sf objects using `plot()`, `ggplot()`, or `mapview()`
+:::
+
+# Geometry types
+
+## The main types of simple features
+
+::::{columns}
+
+::: {.column width="60%"}
+
+::: {style="font-size: 75%"}
 
 - `POINT`	zero-dimensional geometry containing a single point
 - `LINESTRING`	sequence of points connected by straight, non-self intersecting line pieces; one-dimensional geometry
@@ -459,10 +611,18 @@ plot(milton)
 - `MULTIPOLYGON`	set of polygons
 - `GEOMETRYCOLLECTION` set of geometries of any type except `GEOMETRYCOLLECTION`
 
-## The main types of simple features
+ <!-- Other less common types include `CIRCULARSTRING`, `COMPOUNDCURVE`, `CURVEPOLYGON`, `MULTICURVE`, `MULTISURFACE`, `CURVE`, `SURFACE`, `POLYHEDRALSURFACE`, `TIN` -->
+
+:::
+
+:::
+
+::: {.column width="40%"}
 
 ![GeoCompR, 2024](https://r.geocompx.org/images/sf-classes.png)
 
+:::
+::::
 
 ## `sf` objects {.scrollable}
 
@@ -507,7 +667,15 @@ rsmaes_poly
 
 . . . 
 
-Both are `sf` objects, which are `data.frames` with a special column called `geometry`
+:::{.callout-note}
+
+Both are `sf` objects, which are `data.frames` /`tibbles` with a special column called `geometry`
+
+:::
+
+. . .
+
+Let's dive deeper into how an object of class `sf` is made
 
 # The `sf` class
 
@@ -542,10 +710,12 @@ rsmaes_pt
 # Working with `sf` objects
 
 ## Main points
-- There are two models with which we represent spatial data (`vector` and `raster`)
-- The `vector` model relies on `simple features`: points, lines, and polygons (coordinates)
-- `sf` is the main R package for working with vector data
-- an `sf` object should have three things:
+1. There are two models with which we represent spatial data (`vector` and `raster`)
+2. The `vector` model relies on `simple features`: points, lines, and polygons (coordinates)
+3. `sf` is the main R package for working with vector data
+4. an `sf` object should have three things:
     - attributes (what: data frame)
     - features (where: geometry column)
     - CRS (in relation to what?: in the header)
+5. `sf` objects can be treated like `tibbles` / `data.frames`
+6. Quickly visualize sf objects using `plot()`, `ggplot()`, or `mapview()`
