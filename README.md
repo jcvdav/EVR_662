@@ -50,7 +50,10 @@ Required: previous exposure to GIS, such as EVR 660. Introduction to Marine Geog
 3.  Attribute operations
 4.  Spatial data operations in R
 5.  Geometry operations and Raster-Vector interactions
-6.  Static visualization (maps) Midterm Exam
+6.  Static visualization (maps)
+
+Midterm Exam
+
 7.  Interactive visualization (web maps)
 8.  Scripts, algorithms, and functions
 9.  Principles of spatial statistical learning and remote sensing
