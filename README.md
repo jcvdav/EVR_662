@@ -64,7 +64,7 @@ Midterm Exam
     -   9.3 Supervised classification
 10. Final project presentations
 
-# List of in-class exercises
+# List of in-class exercises (examples)
 
 -   Ex1: Software installation
 -   Ex2: Vessel-tracking data and Marine Protected Areas
