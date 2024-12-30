@@ -340,14 +340,14 @@ Linking to GEOS 3.13.0, GDAL 3.10.0, PROJ 9.5.1; sf_use_s2() is TRUE
 
 - `sf` provides:
     - A consistent command-line interface to communicate with the libraries
-    - R classes and objects to handle `vector` data using the _Simple Feature_ standard
+    - R classes and objects to handle `vector` data using the _Simple Features_ standard
 
 # Introduction to Simple Features
 
-## Simple Features
+## Simple Feature
 
-- Simple feature is an official, open  [_standard_](https://www.iso.org/standard/40114.html) (_i.e._ registered at the ISO)
-- Hierarchical data model to represent types of geometries (_i.e._ points, lines, polygons, multi-, and collections)
+- Simple features is an official, open  [_standard_](https://www.iso.org/standard/40114.html) (_i.e._ registered at the ISO)
+- Hierarchical data model to represent types of geometries (_i.e._ points, lines, polygons, multi-*, and collections)
 
 . . .
 
@@ -357,7 +357,7 @@ The standard says:
 
 —Pebesma, 2024
 
-## Working with `sf` objects in R
+## Quick example 1: working with `sf` objects
 
 ```{r echo=FALSE, include=FALSE}
 col_names <- names(read_csv("https://www.ncei.noaa.gov/data/international-best-track-archive-for-climate-stewardship-ibtracs/v04r01/access/csv/ibtracs.last3years.list.v04r01.csv", n_max = 0))
@@ -379,18 +379,15 @@ st_write(obj = hur,
 #| code-fold: false
 # Read the data
 milton <- read_sf(here("data", "milton.gpkg"), quiet = T)
-
 # Inspect it
 class(milton)
-
 # See its names
 names(milton)
-
 # Plot it (note you get one plot per column, except for geometry)
 plot(milton)
 ```
 
-## Using `sf` object as a `data.frame` {.scrollable}
+## Quick example 2: `sf` object is just a `data.frame` {.scrollable}
 
 :::: {.columns}
 
@@ -431,16 +428,26 @@ ggplot(data = milton_light,
 ::::
 
 
-# Why simple features
+# Diving into Simple Features
 
-- **STANDARD** = transferability and reproducibility
-- Relatively quick
-- Intergrated pipeline for data manipulation and visualiztion (tibbles and data.frames)
-- 
+## Why simple features?
 
-# Basic maps
+- **STANDARD** = transferability and reproducibility (important in science and policy making!)
+- Widely supported data model (e.g. QGIS and PostGIS)
+- Relatively quick I/O
+- Plotting performance (easy to use attributes to specify visualization characteristics)
+- Full R support: `sf` objects can be treated as data.frames (wrangling and visualization, pipe-friendly)
 
-# Geometry types
+## Basic maps
+
+You can very quickly visualize your data to produce rough-and-ready maps using the base R function `plot`
+
+```{r}
+plot(milton)
+```
+
+
+## Geometry types
 
 ## The main^[Other less common types include `CIRCULARSTRING`, `COMPOUNDCURVE`, `CURVEPOLYGON`, `MULTICURVE`, `MULTISURFACE`, `CURVE`, `SURFACE`, `POLYHEDRALSURFACE`, `TIN`] types of simple features
 
