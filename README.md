@@ -2,7 +2,7 @@
 
 -   Juan Carlos Villaseñor-Derbez
 -   Office: MSC 326
--   Contact e-mail: jc_villasenor\@miami.edu
+-   Contact e-mail: jc_villasenor at miami.edu
 -   Office hours: By appointment
 
 # Class schedule
