@@ -681,14 +681,18 @@ Let's dive deeper into how an object of class `sf` is made
 
 ## An `sf` object
 
-![GeoCompR, 2024](https://r.geocompx.org/images/02-sfdiagram.png)
+Two main parts: geometries (spatial) and attributes (non-geographic)
+
+![GeoCompR, 2024 - Rhomboids are functions, rectangles are objects](https://r.geocompx.org/images/02-sfdiagram.png)
+
+. . .
 
 ```{r}
 #| code-fold: false
 #| code-line-numbers: "1|2|3|4-6"
 rsmaes_pt <- c(-80.1632879, 25.7328129) |>      # Coordinates
   st_point() |>                                 # Build sfg
-  st_sfc() |>                                   # Build sfc
+  st_sfc(crs = "ESRI:4326") |>                  # Build sfc (an specify CRS)
   st_sf(                                        # Build sf
     data.frame(id = "Rosenstiel (point)",       # Add the data.frame portion
                foundation = 1943))        
@@ -702,12 +706,77 @@ rsmaes_pt
 ```
 
 
+## Simple feature geometries (`sfg`)
 
-# Simple feature geometries (`sfg`)
+- These are the essential building blocks
+- They represent the type of simple features that can be handled in R
+- There is one function to create each type
+- You will rarely use them
+- They take numbers, matrices, or lists as inputs
+- Do not hold information on CRS
 
-# Simple feature columngs (`sfc`)
+## Simple feature columns (`sfc`)
 
-# Working with `sf` objects
+- A collection of 1 + `sfg` objects
+- Its contents may be more than one type of geometry (e.g. points and polygons)
+- Can contain a CRS, but must be the same across all geometries
+
+# Spherical geometries
+
+## What are spherical geometries?
+
+- Most software used to perform spatial operations assumes planar (e.g. projected) geometries
+- But our world is not flat
+- Therefore, when working with planar geometries, your choice of projection can influence your calculations
+- Using spherical geometries can bypass this
+- Spherical geometries are turned on by default (`sf_use_s2(TRUE)`)
+
+## What do spherical geometries do?
+
+S2 geometry assumes that straight lines between points on the globe are not formed by straight lines in the equirectangular projection, but by great circles: the shortest path over the sphere. 
+
+```{r}
+#| code-fold: false
+mex <- st_point(c(-99.165852, 19.376395)) |>
+  st_sfc(crs = 4326)
+ams <- st_point(c(4.646219, 52.38739)) |>
+  st_sfc(crs = 4326)
+
+# What is the distance between these points?
+st_distance(mex, ams)
+
+sf_use_s2(F) # Turn off spherical geometries
+st_distance(mex, ams)
+```
+
+```{r, echo=FALSE}
+sf_use_s2(T)
+```
+
+## Why are they different?
+
+One tries to calculate the distance along a straight (red) line. The other does so alogn the "curved" (black) line. On a spahere, the black line is shorter.
+
+```{r, echo = FALSE}
+route <- st_linestring(rbind(c(-99.165852, 19.376395),
+                             c(4.646219, 52.38739))) |> 
+  st_sfc(crs = 4326)
+
+route1 <- st_segmentize(route,
+                        units::set_units(10, km))
+
+ggplot(data = rnaturalearth::ne_countries()) +
+  geom_sf(fill = "gray90",
+          linewidth = 0.1) +
+  geom_sf(data = route, color = "red") +
+  geom_sf(data = route1, color = "black")
+```
+
+## Which one is right?
+
+![In reality](img/mex-amsterdam.png)
+
+# Wrap up
 
 ## Main points
 1. There are two models with which we represent spatial data (`vector` and `raster`)
@@ -719,3 +788,9 @@ rsmaes_pt
     - CRS (in relation to what?: in the header)
 5. `sf` objects can be treated like `tibbles` / `data.frames`
 6. Quickly visualize sf objects using `plot()`, `ggplot()`, or `mapview()`
+
+## Next class
+
+- Working with simple feature objects in R
+
+# Working with 
