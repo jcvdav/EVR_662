@@ -1,0 +1,21 @@
+---
+title: "Lab 2 - vector data and `sf`"
+author: "Juan Carlos Villaseñor-Derbez"
+format:
+    html:
+      toc: true
+---
+
+# Introduction
+
+## Objectives
+
+## Data
+
+## Tasks
+
+1. Loading vector data:
+    a. From packages
+    b. From memory
+        - Introduce the `here` package
+        - Difference between `st_read` and `read_sf`
