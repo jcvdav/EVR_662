@@ -44,9 +44,6 @@ Required: previous exposure to GIS, such as EVR 660. Introduction to Marine Geog
 
 1.  Intro to spatial analysis in R
 2.  Geographic data models in R
-    -   2.1 Vector data in R
-
-    -   2.2 Raster data in R
 3.  Attribute operations
 4.  Spatial data operations in R
 5.  Geometry operations and Raster-Vector interactions
@@ -57,11 +54,6 @@ Midterm Exam
 7.  Interactive visualization (web maps)
 8.  Scripts, algorithms, and functions
 9.  Principles of spatial statistical learning and remote sensing
-    -   9.1 Spatial cross-validation
-
-    -   9.2 Unsupervised classification
-
-    -   9.3 Supervised classification
 10. Final project presentations
 
 # List of in-class exercises (examples)
@@ -78,7 +70,7 @@ Midterm Exam
 -   Ex10: K-means clustering
 -   Ex11: Supervised classification
 
-# List of assignments
+# List of assignments (examples)
 
 -   Assig 1: Proof of attempted or successful installation of all required dependencies
 -   Assig 2: Manipulation of spatial data in R
