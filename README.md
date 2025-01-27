@@ -2,16 +2,16 @@
 
 -   Juan Carlos Villaseñor-Derbez
 -   Office: MSC 326
--   Contact e-mail: jc_villasenor\@miami.edu
+-   Contact e-mail: jc_villasenor at miami.edu
 -   Office hours: By appointment
 
 # Class schedule
 
--   M / W \@ 12:00 - 13:15 SLAB 114
+-   M / W @ 12:00 - 13:15 SLAB 114
 
 # Class description
 
-The course will introduce students to intermediate spatial analysis in R, in the context of Environmental Science and Policy. Introductory knowledge of spatial analysis (*e.g.* GIS sing QGIS or ESRI products) is required, previous exposure to the use of scripting languages (*e.g.* R or Python) will help, but is not required. During the first part of the course (weeks 1-6), students will gain a solid foundation on modern tools and standards for spatial analysis in R (*e.g.* simple features, spherical geometries). The second part (weeks 7-15) will expose students to intermediate techniques (*e.g.* visualization, scripting, and principles of classification for remote sensing). Students will learn how to find, retrieve, and work with a suite of spatial data products commonly used in Environmental Science and Policy.
+The course will introduce students to intermediate spatial analysis in R, in the context of Environmental Science and Policy. Introductory knowledge of spatial analysis (*e.g.* GIS using QGIS or ESRI products) is required, as is previous exposure to the use of scripting languages (*e.g.* R or Python). During the first part of the course (weeks 1-6), students will gain a solid foundation on modern tools and standards for spatial analysis in R (*e.g.* simple features, spherical geometries). The second part (weeks 7-15) will expose students to intermediate techniques (*e.g.* interactive visualization, scripting). Students will learn how to find, retrieve, and work with a suite of spatial data products commonly used in Environmental Science and Policy.
 
 > **Undergraduate students** Some seats are reserved for undergraduate students who have some relevant experience and permission. The expectations for undergraduates are slightly more lenient with regards to the final project. All other expectations remain the same.
 
@@ -50,7 +50,10 @@ Required: previous exposure to GIS, such as EVR 660. Introduction to Marine Geog
 3.  Attribute operations
 4.  Spatial data operations in R
 5.  Geometry operations and Raster-Vector interactions
-6.  Static visualization (maps) Midterm Exam
+6.  Static visualization (maps)
+
+Midterm Exam
+
 7.  Interactive visualization (web maps)
 8.  Scripts, algorithms, and functions
 9.  Principles of spatial statistical learning and remote sensing
@@ -61,7 +64,7 @@ Required: previous exposure to GIS, such as EVR 660. Introduction to Marine Geog
     -   9.3 Supervised classification
 10. Final project presentations
 
-# List of in-class exercises
+# List of in-class exercises (examples)
 
 -   Ex1: Software installation
 -   Ex2: Vessel-tracking data and Marine Protected Areas
