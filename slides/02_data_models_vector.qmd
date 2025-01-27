@@ -1,6 +1,796 @@
 ---
 title: "Geographic data models"
 subtitle: "Vector data"
+editor_options: 
+  chunk_output_type: inline
 ---
 
-## Intro slide
+```{r set-up, echo=FALSE}
+pacman::p_load(
+  "here",
+  "tidyverse",
+  "sf",
+  "terra",
+  "mapview"
+)
+source(here::here("_r_opts.R"))
+```
+
+# Introduction
+
+## How do we get the world into a computer?
+
+- Imagine an attribute that occurs somewhere in the World:
+    - SST
+    - site identity
+    - hurricane path
+    - city boundaries
+- How do we represent it?
+- How do we work on it?
+- How do we store the data?
+
+## We need a *model*
+
+Data can be represented in a `vector` model, or a `raster` model
+
+In today's class:
+
+- Introduce the *why* behind each model
+- Discuss where and when they are used
+- Focus on `vector`:
+    - It's main attributes
+    - It's implementation in R
+    
+## Today's goals
+
+By the end of the lecture, you should be able to:
+
+- list the two main data models, and articulate their main characteristics
+- understand the principles of `vector` data
+- list the three main components of a spatial `vector` object
+- list the tree main types of a _simple feature_
+- given an `sf` object, plot it and inspect it
+
+
+## Two models
+:::: {.columns}
+
+::: {.column width="50%"}
+### `vector`
+- World is represented using geometries: points, lines, and polygons
+- Discrete and well-defined borders = high precision
+- Computationally intensive
+:::
+
+::: {.column width="50%"}
+### `raster`
+- Space is divided into equal-sized grid cells (or pixels)
+- Aggregate spatial features to a given *resolution*
+- You can lose some precision, but much faster to work with
+:::
+
+::::
+
+. . .
+
+::: {.callout-note}
+Spatial data can be represented in a `vector` or `raster` model
+:::
+
+
+
+## Example: Rosenstiel {.scrollable}
+
+:::: {.panel-tabset}
+
+### Point (1D)
+
+```{r point-example}
+# Build the "spatial" part
+rsmaes_pt_coords <- st_point(x = c(-80.1632879, 25.7328129),
+                             dim = "XY") |> 
+  st_sfc(crs = 4326)
+# Combine with the "attributes" part
+rsmaes_pt <- st_sf(id = "Rosenstiel (point)",
+                   geometry = rsmaes_pt_coords)
+# Visualize
+mapview(rsmaes_pt)
+```
+
+### Line (2D)
+
+```{r line-example}
+rsmaes_line_coords <- st_linestring(
+  x = matrix(data = c(-80.163017, 25.733950,
+                      -80.164236, 25.732816,
+                      -80.163772, 25.732353,
+                      -80.163924, 25.732148,
+                      -80.163455, 25.731597,
+                      -80.162187, 25.731605,
+                      -80.160968, 25.732172,
+                      -80.163017, 25.733950),
+             ncol = 2,
+             byrow = T),
+  dim = "XY") |> 
+  list() |> 
+  st_sfc(crs = 4326)
+
+rsmaes_line <- st_sf(id = "Rosenstiel (line)",
+                     geometry = rsmaes_line_coords)
+
+mapview(rsmaes_line)
+```
+
+### Polygon (3D)
+
+```{r polygon-example}
+rsmaes_poly_coords <- st_polygon(
+  x = list(
+    matrix(
+      data = c(
+        -80.163017, 25.733950,
+        -80.164236, 25.732816,
+        -80.163772, 25.732353,
+        -80.163924, 25.732148,
+        -80.163455, 25.731597,
+        -80.162187, 25.731605,
+        -80.160968, 25.732172,
+        -80.163017, 25.733950),
+      ncol = 2,
+      byrow = T)),
+  dim = "XY") |> 
+  st_sfc(crs = 4326)
+
+rsmaes_poly <- st_sf(id = "Rosenstiel (polygon)",
+                     geometry = rsmaes_poly_coords)
+
+mapview(rsmaes_poly)
+```
+
+
+### Raster
+```{r raster-example}
+rsmaes_rast <- rasterize(
+  x = vect(rsmaes_poly),
+  y = rast(resolution = 0.0001,
+           crs = "EPSG:4326",
+           val = 0,
+           xmin = -80.168, xmax = -80.155,
+           ymin = 25.730, ymax = 25.735),
+  field = 1)
+
+names(rsmaes_rast) <- "Rosenstiel"
+rsmaes_rast[is.na(rsmaes_rast)] <- 0
+
+mapview(rsmaes_rast,
+        legend = F)
+```
+
+::::
+
+
+## Common uses
+:::: {.columns}
+
+::: {.column width="50%"}
+### `vector`
+- Common in social sciences:
+    - Census tract boundaries
+    - Political boundaries
+    - Roads
+:::
+
+::: {.column width="50%"}
+### `raster`
+- Common in natural sciences:
+    - Sea surface temperature
+    - Satellite imagery
+    - Species distribution models
+:::
+
+::::
+
+- As environmental scientists and practitioners we will typically use both
+
+- The "correct" type of data varies by use case
+
+- You'll be able to make this choice in a few weeks
+
+. . . 
+
+> "`raster` is faster, but `vector` is correctr"
+
+## Vector data model
+
+> World is represented using geometries: points, lines, and polygons
+
+. . .
+
+**Q:** What is a line? What is a polygon?
+
+. . .
+
+**A:** A sequence of points
+
+. . .
+
+**Q:** How do we represent a point?
+
+. . .
+
+**A:** Coordinates
+
+. . .
+
+**Q:** What are coordinates?
+
+. . .
+
+**A:** Two numbers representing distance from an **origin**: a coordinate reference system
+
+. . .
+
+
+::: {.callout-note}
+
+The vector data model is based on points located within a coordinate reference system (CRS)
+
+:::
+
+
+# What is where? And what does "where" mean?
+
+Coordinates, Coordinate Reference Systems, and Attributes
+
+## What does "where" mean?
+
+
+Consider the following two coordinates:
+
+- `(-80.1632879, 25.7328129)`
+
+- `(1186764, 2863941)`
+
+. . .
+
+Where are they?
+
+. . .
+
+```{r, echo=FALSE}
+USA <- rnaturalearth::ne_states(geounit = "United States of America") |> 
+  filter(!name %in% c("Hawaii", "Alaska"))
+
+FL <- USA |> 
+  filter(name == "Florida")
+
+MEX <- rnaturalearth::ne_countries(country = "Mexico")
+
+rsmaes_pt_coords <- st_point(x = c(-80.1632879, 25.7328129),
+                             dim = "XY") |> 
+  st_sfc(crs = "EPSG:4326")
+
+p1 <- ggplot() +
+  geom_vline(xintercept = 0) +
+  geom_hline(yintercept = 0) +
+  geom_sf(data = FL) +
+  geom_sf(data = rsmaes_pt_coords)
+
+p2 <- p1 + 
+  coord_sf(crs = "EPSG:26916",
+           datum = st_crs("EPSG:26916")) +
+  theme(axis.text.x = element_text(angle = 90))
+
+cowplot::plot_grid(p1, p2, ncol = 2, rel_widths = c(3, 1))
+```
+
+## The importance of attributes
+
+- Coordinates and a CRS are enough to place the point on a map
+- Also enough to perform spatial analysis
+- But not enough to convey *information* about the location
+- Often not enough to derive insights
+- We also need attributes
+
+. . .
+
+::: {.callout-note}
+The three main components of a spatial `vector` object are attributes (what), geometry, and CRS (where)
+:::
+
+## Attributes
+
+- Are not inherently spatial
+- Can be a discrete or categorical variable representing a characteristic of interest:
+    - Identity
+    - Sea Surface Temperature
+    - Time
+- Note that you can have more than one attribute tied to a geometry
+    - 2 attributes: vessel-tracking data or hurricane path (id and time)
+    - 2+ attributes: Buoy weather data (id, time, and all variables measured)
+
+# Handling spatial data in a computer
+
+## How are these compotents handled in a computer?
+
+We rely on four key low-level libraries for geocomputation:
+
+- `GDAL`: read, write, and manipulating geographic data
+- `PROJ`: coordinate system transformation
+- `GEOS`: **planar** geometry engine only to be used with data with a _projected_ CRS)
+- **`S2`**: a **spherical** geometry engine, written in C++ (fast) and developed by Google (reliable)
+
+. . .
+
+All are incredibly powerful and open source, but not exactly user-friendly
+
+## Ways of interacting with these libraries
+
+![](img/cli_and_gui.png)
+
+## The `sf` package
+
+- From R, our main point of access will be the `sf` package
+- When we load `sf`, it automatically links to these low level libraries
+
+. . .
+
+```{.r}
+library(sf)
+```
+
+```
+Linking to GEOS 3.13.0, GDAL 3.10.0, PROJ 9.5.1; sf_use_s2() is TRUE
+```
+
+. . .
+
+- `sf` provides:
+    - A consistent command-line interface to communicate with the libraries
+    - R classes and objects to handle `vector` data using the _Simple Features_ standard
+
+# Introduction to Simple Features
+
+## Simple Feature
+
+- Simple features is an official, open  [_standard_](https://www.iso.org/standard/40114.html) (_i.e._ registered at the ISO)
+- Hierarchical data model to represent types of geometries (_i.e._ points, lines, polygons, multi-*, and collections)
+
+. . .
+
+The standard says: 
+
+> “A simple feature is defined by the OpenGIS Abstract specification to have both spatial and non-spatial attributes. Spatial attributes are geometry valued, and simple features are based on 2D geometry with linear interpolation between vertices.”
+
+—Pebesma, 2024
+
+## Quick example 1: working with `sf` objects
+
+```{r echo=FALSE, include=FALSE}
+col_names <- names(read_csv("https://www.ncei.noaa.gov/data/international-best-track-archive-for-climate-stewardship-ibtracs/v04r01/access/csv/ibtracs.last3years.list.v04r01.csv", n_max = 0))
+hur <- read_csv("https://www.ncei.noaa.gov/data/international-best-track-archive-for-climate-stewardship-ibtracs/v04r01/access/csv/ibtracs.last3years.list.v04r01.csv",
+                col_names = col_names,
+                skip = 2) |> 
+  filter(NAME == "MILTON") |> 
+  mutate(DIST2LAND = as.numeric(DIST2LAND)) |> 
+  st_as_sf(coords = c("LON", "LAT"),
+           crs = 4326) |> 
+  select(NAME, ISO_TIME, USA_WIND, USA_PRES, USA_SSHS)
+
+st_write(obj = hur,
+         dsn = here("data", "milton.gpkg"),
+         delete_dsn = T)
+```
+
+```{r}
+#| code-fold: false
+# Read the data
+milton <- read_sf(here("data", "milton.gpkg"), quiet = T)
+# Inspect it
+class(milton)
+# See its names
+names(milton)
+# Plot it (note you get one plot per column, except for geometry)
+plot(milton)
+```
+
+## Quick example 2: `sf` object is just a `data.frame` {.scrollable}
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+You can quickly calculate summary statistics for any attribute variable
+
+```{r}
+summary(milton$USA_WIND)
+```
+
+Keep only some columns
+
+```{r}
+milton_light <- milton[,c(2, 3)]
+milton_light
+```
+
+
+:::
+
+::: {.column width="50%"}
+
+Or plot the attribute variables
+
+```{r}
+ggplot(data = milton_light,
+       mapping = aes(x = ISO_TIME,
+                     y = USA_WIND)) +
+  geom_line() +
+  geom_point() +
+  labs(x = "Date",
+       y = "Maximum sustained wind speed (knots)")
+```
+
+:::
+
+::::
+
+
+# Why simple features?
+
+## Why use simple features
+
+- **STANDARD** = transferability and reproducibility (important in science and policy making!)
+- Widely supported data model (e.g. QGIS and PostGIS)
+- Relatively quick I/O
+- Plotting performance (easy to use attributes to specify visualization characteristics)
+- Full R support: `sf` objects can be treated as data.frames (wrangling and visualization, pipe-friendly)
+
+# Visualizing simple features
+
+(Just an overview for now)
+
+## Basic maps
+
+You can quickly produce rough-and-ready maps using the base R function `plot`
+
+```{r}
+#| code-fold: false
+plot(USA)
+```
+
+This will give you a multi-panel figure with one panel per attribute (default max of 9)
+
+## Other parameters to `plot()`
+
+You can specify you only want one panel
+
+```{r}
+#| code-fold: false
+plot(USA, max.plot = 1)
+```
+
+## Other parameters to `plot()`
+
+Or that you specificlaly want a column (either by name or by position)
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+```{r}
+#| code-fold: false
+plot(USA["woe_id"])
+```
+:::
+
+::: {.column width="50%"}
+
+```{r}
+#| code-fold: false
+plot(USA[,18])
+```
+
+:::
+
+::::
+
+## Adding layers
+
+Use `reset = FALSE` and `add = TRUE`
+
+```{r}
+#| code-fold: false
+plot(USA[,1], reset = F)
+plot(FL, add = T, col = "orange")
+plot(milton, add = T, col = "red")
+plot(MEX, add = T, col = "gray")
+```
+
+## Adding layers
+
+`reset = FALSE` needed when plotting the first layer produces a key OR the extent needs to be updated as new layers come in
+
+```{r}
+#| code-fold: false
+plot(USA$geometry)
+plot(FL, add = T, col = "orange")
+plot(milton, add = T, col = "red")
+plot(MEX, add = T)
+```
+
+> See `?sf::plot_sf()` for more details
+
+## Basic = limitations
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+Base `plot()` is great for:
+
+- Rapidly visualizing your data (just a few lines of code)
+- Checking correspondence between layers
+
+:::
+::: {.column width="50%"}
+
+Base `plot()` is terrible for:
+
+- Building complex visualizations (including formal maps)
+
+:::
+::::
+
+. . .
+
+We will cover visualization in more detail in a few weeks. In the meantime, two quick ways
+
+## Visualizing `sf` objects with `ggplot`
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+```{r}
+#| code-fold: false
+p <- ggplot(data = USA) +
+  geom_sf(fill = "gray90")
+
+p
+```
+
+:::
+
+::: {.column width="50%"}
+
+```{r}
+#| code-fold: false
+p +
+  geom_sf(data = FL, fill = "orange") +
+  geom_sf(data = milton, color = "red", size = 1) +
+  geom_sf(data = MEX)
+```
+:::
+::::
+
+This is what I use to build 99% of my maps, including those for publications and proposals
+
+## Visualizing `sf` objects with `mapview`
+
+- Just like `plot()`, `mapview` produces quick visualizations
+- Customization is painful, but worth it (although `leaflet` may be better)
+
+. . .
+
+```{r}
+#| code-fold: false
+mapview(list(USA, FL, milton, MEX))
+```
+
+This is what I use to interactively explore my data
+
+:::{.callout-note}
+For now, recall that you can quickly visualize sf objects using `plot()`, `ggplot()`, or `mapview()`
+:::
+
+# Geometry types
+
+## The main types of simple features
+
+::::{columns}
+
+::: {.column width="60%"}
+
+::: {style="font-size: 75%"}
+
+- `POINT`	zero-dimensional geometry containing a single point
+- `LINESTRING`	sequence of points connected by straight, non-self intersecting line pieces; one-dimensional geometry
+- `POLYGON`	geometry with a positive area (two-dimensional); sequence of points form a closed, non-self intersecting ring; the first ring `denotes` the exterior ring, zero or more subsequent rings denote holes in this exterior ring
+- `MULTIPOINT`	set of points
+- `MULTILINESTRING`	set of linestrings
+- `MULTIPOLYGON`	set of polygons
+- `GEOMETRYCOLLECTION` set of geometries of any type except `GEOMETRYCOLLECTION`
+
+ <!-- Other less common types include `CIRCULARSTRING`, `COMPOUNDCURVE`, `CURVEPOLYGON`, `MULTICURVE`, `MULTISURFACE`, `CURVE`, `SURFACE`, `POLYHEDRALSURFACE`, `TIN` -->
+
+:::
+
+:::
+
+::: {.column width="40%"}
+
+![GeoCompR, 2024](https://r.geocompx.org/images/sf-classes.png)
+
+:::
+::::
+
+## `sf` objects {.scrollable}
+
+Remember the objects I built on the slides with tabs?
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+Point
+
+```{r}
+#| code-fold: false
+class(rsmaes_pt)
+```
+
+```{r}
+#| code-fold: false
+rsmaes_pt
+```
+
+:::
+
+::: {.column width="50%"}
+
+Polygon
+
+```{r}
+#| code-fold: false
+class(rsmaes_poly)
+```
+
+```{r}
+#| code-fold: false
+rsmaes_poly
+```
+
+:::
+
+
+::::
+
+. . . 
+
+:::{.callout-note}
+
+Both are `sf` objects, which are `data.frames` /`tibbles` with a special column called `geometry`
+
+:::
+
+. . .
+
+Let's dive deeper into how an object of class `sf` is made
+
+# The `sf` class
+
+## An `sf` object
+
+Two main parts: geometries (spatial) and attributes (non-geographic)
+
+![GeoCompR, 2024 - Rhomboids are functions, rectangles are objects](https://r.geocompx.org/images/02-sfdiagram.png)
+
+. . .
+
+```{r}
+#| code-fold: false
+#| code-line-numbers: "1|2|3|4-6"
+rsmaes_pt <- c(-80.1632879, 25.7328129) |>      # Coordinates
+  st_point() |>                                 # Build sfg
+  st_sfc(crs = "ESRI:4326") |>                  # Build sfc (an specify CRS)
+  st_sf(                                        # Build sf
+    data.frame(id = "Rosenstiel (point)",       # Add the data.frame portion
+               foundation = 1943))        
+```
+
+. . .
+
+```{r}
+#| code-fold: false
+rsmaes_pt
+```
+
+
+## Simple feature geometries (`sfg`)
+
+- These are the essential building blocks
+- They represent the type of simple features that can be handled in R
+- There is one function to create each type
+- You will rarely use them
+- They take numbers, matrices, or lists as inputs
+- Do not hold information on CRS
+
+## Simple feature columns (`sfc`)
+
+- A collection of 1 + `sfg` objects
+- Its contents may be more than one type of geometry (e.g. points and polygons)
+- Can contain a CRS, but must be the same across all geometries
+
+# Spherical geometries
+
+## What are spherical geometries?
+
+- Most software used to perform spatial operations assumes planar (e.g. projected) geometries
+- But our world is not flat
+- Therefore, when working with planar geometries, your choice of projection can influence your calculations
+- Using spherical geometries can bypass this
+- Spherical geometries are turned on by default (`sf_use_s2(TRUE)`)
+
+## What do spherical geometries do?
+
+S2 geometry assumes that straight lines between points on the globe are not formed by straight lines in the equirectangular projection, but by great circles: the shortest path over the sphere. 
+
+```{r}
+#| code-fold: false
+mex <- st_point(c(-99.165852, 19.376395)) |>
+  st_sfc(crs = 4326)
+ams <- st_point(c(4.646219, 52.38739)) |>
+  st_sfc(crs = 4326)
+
+# What is the distance between these points?
+st_distance(mex, ams)
+
+sf_use_s2(F) # Turn off spherical geometries
+st_distance(mex, ams)
+```
+
+```{r, echo=FALSE}
+sf_use_s2(T)
+```
+
+## Why are they different?
+
+One tries to calculate the distance along a straight (red) line. The other does so alogn the "curved" (black) line. On a spahere, the black line is shorter.
+
+```{r, echo = FALSE}
+route <- st_linestring(rbind(c(-99.165852, 19.376395),
+                             c(4.646219, 52.38739))) |> 
+  st_sfc(crs = 4326)
+
+route1 <- st_segmentize(route,
+                        units::set_units(10, km))
+
+ggplot(data = rnaturalearth::ne_countries()) +
+  geom_sf(fill = "gray90",
+          linewidth = 0.1) +
+  geom_sf(data = route, color = "red") +
+  geom_sf(data = route1, color = "black")
+```
+
+## Which one is right?
+
+![In reality](img/mex-amsterdam.png)
+
+# Wrap up
+
+## Main points
+1. There are two models with which we represent spatial data (`vector` and `raster`)
+2. The `vector` model relies on `simple features`: points, lines, and polygons (coordinates)
+3. `sf` is the main R package for working with vector data
+4. an `sf` object should have three things:
+    - attributes (what: data frame)
+    - features (where: geometry column)
+    - CRS (in relation to what?: in the header)
+5. `sf` objects can be treated like `tibbles` / `data.frames`
+6. Quickly visualize sf objects using `plot()`, `ggplot()`, or `mapview()`
+
+## Next class
+
+- Working with simple feature objects in R
+
+# Working with 

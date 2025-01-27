@@ -3,9 +3,199 @@ title: "EVR662 - Intermediate Spatial Analysis"
 subtitle: "Day 1: The whys and the hows"
 ---
 
+```{r, echo = FALSE}
+source(here::here("_r_opts.R"))
+
+library(ggplot2)
+```
+
+
+# About the class
+
 ## Introductions and expectations
 
-## Code of conduct
+## The (general) instruction format
 
-## R code
+:::: {.columns}
 
+::: {.column width="50%"}
+### Lecture sessions (Mondays)
+- Slide-based delivery of content
+- Emphasis on the _why_ of an approach
+- The first few might feel tedious and boring
+- It will be important that you do the assigned readings
+:::
+
+::: {.column width="50%"}
+### Hands-on sessions (Wednesdays)
+- No slides, mostly live coding (you follow along)
+- Emphasis on _how_ of an approach
+- 90% of troubleshooting will ocur during the first sessions
+- We will work towards finding a balance of content and time for you to get things done
+:::
+
+::::
+
+## Course outline
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+### Part 1 (weeks 1-6)
+
+- Focus on tools and standards
+- Using spatial data in R
+- Vector vs Raster
+- Attribute operations
+- Geometry operations
+
+:::
+
+::: {.column width="50%"}
+
+### Part 2 (weeks 7-15)
+
+- Focus on techniques
+- Visualization
+- Functions, pipelines, and scripting
+- Principles of classification for remote sensing
+- Depending on group interest:
+  - High performance / cloud computing
+  - Parallel processing
+  - Principles of spatial statistical learning
+
+:::
+
+::::
+
+## Grading
+- Lab exercise and attendance: 20%
+- Assignments: 30%
+- Midterm exam: 10%
+- Individual project: 40%
+
+## Lab exercise and attendance (20%)
+- These are the Wednesdays hands-on days
+- We will be coding side-by-side and you should get these done at the same time as I do
+- Basically, 20% of your grade for free
+
+## Assignments (30%)
+- There will be 3-4 short assignments
+- Designed to gauge whether you are up to speed
+- You will submit them via email to me at jc_villasenor@miami.edu
+
+## Exams (10%)
+- Midterm exam only
+- _Likely_ take-home, date TBD
+- A combination of theory (quesitons) and practice (coding problems)
+
+## Final project (40%)
+We will design a project where you will apply your newly acquired tools and techniques to your own research or application. As such, individual projects will meet the following criteria:
+
+1. All data and code must be primarily analyzed or processed using R and RStudio
+2. The student will show they have mastered the course material by correctly and successfully employing **two tools and techniques covered in part 1 of the course and two tools and techniques covered in part 2 of the course**.
+3. The final product will be a 5-7 page report and a 5-7 slide presentation
+
+# Striving for standardization
+
+## Working in RStudio Server
+- I've installed RStudio Server in a computational server
+- We will all be working in the same environment (at least during classes)
+- (Hopefully) help us reduce debugging different environments
+- Only worth it if it gives us _less_ headaches than each of us using our own machines
+- You are welcome to use your own machine
+
+
+## Accessing the server
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+- Navigate to: http://10.97.0.166:8787/^[For reference 10.97.0.166 is the IP address, 8787 is the port]
+- **Can only be accessed while on campus**
+- Your username is your CANE id
+- Your temporary password is `evr662`, we will change it in a second
+
+:::
+
+::: {.column width="50%"}
+
+![](img/server.png)
+
+:::
+
+::::
+
+
+
+## Updating passwords
+
+- Log in to your user account
+- Open the Terminal window
+- Type `passwd` and press Enter
+- Enter your **current** password (`evr662`) and press Enter
+- Enter your _new_ password and press Enter
+- Immediately add your new password it to your password manager of choice!
+- You should see "Password updated successfully" in the terminal
+
+
+## Modify the appearance
+
+- Panes
+- Pipe
+- Directory
+
+## Testing the server
+
+
+## Asignment #1
+
+::: {style="font-size: 75%"}
+
+::: {.nonincremental}
+
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+### Part 1: Server
+
+a. Copy the code below and run it on your session in the server (one line at a time)
+
+
+```{r, eval = FALSE}
+#| code-fold: false
+install.packages("sf")
+install.packages("terra")
+install.packages("tidyverse")
+install.packages("rnaturalearth")
+```
+
+b. In R, run `installed.packages()`, copy the output, and paste it in an R script called `Lastname_assig1.R` (e.g. `Villasenor_assig1.R`).
+c. In R, run `sessionInfo()` and copy the output to the same R script
+:::
+
+::: {.column width="50%"}
+
+### Part 2: On your own computer
+
+- Download and install the latest version of R (currently v 4.4.x)
+    - [MacOS](https://cran.r-project.org/bin/macosx/)
+    - [Windows](https://cran.r-project.org/bin/windows/base/)
+- Download and install the latest version of [RStudio Desktop](https://posit.co/download/rstudio-desktop/)
+- Repeat steps a-c above, but this time on your computer (I anticipate you will not be able to get it up and running, that's fine, I just want you to try)
+
+:::
+
+::::
+
+:::
+
+:::
+
+- Send me your Rscript via email: jc_villasenor@miami.edu before class starts on Wednesday
+
+- I will grade you on evidence of trying (100%, submitted) or not enough evidence of trying (0%, not submitted)
