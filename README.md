@@ -29,9 +29,9 @@ Required: previous exposure to GIS, such as EVR 660. Introduction to Marine Geog
 
 # Reading resources
 
--   GecCompR: Geocomputation with R
+-   GecCompR: [Geocomputation with R](https://r.geocompx.org/)
 -   Selected peer-reviewed publications
--   Software documentation
+-   _Ad hoc_ software documentation
 
 # Grading
 
@@ -48,9 +48,6 @@ Required: previous exposure to GIS, such as EVR 660. Introduction to Marine Geog
 4.  Spatial data operations in R
 5.  Geometry operations and Raster-Vector interactions
 6.  Static visualization (maps)
-
-Midterm Exam
-
 7.  Interactive visualization (web maps)
 8.  Scripts, algorithms, and functions
 9.  Principles of spatial statistical learning and remote sensing
