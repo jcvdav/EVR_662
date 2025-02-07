@@ -199,3 +199,5 @@ c. In R, run `sessionInfo()` and copy the output to the same R script
 - Send me your Rscript via email: jc_villasenor@miami.edu before class starts on Wednesday
 
 - I will grade you on evidence of trying (100%, submitted) or not enough evidence of trying (0%, not submitted)
+
+

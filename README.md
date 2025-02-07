@@ -42,8 +42,9 @@ Required: previous exposure to GIS, such as EVR 660. Introduction to Marine Geog
 
 # Course contents
 
-1.  Intro to spatial analysis in R
-2.  Geographic data models in R
+1.  [Intro to spatial analysis in R](https://jcvdav.github.io/EVR_662/slides/01_intro#/title-slide)
+2.  [Geographic data models in R](https://jcvdav.github.io/EVR_662/slides/02_data_models_vector#/title-slide)
+    - [Milton track](https://github.com/jcvdav/EVR_662/blob/main/data/milton.gpkg)
 3.  Attribute operations
 4.  Spatial data operations in R
 5.  Geometry operations and Raster-Vector interactions
