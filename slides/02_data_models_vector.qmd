@@ -18,6 +18,37 @@ source(here::here("_r_opts.R"))
 
 # Introduction
 
+## GIS vs Geocomputation
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+### GIS:
+
+- Powerful
+- Emphasize graphical user interface (GUI)
+- You can only do what the developers allow you to do
+- Difficult to reproduce
+
+:::
+
+::: {.column width="50%"}
+
+### Geocomputation:
+- Just as powerful (same underlying code)
+- Command line interface (CLI)
+- Flexible
+- Reproducible
+
+:::
+
+::::
+
+. . .
+
+> Academic research, software development and practical applications that use geographic data to solve problems, with a focus on reproducibility, flexibility and tool development. - Lovlace, Nowosad, Muenchow (GeocompR, 2024)
+
 ## How do we get the world into a computer?
 
 - Imagine an attribute that occurs somewhere in the World:
