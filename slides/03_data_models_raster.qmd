@@ -3,4 +3,161 @@ title: "Geographic data models"
 subtitle: "Raster data"
 ---
 
+
+```{r set-up, echo=FALSE}
+pacman::p_load(
+  "here",
+  "tidyverse",
+  "sf",
+  "terra",
+  "mapview"
+)
+source(here::here("_r_opts.R"))
+```
+
+
 ## Intro slide
+
+- We mentioned that spatial data can be represented in a `vector` model, or a `raster` model
+
+- We focused on vector data, which is represented by points, lines, polygons (and combination of these)
+
+- In `R`, we use the `simple features` standard to work with vector data via the `sf` package
+
+- `sf` objects have three main components:
+
+    - CRS
+    - geometry
+    - attributes
+
+## Raster data model
+
+- The world with the continuous grid of cells (gridcells, grid cells, grid-cells, or pixels)
+- All pixels are the same size^[The deffinition of "size" will depend on the coordinate reference system]
+- For 99% of the cases grid cells will be squares
+
+## Raster data model example
+
+:::: {.panel-tabset}
+
+### Polygon (3D)
+
+```{r polygon-example}
+rsmaes_poly_coords <- st_polygon(
+  x = list(
+    matrix(
+      data = c(
+        -80.163017, 25.733950,
+        -80.164236, 25.732816,
+        -80.163772, 25.732353,
+        -80.163924, 25.732148,
+        -80.163455, 25.731597,
+        -80.162187, 25.731605,
+        -80.160968, 25.732172,
+        -80.163017, 25.733950),
+      ncol = 2,
+      byrow = T)),
+  dim = "XY") |> 
+  st_sfc(crs = 4326)
+
+rsmaes_poly <- st_sf(id = "Rosenstiel (polygon)",
+                     geometry = rsmaes_poly_coords)
+
+mapview(rsmaes_poly)
+```
+
+
+### Raster
+```{r raster-example}
+rsmaes_rast <- rasterize(
+  x = vect(rsmaes_poly),
+  y = rast(resolution = 0.0001,
+           crs = "EPSG:4326",
+           val = 0,
+           xmin = -80.168, xmax = -80.155,
+           ymin = 25.730, ymax = 25.735),
+  field = 1)
+
+names(rsmaes_rast) <- "Rosenstiel"
+rsmaes_rast[is.na(rsmaes_rast)] <- 0
+
+mapview(rsmaes_rast,
+        legend = F)
+```
+
+::::
+
+
+## Components of a raster
+
+- Typically two components:
+    - Header ("metadata" with CRS, extent, and origin)
+    - Matrix (the actual "data" we want to represent)
+- x-coordinates = columns
+- y-coordinates = rows
+
+## GFW 1: Trees
+
+> Tree cover in the year 2000, defined as canopy closure for all vegetation taller than 5m in height. Encoded as a percentage per output grid cell, in the range 0–100.
+
+. . .
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+```{r}
+tc <- rast(here("data/Hansen_GFC2015_treecover2000_00N_080W.tif"))
+
+tc
+```
+
+Let's check the resolution and number of cells
+
+```{r}
+0.00025 * 111.31 * 1000
+```
+
+
+:::
+
+::: {.column width="50%"}
+
+```{r, fig.cap="Download data from [GFW earthengine portal](https://earthenginepartners.appspot.com/science-2013-global-forest/download_v1.2.html)"}
+plot(tc)
+```
+
+:::
+::::
+
+
+## Why are rasters faster?
+
+- There is a fundamental relationship between resolution, extent, and origin:
+
+. . .
+
+$$
+\mathrm{resolution} = \frac{x_{max} - x_{min}}{n_{col}} , \frac{y_{max} - y_{min}}{n_{row}}
+$$
+    
+- Raster data are typically "lighter" (and faster to work with) because they don't need to store all the coordinates
+
+- How many coordinates do you need to store if you know origin, extend, and resolution?
+
+## Accessing data in the raster
+
+You can access data by their Cell ID or by their position in the matrix
+
+![Modified from GeoCompR](https://r.geocompx.org/figures/raster-intro-plot-1.png)
+
+## GFW 2: Fishers
+
+```{r}
+fe <- rast(here("data", "gfw_fishing_effort_2024.tif"))
+
+fe
+
+plot(log(fe))
+```
+

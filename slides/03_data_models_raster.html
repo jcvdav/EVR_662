@@ -8,7 +8,7 @@
 <link href="03_data_models_raster_files/libs/quarto-html/light-border.css" rel="stylesheet">
 <link href="03_data_models_raster_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
 <link href="03_data_models_raster_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.4.553">
+  <meta name="generator" content="quarto-1.5.57">
 
   <meta name="author" content="Juan Carlos Villaseñor-Derbez (JC)">
   <title>Geographic data models</title>
@@ -29,6 +29,71 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="03_data_models_raster_files/libs/revealjs/dist/theme/quarto.css">
   <link href="03_data_models_raster_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
@@ -320,6 +385,27 @@
       margin-right: 0; 
     }
   </style>
+  <link href="03_data_models_raster_files/libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
+  <script src="03_data_models_raster_files/libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+  <script src="03_data_models_raster_files/libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+  <link href="03_data_models_raster_files/libs/leaflet-1.3.1/leaflet.css" rel="stylesheet">
+  <script src="03_data_models_raster_files/libs/leaflet-1.3.1/leaflet.js"></script>
+  <link href="03_data_models_raster_files/libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet">
+  <script src="03_data_models_raster_files/libs/proj4-2.6.2/proj4.min.js"></script>
+  <script src="03_data_models_raster_files/libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+  <link href="03_data_models_raster_files/libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet">
+  <script src="03_data_models_raster_files/libs/leaflet-binding-2.2.2/leaflet.js"></script>
+  <script src="03_data_models_raster_files/libs/leaflet-providers-2.0.0/leaflet-providers_2.0.0.js"></script>
+  <script src="03_data_models_raster_files/libs/leaflet-providers-plugin-2.2.2/leaflet-providers-plugin.js"></script>
+  <link href="03_data_models_raster_files/libs/HomeButton-0.0.1/home-button.css" rel="stylesheet">
+  <script src="03_data_models_raster_files/libs/HomeButton-0.0.1/home-button.js"></script>
+  <script src="03_data_models_raster_files/libs/HomeButton-0.0.1/easy-button-src.min.js"></script>
+  <script src="03_data_models_raster_files/libs/clipboard-0.0.1/setClipboardText.js"></script>
+  <link href="03_data_models_raster_files/libs/mapviewCSS-0.0.1/mapview-popup.css" rel="stylesheet">
+  <link href="03_data_models_raster_files/libs/mapviewCSS-0.0.1/mapview.css" rel="stylesheet">
+  <script src="03_data_models_raster_files/libs/rsmaes_rast - 1_5bd284-1/data_stars_rsmaes_rast189ae67.txt"></script>
+  <script src="03_data_models_raster_files/libs/joda-0.0.1/joda.js"></script>
+  <script src="03_data_models_raster_files/libs/joda-0.0.1/addImageQuery-bindings.js"></script>
 </head>
 <body class="quarto-light">
   <div class="reveal">
@@ -340,6 +426,208 @@ Juan Carlos Villaseñor-Derbez (JC)
 </section>
 <section id="intro-slide" class="slide level2">
 <h2>Intro slide</h2>
+<ul>
+<li class="fragment"><p>We mentioned that spatial data can be represented in a <code>vector</code> model, or a <code>raster</code> model</p></li>
+<li class="fragment"><p>We focused on vector data, which is represented by points, lines, polygons (and combination of these)</p></li>
+<li class="fragment"><p>In <code>R</code>, we use the <code>simple features</code> standard to work with vector data via the <code>sf</code> package</p></li>
+<li class="fragment"><p><code>sf</code> objects have three main components:</p>
+<ul>
+<li class="fragment">CRS</li>
+<li class="fragment">geometry</li>
+<li class="fragment">attributes</li>
+</ul></li>
+</ul>
+</section>
+<section id="raster-data-model" class="slide level2">
+<h2>Raster data model</h2>
+<ul>
+<li class="fragment">The world with the continuous grid of cells (gridcells, grid cells, grid-cells, or pixels)</li>
+<li class="fragment">All pixels are the same size<sup>1</sup></li>
+<li class="fragment">For 99% of the cases grid cells will be squares</li>
+</ul>
+<aside><ol class="aside-footnotes"><li id="fn1"><p>The deffinition of “size” will depend on the coordinate reference system</p></li></ol></aside></section>
+<section id="raster-data-model-example" class="slide level2">
+<h2>Raster data model example</h2>
+<div class="panel-tabset">
+<ul id="tabset-1" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-1-1">Polygon (3D)</a></li><li><a href="#tabset-1-2">Raster</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1">
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href=""></a>rsmaes_poly_coords <span class="ot">&lt;-</span> <span class="fu">st_polygon</span>(</span>
+<span id="cb1-2"><a href=""></a>  <span class="at">x =</span> <span class="fu">list</span>(</span>
+<span id="cb1-3"><a href=""></a>    <span class="fu">matrix</span>(</span>
+<span id="cb1-4"><a href=""></a>      <span class="at">data =</span> <span class="fu">c</span>(</span>
+<span id="cb1-5"><a href=""></a>        <span class="sc">-</span><span class="fl">80.163017</span>, <span class="fl">25.733950</span>,</span>
+<span id="cb1-6"><a href=""></a>        <span class="sc">-</span><span class="fl">80.164236</span>, <span class="fl">25.732816</span>,</span>
+<span id="cb1-7"><a href=""></a>        <span class="sc">-</span><span class="fl">80.163772</span>, <span class="fl">25.732353</span>,</span>
+<span id="cb1-8"><a href=""></a>        <span class="sc">-</span><span class="fl">80.163924</span>, <span class="fl">25.732148</span>,</span>
+<span id="cb1-9"><a href=""></a>        <span class="sc">-</span><span class="fl">80.163455</span>, <span class="fl">25.731597</span>,</span>
+<span id="cb1-10"><a href=""></a>        <span class="sc">-</span><span class="fl">80.162187</span>, <span class="fl">25.731605</span>,</span>
+<span id="cb1-11"><a href=""></a>        <span class="sc">-</span><span class="fl">80.160968</span>, <span class="fl">25.732172</span>,</span>
+<span id="cb1-12"><a href=""></a>        <span class="sc">-</span><span class="fl">80.163017</span>, <span class="fl">25.733950</span>),</span>
+<span id="cb1-13"><a href=""></a>      <span class="at">ncol =</span> <span class="dv">2</span>,</span>
+<span id="cb1-14"><a href=""></a>      <span class="at">byrow =</span> T)),</span>
+<span id="cb1-15"><a href=""></a>  <span class="at">dim =</span> <span class="st">"XY"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb1-16"><a href=""></a>  <span class="fu">st_sfc</span>(<span class="at">crs =</span> <span class="dv">4326</span>)</span>
+<span id="cb1-17"><a href=""></a></span>
+<span id="cb1-18"><a href=""></a>rsmaes_poly <span class="ot">&lt;-</span> <span class="fu">st_sf</span>(<span class="at">id =</span> <span class="st">"Rosenstiel (polygon)"</span>,</span>
+<span id="cb1-19"><a href=""></a>                     <span class="at">geometry =</span> rsmaes_poly_coords)</span>
+<span id="cb1-20"><a href=""></a></span>
+<span id="cb1-21"><a href=""></a><span class="fu">mapview</span>(rsmaes_poly)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div class="leaflet html-widget html-fill-item" id="htmlwidget-ab13da62cc3ba80e9e50" style="width:960px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-ab13da62cc3ba80e9e50">{"x":{"options":{"minZoom":1,"maxZoom":52,"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}},"preferCanvas":false,"bounceAtZoomLimits":false,"maxBounds":[[[-90,-370]],[[90,370]]]},"calls":[{"method":"addProviderTiles","args":["CartoDB.Positron","CartoDB.Positron","CartoDB.Positron",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"addProviderTiles","args":["CartoDB.DarkMatter","CartoDB.DarkMatter","CartoDB.DarkMatter",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"addProviderTiles","args":["OpenStreetMap","OpenStreetMap","OpenStreetMap",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"addProviderTiles","args":["Esri.WorldImagery","Esri.WorldImagery","Esri.WorldImagery",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"addProviderTiles","args":["OpenTopoMap","OpenTopoMap","OpenTopoMap",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"createMapPane","args":["polygon",420]},{"method":"addPolygons","args":[[[[{"lng":[-80.163017,-80.164236,-80.16377199999999,-80.16392399999999,-80.163455,-80.162187,-80.160968,-80.163017],"lat":[25.73395,25.732816,25.732353,25.732148,25.731597,25.731605,25.732172,25.73395]}]]],null,"rsmaes_poly",{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}},"pane":"polygon","stroke":true,"color":"#333333","weight":0.5,"opacity":0.9,"fill":true,"fillColor":"#6666FF","fillOpacity":0.6,"smoothFactor":1,"noClip":false},"<div class='scrollableContainer'><table class=mapview-popup id='popup'><tr class='coord'><td><\/td><th><b>Feature ID&emsp;<\/b><\/th><td>1&emsp;<\/td><\/tr><tr><td>1<\/td><th>id&emsp;<\/th><td>Rosenstiel (polygon)&emsp;<\/td><\/tr><tr><td>2<\/td><th>geometry&emsp;<\/th><td>sfc_POLYGON&emsp;<\/td><\/tr><\/table><\/div>",{"maxWidth":800,"minWidth":50,"autoPan":true,"keepInView":false,"closeButton":true,"closeOnClick":true,"className":""},"Rosenstiel (polygon)",{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},{"stroke":true,"weight":1,"opacity":0.9,"fillOpacity":0.84,"bringToFront":false,"sendToBack":false}]},{"method":"addScaleBar","args":[{"maxWidth":100,"metric":true,"imperial":true,"updateWhenIdle":true,"position":"bottomleft"}]},{"method":"addHomeButton","args":[-80.164236,25.731597,-80.160968,25.73395,true,"rsmaes_poly","Zoom to rsmaes_poly","<strong> rsmaes_poly <\/strong>","bottomright"]},{"method":"addLayersControl","args":[["CartoDB.Positron","CartoDB.DarkMatter","OpenStreetMap","Esri.WorldImagery","OpenTopoMap"],"rsmaes_poly",{"collapsed":true,"autoZIndex":true,"position":"topleft"}]},{"method":"addLegend","args":[{"colors":["#6666FF"],"labels":["Rosenstiel (polygon)"],"na_color":null,"na_label":"NA","opacity":1,"position":"topright","type":"factor","title":"","extra":null,"layerId":null,"className":"info legend","group":"rsmaes_poly"}]}],"limits":{"lat":[25.731597,25.73395],"lng":[-80.164236,-80.160968]},"fitBounds":[25.731597,-80.164236,25.73395,-80.160968,[]]},"evals":[],"jsHooks":{"render":[{"code":"function(el, x, data) {\n  return (\n      function(el, x, data) {\n      // get the leaflet map\n      var map = this; //HTMLWidgets.find('#' + el.id);\n      // we need a new div element because we have to handle\n      // the mouseover output separately\n      // debugger;\n      function addElement () {\n      // generate new div Element\n      var newDiv = $(document.createElement('div'));\n      // append at end of leaflet htmlwidget container\n      $(el).append(newDiv);\n      //provide ID and style\n      newDiv.addClass('lnlt');\n      newDiv.css({\n      'position': 'relative',\n      'bottomleft':  '0px',\n      'background-color': 'rgba(255, 255, 255, 0.7)',\n      'box-shadow': '0 0 2px #bbb',\n      'background-clip': 'padding-box',\n      'margin': '0',\n      'padding-left': '5px',\n      'color': '#333',\n      'font': '9px/1.5 \"Helvetica Neue\", Arial, Helvetica, sans-serif',\n      'z-index': '700',\n      });\n      return newDiv;\n      }\n\n\n      // check for already existing lnlt class to not duplicate\n      var lnlt = $(el).find('.lnlt');\n\n      if(!lnlt.length) {\n      lnlt = addElement();\n\n      // grab the special div we generated in the beginning\n      // and put the mousmove output there\n\n      map.on('mousemove', function (e) {\n      if (e.originalEvent.ctrlKey) {\n      if (document.querySelector('.lnlt') === null) lnlt = addElement();\n      lnlt.text(\n                           ' lon: ' + (e.latlng.lng).toFixed(5) +\n                           ' | lat: ' + (e.latlng.lat).toFixed(5) +\n                           ' | zoom: ' + map.getZoom() +\n                           ' | x: ' + L.CRS.EPSG3857.project(e.latlng).x.toFixed(0) +\n                           ' | y: ' + L.CRS.EPSG3857.project(e.latlng).y.toFixed(0) +\n                           ' | epsg: 3857 ' +\n                           ' | proj4: +proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs ');\n      } else {\n      if (document.querySelector('.lnlt') === null) lnlt = addElement();\n      lnlt.text(\n                      ' lon: ' + (e.latlng.lng).toFixed(5) +\n                      ' | lat: ' + (e.latlng.lat).toFixed(5) +\n                      ' | zoom: ' + map.getZoom() + ' ');\n      }\n      });\n\n      // remove the lnlt div when mouse leaves map\n      map.on('mouseout', function (e) {\n      var strip = document.querySelector('.lnlt');\n      if( strip !==null) strip.remove();\n      });\n\n      };\n\n      //$(el).keypress(67, function(e) {\n      map.on('preclick', function(e) {\n      if (e.originalEvent.ctrlKey) {\n      if (document.querySelector('.lnlt') === null) lnlt = addElement();\n      lnlt.text(\n                      ' lon: ' + (e.latlng.lng).toFixed(5) +\n                      ' | lat: ' + (e.latlng.lat).toFixed(5) +\n                      ' | zoom: ' + map.getZoom() + ' ');\n      var txt = document.querySelector('.lnlt').textContent;\n      console.log(txt);\n      //txt.innerText.focus();\n      //txt.select();\n      setClipboardText('\"' + txt + '\"');\n      }\n      });\n\n      }\n      ).call(this.getMap(), el, x, data);\n}","data":null},{"code":"function(el, x, data) {\n  return (function(el,x,data){\n           var map = this;\n\n           map.on('keypress', function(e) {\n               console.log(e.originalEvent.code);\n               var key = e.originalEvent.code;\n               if (key === 'KeyE') {\n                   var bb = this.getBounds();\n                   var txt = JSON.stringify(bb);\n                   console.log(txt);\n\n                   setClipboardText('\\'' + txt + '\\'');\n               }\n           })\n        }).call(this.getMap(), el, x, data);\n}","data":null}]}}</script>
+</div>
+</div>
+</div>
+<div id="tabset-1-2">
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href=""></a>rsmaes_rast <span class="ot">&lt;-</span> <span class="fu">rasterize</span>(</span>
+<span id="cb2-2"><a href=""></a>  <span class="at">x =</span> <span class="fu">vect</span>(rsmaes_poly),</span>
+<span id="cb2-3"><a href=""></a>  <span class="at">y =</span> <span class="fu">rast</span>(<span class="at">resolution =</span> <span class="fl">0.0001</span>,</span>
+<span id="cb2-4"><a href=""></a>           <span class="at">crs =</span> <span class="st">"EPSG:4326"</span>,</span>
+<span id="cb2-5"><a href=""></a>           <span class="at">val =</span> <span class="dv">0</span>,</span>
+<span id="cb2-6"><a href=""></a>           <span class="at">xmin =</span> <span class="sc">-</span><span class="fl">80.168</span>, <span class="at">xmax =</span> <span class="sc">-</span><span class="fl">80.155</span>,</span>
+<span id="cb2-7"><a href=""></a>           <span class="at">ymin =</span> <span class="fl">25.730</span>, <span class="at">ymax =</span> <span class="fl">25.735</span>),</span>
+<span id="cb2-8"><a href=""></a>  <span class="at">field =</span> <span class="dv">1</span>)</span>
+<span id="cb2-9"><a href=""></a></span>
+<span id="cb2-10"><a href=""></a><span class="fu">names</span>(rsmaes_rast) <span class="ot">&lt;-</span> <span class="st">"Rosenstiel"</span></span>
+<span id="cb2-11"><a href=""></a>rsmaes_rast[<span class="fu">is.na</span>(rsmaes_rast)] <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb2-12"><a href=""></a></span>
+<span id="cb2-13"><a href=""></a><span class="fu">mapview</span>(rsmaes_rast,</span>
+<span id="cb2-14"><a href=""></a>        <span class="at">legend =</span> F)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div class="leaflet html-widget html-fill-item" id="htmlwidget-842fc41c40fbd1937811" style="width:960px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-842fc41c40fbd1937811">{"x":{"options":{"minZoom":1,"maxZoom":52,"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}},"preferCanvas":false,"bounceAtZoomLimits":false,"maxBounds":[[[-90,-370]],[[90,370]]]},"calls":[{"method":"addProviderTiles","args":["CartoDB.Positron","CartoDB.Positron","CartoDB.Positron",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"addProviderTiles","args":["CartoDB.DarkMatter","CartoDB.DarkMatter","CartoDB.DarkMatter",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"addProviderTiles","args":["OpenStreetMap","OpenStreetMap","OpenStreetMap",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"addProviderTiles","args":["Esri.WorldImagery","Esri.WorldImagery","Esri.WorldImagery",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"addProviderTiles","args":["OpenTopoMap","OpenTopoMap","OpenTopoMap",{"errorTileUrl":"","noWrap":false,"detectRetina":false,"pane":"tilePane"}]},{"method":"addRasterImage","args":["data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHwAAAA1CAYAAACDSY8aAAABQElEQVR4nO3ZsU3DUBCA4QOlp6LyCFY2yVKMwBhUNF4lI2QOqCwSIJKTvGff6f//2sVJn+4k6z29vuy/whB9fL6/PW89hK2b4LAEhyU4LMFhCQ5LcFiCwxIcluCwBIdVGvx0PGw9QrnKgs/Yot9WSfDfyKIvrxz4NVzRl7XbeoClLQGdvxnGqfc4ZSux4bdur9t+vfTg9+KJ/n+pwR9FE/1vacFbYYl+WUrw1kii/5QOvBfO6XgQPhKC946Ong58jX9oMno68AjRe5YSPEL0XqUFjxC9R6nBrX2Cw0oNvta5JZ311OBrPXOSnlPLvIf3iAQ9lx58GKemJ5eIfF7qkz7XAmkYJzx2RBHwiPvRhb4s/Uk/T7jHK7Ph1ibBYQkOS3BYgsMSHJbgsASHJTgswWEJDktwWILDEhyW4LAEh/UNDktRekGJqpQAAAAASUVORK5CYII=",[[25.73500014421401,-80.16799999999999],[25.72996980166076,-80.15493528167518]],0.8,null,"rsmaes_rast - 1","rsmaes_rast - 1"]},{"method":"removeLayersControl","args":[]},{"method":"addLayersControl","args":[["CartoDB.Positron","CartoDB.DarkMatter","OpenStreetMap","Esri.WorldImagery","OpenTopoMap"],"rsmaes_rast - 1",{"collapsed":true,"autoZIndex":true,"position":"topleft"}]},{"method":"addControl","args":["","topright","imageValues-rsmaes_rast - 1","info legend "]},{"method":"addImageQuery","args":["rsmaes_rast - 1",[-80.16799999999999,25.72990014388282,-80.15489999914929,25.73500014421401],"mousemove",7,"Layer"]},{"method":"addScaleBar","args":[{"maxWidth":100,"metric":true,"imperial":true,"updateWhenIdle":true,"position":"bottomleft"}]},{"method":"addHomeButton","args":[-80.16800000000001,25.73,-80.155,25.735,true,"rsmaes_rast - 1","Zoom to rsmaes_rast - 1","<strong> rsmaes_rast - 1 <\/strong>","bottomright"]}],"limits":{"lat":[25.72996980166076,25.73500014421401],"lng":[-80.16799999999999,-80.15493528167518]}},"evals":[],"jsHooks":{"render":[{"code":"function(el, x, data) {\n  return (\n      function(el, x, data) {\n      // get the leaflet map\n      var map = this; //HTMLWidgets.find('#' + el.id);\n      // we need a new div element because we have to handle\n      // the mouseover output separately\n      // debugger;\n      function addElement () {\n      // generate new div Element\n      var newDiv = $(document.createElement('div'));\n      // append at end of leaflet htmlwidget container\n      $(el).append(newDiv);\n      //provide ID and style\n      newDiv.addClass('lnlt');\n      newDiv.css({\n      'position': 'relative',\n      'bottomleft':  '0px',\n      'background-color': 'rgba(255, 255, 255, 0.7)',\n      'box-shadow': '0 0 2px #bbb',\n      'background-clip': 'padding-box',\n      'margin': '0',\n      'padding-left': '5px',\n      'color': '#333',\n      'font': '9px/1.5 \"Helvetica Neue\", Arial, Helvetica, sans-serif',\n      'z-index': '700',\n      });\n      return newDiv;\n      }\n\n\n      // check for already existing lnlt class to not duplicate\n      var lnlt = $(el).find('.lnlt');\n\n      if(!lnlt.length) {\n      lnlt = addElement();\n\n      // grab the special div we generated in the beginning\n      // and put the mousmove output there\n\n      map.on('mousemove', function (e) {\n      if (e.originalEvent.ctrlKey) {\n      if (document.querySelector('.lnlt') === null) lnlt = addElement();\n      lnlt.text(\n                           ' lon: ' + (e.latlng.lng).toFixed(5) +\n                           ' | lat: ' + (e.latlng.lat).toFixed(5) +\n                           ' | zoom: ' + map.getZoom() +\n                           ' | x: ' + L.CRS.EPSG3857.project(e.latlng).x.toFixed(0) +\n                           ' | y: ' + L.CRS.EPSG3857.project(e.latlng).y.toFixed(0) +\n                           ' | epsg: 3857 ' +\n                           ' | proj4: +proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs ');\n      } else {\n      if (document.querySelector('.lnlt') === null) lnlt = addElement();\n      lnlt.text(\n                      ' lon: ' + (e.latlng.lng).toFixed(5) +\n                      ' | lat: ' + (e.latlng.lat).toFixed(5) +\n                      ' | zoom: ' + map.getZoom() + ' ');\n      }\n      });\n\n      // remove the lnlt div when mouse leaves map\n      map.on('mouseout', function (e) {\n      var strip = document.querySelector('.lnlt');\n      if( strip !==null) strip.remove();\n      });\n\n      };\n\n      //$(el).keypress(67, function(e) {\n      map.on('preclick', function(e) {\n      if (e.originalEvent.ctrlKey) {\n      if (document.querySelector('.lnlt') === null) lnlt = addElement();\n      lnlt.text(\n                      ' lon: ' + (e.latlng.lng).toFixed(5) +\n                      ' | lat: ' + (e.latlng.lat).toFixed(5) +\n                      ' | zoom: ' + map.getZoom() + ' ');\n      var txt = document.querySelector('.lnlt').textContent;\n      console.log(txt);\n      //txt.innerText.focus();\n      //txt.select();\n      setClipboardText('\"' + txt + '\"');\n      }\n      });\n\n      }\n      ).call(this.getMap(), el, x, data);\n}","data":null},{"code":"function(el, x, data) {\n  return (function(el,x,data){\n           var map = this;\n\n           map.on('keypress', function(e) {\n               console.log(e.originalEvent.code);\n               var key = e.originalEvent.code;\n               if (key === 'KeyE') {\n                   var bb = this.getBounds();\n                   var txt = JSON.stringify(bb);\n                   console.log(txt);\n\n                   setClipboardText('\\'' + txt + '\\'');\n               }\n           })\n        }).call(this.getMap(), el, x, data);\n}","data":null}]}}</script>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="components-of-a-raster" class="slide level2">
+<h2>Components of a raster</h2>
+<ul>
+<li class="fragment">Typically two components:
+<ul>
+<li class="fragment">Header (“metadata” with CRS, extent, and origin)</li>
+<li class="fragment">Matrix (the actual “data” we want to represent)</li>
+</ul></li>
+<li class="fragment">x-coordinates = columns</li>
+<li class="fragment">y-coordinates = rows</li>
+</ul>
+</section>
+<section id="gfw-1-trees" class="slide level2">
+<h2>GFW 1: Trees</h2>
+<blockquote>
+<p>Tree cover in the year 2000, defined as canopy closure for all vegetation taller than 5m in height. Encoded as a percentage per output grid cell, in the range 0–100.</p>
+</blockquote>
+<div class="fragment">
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href=""></a>tc <span class="ot">&lt;-</span> <span class="fu">rast</span>(<span class="fu">here</span>(<span class="st">"data/Hansen_GFC2015_treecover2000_00N_080W.tif"</span>))</span>
+<span id="cb3-2"><a href=""></a></span>
+<span id="cb3-3"><a href=""></a>tc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>class       : SpatRaster 
+dimensions  : 40000, 40000, 1  (nrow, ncol, nlyr)
+resolution  : 0.00025, 0.00025  (x, y)
+extent      : -80, -70, -10, 0  (xmin, xmax, ymin, ymax)
+coord. ref. : lon/lat WGS 84 (EPSG:4326) 
+source      : Hansen_GFC2015_treecover2000_00N_080W.tif 
+name        : Hansen_GFC2015_treecover2000_00N_080W </code></pre>
+</div>
+</div>
+<p>Let’s check the resolution and number of cells</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href=""></a><span class="fl">0.00025</span> <span class="sc">*</span> <span class="fl">111.31</span> <span class="sc">*</span> <span class="dv">1000</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 27.8275</code></pre>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href=""></a><span class="fu">plot</span>(tc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="03_data_models_raster_files/figure-revealjs/unnamed-chunk-3-1.png" width="960"></p>
+<figcaption>Download data from <a href="https://earthenginepartners.appspot.com/science-2013-global-forest/download_v1.2.html">GFW earthengine portal</a></figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+</div>
+</section>
+<section id="why-are-rasters-faster" class="slide level2">
+<h2>Why are rasters faster?</h2>
+<ul>
+<li class="fragment">There is a fundamental relationship between resolution, extent, and origin:</li>
+</ul>
+<div class="fragment">
+<p><span class="math display">\[
+\mathrm{resolution} = \frac{x_{max} - x_{min}}{n_{col}} , \frac{y_{max} - y_{min}}{n_{row}}
+\]</span></p>
+<ul>
+<li class="fragment"><p>Raster data are typically “lighter” (and faster to work with) because they don’t need to store all the coordinates</p></li>
+<li class="fragment"><p>How many coordinates do you need to store if you know origin, extend, and resolution?</p></li>
+</ul>
+</div>
+</section>
+<section id="accessing-data-in-the-raster" class="slide level2">
+<h2>Accessing data in the raster</h2>
+<p>You can access data by their Cell ID or by their position in the matrix</p>
+
+<img data-src="https://r.geocompx.org/figures/raster-intro-plot-1.png" class="r-stretch quarto-figure-center"><p class="caption">Modified from GeoCompR</p></section>
+<section id="gfw-2-fishers" class="slide level2">
+<h2>GFW 2: Fishers</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href=""></a>fe <span class="ot">&lt;-</span> <span class="fu">rast</span>(<span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"gfw_fishing_effort_2024.tif"</span>))</span>
+<span id="cb8-2"><a href=""></a></span>
+<span id="cb8-3"><a href=""></a>fe</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>class       : SpatRaster 
+dimensions  : 334, 720, 1  (nrow, ncol, nlyr)
+resolution  : 0.5, 0.5  (x, y)
+extent      : -180, 180, -77.8, 89.2  (xmin, xmax, ymin, ymax)
+coord. ref. : lon/lat WGS 84 (EPSG:4326) 
+source      : gfw_fishing_effort_2024.tif 
+name        :      sum 
+min value   :      0.0 
+max value   : 778060.7 </code></pre>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href=""></a><span class="fu">plot</span>(<span class="fu">log</span>(fe))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="03_data_models_raster_files/figure-revealjs/unnamed-chunk-4-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
 <div class="quarto-auto-generated-content">
 <p><img src="https://ucomm.miami.edu/_assets/images/tools-and-resources/signatures/png/um-horizontal-rgb.png" class="slide-logo"></p>
 <div class="footer footer-default">
@@ -347,6 +635,7 @@ Juan Carlos Villaseñor-Derbez (JC)
 </div>
 </div>
 </section>
+
     </div>
   </div>
 
@@ -378,7 +667,7 @@ Juan Carlos Villaseñor-Derbez (JC)
 'autoAnimateDuration': 1,
 'autoAnimateUnmatched': true,
 'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
-'smaller': false,
+'smaller': true,
  
         // Display controls in the bottom right corner
         controls: false,
@@ -398,7 +687,7 @@ Juan Carlos Villaseñor-Derbez (JC)
         progress: true,
 
         // Display the page number of the current slide
-        slideNumber: false,
+        slideNumber: 'c/t',
 
         // 'all', 'print', or 'speaker'
         showSlideNumber: 'all',
@@ -500,7 +789,7 @@ Juan Carlos Villaseñor-Derbez (JC)
         hideCursorTime: 5000,
 
         // Opens links in an iframe preview overlay
-        previewLinks: false,
+        previewLinks: true,
 
         // Transition style (none/fade/slide/convex/concave/zoom)
         transition: 'none',
@@ -557,6 +846,44 @@ Juan Carlos Villaseñor-Derbez (JC)
         ]
       });
     </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
     <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
       const toggleBodyColorMode = (bsSheetEl) => {
@@ -589,18 +916,7 @@ Juan Carlos Villaseñor-Derbez (JC)
         }
         return false;
       }
-      const clipboard = new window.ClipboardJS('.code-copy-button', {
-        text: function(trigger) {
-          const codeEl = trigger.previousElementSibling.cloneNode(true);
-          for (const childEl of codeEl.children) {
-            if (isCodeAnnotation(childEl)) {
-              childEl.remove();
-            }
-          }
-          return codeEl.innerText;
-        }
-      });
-      clipboard.on('success', function(e) {
+      const onCopySuccess = function(e) {
         // button target
         const button = e.trigger;
         // don't keep focus
@@ -632,7 +948,29 @@ Juan Carlos Villaseñor-Derbez (JC)
         }, 1000);
         // clear code selection
         e.clearSelection();
+      }
+      const getTextToCopy = function(trigger) {
+          const codeEl = trigger.previousElementSibling.cloneNode(true);
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+      }
+      const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+        text: getTextToCopy
       });
+      clipboard.on('success', onCopySuccess);
+      if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+        // For code content inside modals, clipBoardJS needs to be initialized with a container option
+        // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+        const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+          text: getTextToCopy,
+          container: window.document.getElementById('quarto-embedded-source-code-modal')
+        });
+        clipboardModal.on('success', onCopySuccess);
+      }
         var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
         var mailtoRegex = new RegExp(/^mailto:/);
           var filterRegex = new RegExp('/' + window.location.host + '/');
@@ -640,7 +978,7 @@ Juan Carlos Villaseñor-Derbez (JC)
             return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
         }
         // Inspect non-navigation links and adorn them if external
-     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
         for (var i=0; i<links.length; i++) {
           const link = links[i];
           if (!isInternal(link.href)) {
