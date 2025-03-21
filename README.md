@@ -43,18 +43,19 @@ Required: previous exposure to GIS, such as EVR 660. Introduction to Marine Geog
 # Course contents
 
 1.  [Intro to spatial analysis in R](https://jcvdav.github.io/EVR_662/slides/01_intro#/title-slide)
-2.  [Geographic data models in R](https://jcvdav.github.io/EVR_662/slides/02_data_models_vector#/title-slide)
+2.  [Geographic data models in R - Vector](https://jcvdav.github.io/EVR_662/slides/02_data_models_vector#/title-slide)
     - [Milton track](https://github.com/jcvdav/EVR_662/blob/main/data/milton.gpkg)
-3.  [Attribute operations](https://jcvdav.github.io/EVR_662/slides/03_data_models_raster#/title-slide)
+3.  [Geographic data models in R - Raster](https://jcvdav.github.io/EVR_662/slides/03_data_models_raster#/title-slide)
     - [GFW tree cover in 2000](https://storage.googleapis.com/earthenginepartners-hansen/GFC2015/Hansen_GFC2015_treecover2000_00N_080W.tif)
     - [GFW fishing effort](https://github.com/jcvdav/EVR_662/blob/main/data/gfw_fishing_effort_2024.tif)
-4.  Spatial data operations in R
-5.  Geometry operations and Raster-Vector interactions
-6.  Static visualization (maps)
-7.  Interactive visualization (web maps)
-8.  Scripts, algorithms, and functions
-9.  Principles of spatial statistical learning and remote sensing
-10. Final project presentations
+4.  Attribute operations
+5.  Spatial data operations in R
+6.  Geometry operations and Raster-Vector interactions
+7.  Static visualization (maps)
+8.  Interactive visualization (web maps)
+9.  Scripts, algorithms, and functions
+10.  Principles of spatial statistical learning and remote sensing
+11. Final project presentations
 
 # List of in-class exercises (examples)
 
