@@ -45,7 +45,9 @@ Required: previous exposure to GIS, such as EVR 660. Introduction to Marine Geog
 1.  [Intro to spatial analysis in R](https://jcvdav.github.io/EVR_662/slides/01_intro#/title-slide)
 2.  [Geographic data models in R](https://jcvdav.github.io/EVR_662/slides/02_data_models_vector#/title-slide)
     - [Milton track](https://github.com/jcvdav/EVR_662/blob/main/data/milton.gpkg)
-3.  Attribute operations
+3.  [Attribute operations](https://jcvdav.github.io/EVR_662/slides/03_data_models_raster#/title-slide)
+    - [GFW tree cover in 2000](https://storage.googleapis.com/earthenginepartners-hansen/GFC2015/Hansen_GFC2015_treecover2000_00N_080W.tif)
+    - [GFW fishing effort](https://github.com/jcvdav/EVR_662/blob/main/data/gfw_fishing_effort_2024.tif)
 4.  Spatial data operations in R
 5.  Geometry operations and Raster-Vector interactions
 6.  Static visualization (maps)
