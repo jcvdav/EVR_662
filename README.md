@@ -49,6 +49,7 @@ Required: previous exposure to GIS, such as EVR 660. Introduction to Marine Geog
     - [GFW tree cover in 2000](https://storage.googleapis.com/earthenginepartners-hansen/GFC2015/Hansen_GFC2015_treecover2000_00N_080W.tif)
     - [GFW fishing effort](https://github.com/jcvdav/EVR_662/blob/main/data/gfw_fishing_effort_2024.tif)
 4.  Attribute operations
+    - [Atlantic storms (2022-2025)](https://github.com/jcvdav/EVR_662/blob/main/data/atlantic_storms.gpkg)
 5.  Spatial data operations in R
 6.  Geometry operations and Raster-Vector interactions
 7.  Static visualization (maps)
